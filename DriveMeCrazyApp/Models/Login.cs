@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DriveMeCrazyApp.Models
 {
-    class Login
+   public class Login
     {
         public string UserEmail { get; set; } = null!;
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DriveMeCrazyApp.Models
 {
-    class TableUser
+  public  class TableUser
     {
         public int Id { get; set; }
 
