@@ -1,15 +1,18 @@
 ﻿using DriveMeCrazyApp.Models;
+using DriveMeCrazyApp.Views;
 
 namespace DriveMeCrazyApp
 {
     public partial class App : Application
     {
         public TableUser? LoggedInUser { get; set; }
-        public App()
+        public App(IServiceProvider serviceProvider)
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            LoginView? v = serviceProvider.GetService<LoginView>();
+
+            MainPage = v;
         }
     }
 }

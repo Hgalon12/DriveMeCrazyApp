@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using DriveMeCrazyApp.Services;
+using DriveMeCrazyApp.ViewModels;
+using DriveMeCrazyApp.Views;
+using Microsoft.Extensions.Logging;
 using Microsoft.Win32;
 
 namespace DriveMeCrazyApp
@@ -27,18 +30,20 @@ namespace DriveMeCrazyApp
         }
         public static MauiAppBuilder RegisterPages(this MauiAppBuilder builder)
         {
-           
+            builder.Services.AddTransient<LoginView>();
+            builder.Services.AddTransient<AppShell>();
             return builder;
         }
 
         public static MauiAppBuilder RegisterDataServices(this MauiAppBuilder builder)
         {
-           
+            builder.Services.AddSingleton<DriveMeCrazyWebAPIProxy>();
             return builder;
         }
         public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)
         {
-            
+            builder.Services.AddTransient<LoginViewModel>();
+            builder.Services.AddTransient<ViewModelBase>();
             return builder;
         }
     }
