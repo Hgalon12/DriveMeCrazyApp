@@ -17,6 +17,9 @@ namespace DriveMeCrazyApp
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("Karantina-Bold.ttf", "KarantinaBold");
+                    fonts.AddFont("Karantina-Light.ttf", "KarantinaLight");
+                    fonts.AddFont("Karantina-Regular.ttf", "KarantinaRegular");
                 })
                 .RegisterDataServices()
                 .RegisterPages()
@@ -46,5 +49,6 @@ namespace DriveMeCrazyApp
             builder.Services.AddTransient<ViewModelBase>();
             return builder;
         }
+        
     }
 }
