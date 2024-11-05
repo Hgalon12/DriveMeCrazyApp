@@ -9,4 +9,9 @@ public partial class LoginView : ContentPage
 		this.BindingContext = vm;
 		InitializeComponent();
 	}
+
+    private void Label_SizeChanged(object sender, EventArgs e)
+    {
+
+    }
 }

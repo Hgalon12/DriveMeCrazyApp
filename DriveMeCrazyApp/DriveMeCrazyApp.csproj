@@ -57,12 +57,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Fonts\Bebas-Regular.ttf" />
+	  <None Remove="Resources\Fonts\Hatolie.ttf" />
+	  <None Remove="Resources\Fonts\JumperPERSONALUSEONLY-Extra-Bold.ttf" />
+	  <None Remove="Resources\Fonts\JumperPERSONALUSEONLY-Regular.ttf" />
 	  <None Remove="Resources\Fonts\Karantina-Bold.ttf" />
 	  <None Remove="Resources\Fonts\Karantina-Light.ttf" />
 	  <None Remove="Resources\Fonts\Karantina-Regular.ttf" />
+	  <None Remove="Resources\Fonts\SPEEDRACE PERSONAL USE ONLY!.ttf" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Maui" Version="9.1.0" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />

@@ -3,50 +3,63 @@
     x:Class="DriveMeCrazyApp.Views.LoginView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="LoginView"
-    Background="LightYellow"
-    FlowDirection="RightToLeft">
+    Background="LightYellow">
+    <ContentPage.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="LightYellow" StatusBarStyle="DarkContent" />
+    </ContentPage.Behaviors>
     <VerticalStackLayout Padding="20" Spacing="15">
-        <Image Source="dotnet_bot.jpg" />
+        <!--<Image Source="dotnet_bot.jpg" />-->
         <Label
-            FontFamily="KarantinaRegular"
-            FontSize="50"
+            Margin="50,0,0,20"
+            FontFamily="JumperBold"
+            FontSize="73"
             HorizontalTextAlignment="Center"
-            Text="התחברות"
-            TextColor="#1F51FF" />
+            Text="LOG IN  "
+            TextColor="Navy" />
 
         <Entry
             IsEnabled="{Binding NotInServerCall}"
             Keyboard="Email"
-            Placeholder="איימל"
+            Placeholder="Email 📪"
+            PlaceholderColor="Brown"
             Text="{Binding Email}" />
-
+        <Label Margin="-10" />
         <Entry
+            FontFamily="Beabas"
             IsEnabled="{Binding NotInServerCall}"
             IsPassword="True"
-            Placeholder="סיסמה"
+            Placeholder="Password 🔑"
+            PlaceholderColor="Brown"
             Text="{Binding Password}" />
 
         <Button
+            BackgroundColor="#005A9C"
             Command="{Binding LoginCommand}"
-            FontFamily="KarantinaRegular"
-            FontSize="30"
+            FontFamily="Beabas"
+            FontSize="25"
             IsEnabled="{Binding NotInServerCall}"
-            Text="ה ת ח ב ר" />
+            Text="L o g i n" />
         <Label
             HorizontalOptions="Center"
             Text="{Binding ErrorMsg}"
             TextColor="Red" />
         <Label
+            FontFamily="Beabas"
+            FontSize="Large"
             HorizontalOptions="Center"
             IsEnabled="{Binding NotInServerCall}"
-            Text="אין לך חשבון? לחץ כאן להתחברות"
+            Text="Don't Have an account?"
             TextColor="Navy"
             VerticalOptions="End">
+
+
             <Label.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding RegisterCommand}" />
             </Label.GestureRecognizers>
         </Label>
+
         <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red" />
     </VerticalStackLayout>
 </ContentPage>
