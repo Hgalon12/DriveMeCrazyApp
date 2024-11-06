@@ -17,7 +17,7 @@
             FontSize="73"
             HorizontalTextAlignment="Center"
             Text="LOG IN  "
-            TextColor="Navy" />
+            TextColor="#5072A7" />
 
         <Entry
             IsEnabled="{Binding NotInServerCall}"
@@ -35,10 +35,10 @@
             Text="{Binding Password}" />
 
         <Button
-            BackgroundColor="#005A9C"
+            BackgroundColor="#5072A7"
             Command="{Binding LoginCommand}"
             FontFamily="Beabas"
-            FontSize="25"
+            FontSize="15"
             IsEnabled="{Binding NotInServerCall}"
             Text="L o g i n" />
         <Label
@@ -47,10 +47,10 @@
             TextColor="Red" />
         <Label
             FontFamily="Beabas"
-            FontSize="Large"
+            FontSize="Medium"
             HorizontalOptions="Center"
             IsEnabled="{Binding NotInServerCall}"
-            Text="Don't Have an account?"
+            Text="Don't Have an account? register"
             TextColor="Navy"
             VerticalOptions="End">
 

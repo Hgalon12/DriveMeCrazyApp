@@ -32,7 +32,7 @@ namespace DriveMeCrazyApp.Services
         private static string serverIP = "ls94pz8z-5243.euw.devtunnels.ms";
         private HttpClient client;
         private string baseUrl;
-        public static string BaseAddress = "https://ls94pz8z-5243.euw.devtunnels.ms";
+        public static string BaseAddress = "https://ls94pz8z-5243.euw.devtunnels.ms/api/";
         private static string ImageBaseAddress = "https://ls94pz8z-5243.euw.devtunnels.ms/";
         #endregion
 

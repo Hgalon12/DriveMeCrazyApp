@@ -42,6 +42,7 @@ namespace DriveMeCrazyApp
         {
             builder.Services.AddTransient<LoginView>();
             builder.Services.AddTransient<AppShell>();
+            builder.Services.AddTransient<RegisterView>();
             return builder;
         }
 
@@ -54,6 +55,7 @@ namespace DriveMeCrazyApp
         {
             builder.Services.AddTransient<LoginViewModel>();
             builder.Services.AddTransient<ViewModelBase>();
+            builder.Services.AddTransient<RegisterViewModel>();
             return builder;
         }
         

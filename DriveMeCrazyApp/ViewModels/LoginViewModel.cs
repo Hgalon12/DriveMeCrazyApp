@@ -1,5 +1,6 @@
 ﻿using DriveMeCrazyApp.Models;
 using DriveMeCrazyApp.Services;
+using DriveMeCrazyApp.Views;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -111,7 +112,8 @@ namespace DriveMeCrazyApp.ViewModels
             }
         }
 
-        private async void OnRegister()
+
+        private void OnRegister()
         {
 
         }
@@ -131,5 +133,6 @@ namespace DriveMeCrazyApp.ViewModels
 
 
 
-        }
+
+    }
 }
