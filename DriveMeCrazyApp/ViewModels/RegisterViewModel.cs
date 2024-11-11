@@ -1,4 +1,5 @@
-﻿using DriveMeCrazyApp.Services;
+﻿using DriveMeCrazyApp.Models;
+using DriveMeCrazyApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,26 @@ namespace DriveMeCrazyApp.ViewModels
     public class RegisterViewModel:ViewModelBase
     {
         private DriveMeCrazyWebAPIProxy proxy;
+
+        public RegisterViewModel(DriveMeCrazyWebAPIProxy proxy)
+        {
+            this.proxy = proxy;
+            RegisterCommand = new Command(OnRegister);
+            CancelCommand = new Command(OnCancel);
+            ShowPasswordCommand = new Command(OnShowPassword);
+            UploadPhotoCommand = new Command(OnUploadPhoto);
+            PhotoURL = proxy.GetDefaultProfilePhotoUrl();
+            LocalPhotoPath = "";
+            IsPassword = true;
+            NameError = "Name is required";
+            LastNameError = "Last name is required";
+            EmailError = "Email is required";
+            PasswordError = "Password must be at least 4 characters long and contain letters and numbers";
+            PhoneNumError = "Phone number must be 10 digits";
+            CarId= "CarId is required";
+            InsurantNumError= "InsurantNum is required";
+        }
+
 
 
         #region Name
@@ -292,13 +313,218 @@ namespace DriveMeCrazyApp.ViewModels
 
         #endregion
 
+        #region CarId
+        private bool showCarIdError;
+
+        public bool ShowCarIdError
+        {
+            get => showCarIdError;
+            set
+            {
+                showNameError = value;
+                OnPropertyChanged("ShowCarIdError");
+            }
+        }
+
+        private string carId;
+
+        public string CarId
+        {
+            get => name;
+            set
+            {
+                name = value;
+                ValidateCarIdError();
+                OnPropertyChanged("CarId");
+            }
+        }
+
+        private string carIdError;
+
+        public string CarIdError
+        {
+            get => carIdError;
+            set
+            {
+                nameError = value;
+                OnPropertyChanged("CarIdError");
+            }
+        }
+
+        private void ValidateCarIdError()
+        {
+            this.ShowNameError = string.IsNullOrEmpty(Name);
+        }
+        #endregion
+        #region InsurantNum
+        private bool showinsurantNumError;
+
+        public bool ShowInsurantNumError
+        {
+            get => showinsurantNumError;
+            set
+            {
+                showinsurantNumError = value;
+                OnPropertyChanged("ShowInsurantNumError");
+            }
+        }
+
+        private string insurantNum;
+
+        public string InsurantNum
+        {
+            get => insurantNum;
+            set
+            {
+                insurantNum = value;
+                ValidateInsurantNumError();
+                OnPropertyChanged("InsurantNum");
+            }
+        }
+
+        private string insurantNumError;
+
+        public string InsurantNumError
+        {
+            get => insurantNumError;
+            set
+            {
+                insurantNumError = value;
+                OnPropertyChanged("InsurantNumError");
+            }
+        }
+
+        private void ValidateInsurantNumError()
+        {
+            this.ShowNameError = string.IsNullOrEmpty(Name);
+        }
+        #endregion
+
+        #region PhoneNum
+        private bool showPhoneNumError;
+
+        public bool ShowPhoneNumError
+        {
+            get => showPasswordError;
+            set
+            {
+                showPasswordError = value;
+                OnPropertyChanged("ShowPhoneNumError");
+            }
+        }
+
+        private string phoneNum;
+
+        public string PhoneNum
+        {
+            get => phoneNum;
+            set
+            {
+                phoneNum = value;
+                ValidatePassword();
+                OnPropertyChanged("PhoneNum");
+            }
+        }
+
+        private string phoneNumError;
+
+        public string PhoneNumError
+        {
+            get => PhoneNumError;
+            set
+            {
+                phoneNumError = value;
+                OnPropertyChanged("PhoneNumError");
+            }
+        }
+
+        private void ValidatePhoneNumError()
+        {
+            //Password must include characters and numbers and be longer than 4 characters
+            if (string.IsNullOrEmpty(phoneNum) ||
+                phoneNum.Length < 10 ||
+                !phoneNum.Any(char.IsDigit))
+            {
+                this.ShowPhoneNumError = true;
+            }
+            else
+                this.ShowPhoneNumError = false;
+        }
+
+        //This property will indicate if the password entry is a password
+
+        #endregion
+
+
+       
+
 
         //Define a command for the register button
         public Command RegisterCommand { get; }
         public Command CancelCommand { get; }
+        public async void OnRegister()
+        {
+            ValidateName();
+            ValidateLastName();
+            ValidateEmail();
+            ValidatePassword();
+            ValidateCarIdError();
+            ValidatePhoneNumError();
+            ValidateInsurantNumError();
 
+            if (!ShowNameError && !ShowLastNameError && !ShowEmailError && !ShowPasswordError && !ShowCarIdError && !ShowPhoneNumError && !ShowInsurantNumError)
+            {
+                //Create a new AppUser object with the data from the registration form
+                var newUser = new TableUser
+                {
+                    UserName = Name,
+                    UserLastName = LastName,
+                    UserEmail = Email,
+                    UserPassword = Password,
+                    CarId = CarId,
+                    InsurantNum = InsurantNum,
+                    UserPhoneNum=PhoneNum,
+                    //IsManager = false
+                };
 
+                //Call the Register method on the proxy to register the new user
+                InServerCall = true;
+                newUser = await proxy.Register(newUser);
+                InServerCall = false;
 
+                //If the registration was successful, navigate to the login page
+                if (newUser != null)
+                {
+                    //UPload profile imae if needed
+                    if (!string.IsNullOrEmpty(LocalPhotoPath))
+                    {
+                        await proxy.LoginAsync(new Login { UserEmail = newUser.UserEmail, UserPassword = newUser.UserPassword });
+                        TableUser? updatedUser = await proxy.UploadProfileImage(LocalPhotoPath);
+                        if (updatedUser == null)
+                        {
+                            InServerCall = false;
+                            await Application.Current.MainPage.DisplayAlert("Registration", "User Data Was Saved BUT Profile image upload failed", "ok");
+                        }
+                    }
+                    InServerCall = false;
+
+                    ((App)(Application.Current)).MainPage.Navigation.PopAsync();
+                }
+                else
+                {
+
+                    //If the registration failed, display an error message
+                    string errorMsg = "Registration failed. Please try again.";
+                    await Application.Current.MainPage.DisplayAlert("Registration", errorMsg, "ok");
+                }
+            }
+        }
+
+        public void OnCancel()
+        {
+            //Navigate back to the login page
+            ((App)(Application.Current)).MainPage.Navigation.PopAsync();
+        }
 
 
 

@@ -116,6 +116,12 @@ namespace DriveMeCrazyApp.ViewModels
         private void OnRegister()
         {
 
+            ErrorMsg = "";
+            Email = "";
+            Password = "";
+            Page p = serviceProvider.GetService<RegisterView>();
+           ((App)Application.Current).MainPage.Navigation.PushAsync(p);
+
         }
 
 
