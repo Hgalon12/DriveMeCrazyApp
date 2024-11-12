@@ -12,7 +12,7 @@ namespace DriveMeCrazyApp
 
             LoginView? v = serviceProvider.GetService<LoginView>();
 
-            MainPage = v;
+            MainPage = new NavigationPage(v);
         }
     }
 }

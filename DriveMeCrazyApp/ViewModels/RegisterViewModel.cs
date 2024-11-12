@@ -19,6 +19,7 @@ namespace DriveMeCrazyApp.ViewModels
             CancelCommand = new Command(OnCancel);
             ShowPasswordCommand = new Command(OnShowPassword);
             UploadPhotoCommand = new Command(OnUploadPhoto);
+            GalleryPhotoCommand = new Command(OnGalleryPhoto);
             PhotoURL = proxy.GetDefaultProfilePhotoUrl();
             LocalPhotoPath = "";
             IsPassword = true;
@@ -27,7 +28,7 @@ namespace DriveMeCrazyApp.ViewModels
             EmailError = "Email is required";
             PasswordError = "Password must be at least 4 characters long and contain letters and numbers";
             PhoneNumError = "Phone number must be 10 digits";
-            CarId= "CarId is required";
+            CarIdError = "CarId is required";
             InsurantNumError= "InsurantNum is required";
         }
 
@@ -303,6 +304,29 @@ namespace DriveMeCrazyApp.ViewModels
             }
 
         }
+        public Command GalleryPhotoCommand { get; }
+        //This method open the file picker to select a photo
+        private async void OnGalleryPhoto()
+        {
+            try
+            {
+                var result = await MediaPicker.Default.PickPhotoAsync(new MediaPickerOptions
+                {
+                    Title = "Please select a photo",
+                });
+
+                if (result != null)
+                {
+                    // The user picked a file
+                    this.LocalPhotoPath = result.FullPath;
+                    this.PhotoURL = result.FullPath;
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+
+        }
 
         private void UpdatePhotoURL(string virtualPath)
         {
@@ -330,10 +354,10 @@ namespace DriveMeCrazyApp.ViewModels
 
         public string CarId
         {
-            get => name;
+            get => carId;
             set
             {
-                name = value;
+                carId = value;
                 ValidateCarIdError();
                 OnPropertyChanged("CarId");
             }
@@ -353,7 +377,7 @@ namespace DriveMeCrazyApp.ViewModels
 
         private void ValidateCarIdError()
         {
-            this.ShowNameError = string.IsNullOrEmpty(Name);
+            this.ShowCarIdError = string.IsNullOrEmpty(CarId);
         }
         #endregion
         #region InsurantNum
@@ -396,7 +420,7 @@ namespace DriveMeCrazyApp.ViewModels
 
         private void ValidateInsurantNumError()
         {
-            this.ShowNameError = string.IsNullOrEmpty(Name);
+            this.ShowInsurantNumError = string.IsNullOrEmpty(InsurantNum);
         }
         #endregion
 
@@ -430,7 +454,7 @@ namespace DriveMeCrazyApp.ViewModels
 
         public string PhoneNumError
         {
-            get => PhoneNumError;
+            get => phoneNumError;
             set
             {
                 phoneNumError = value;
