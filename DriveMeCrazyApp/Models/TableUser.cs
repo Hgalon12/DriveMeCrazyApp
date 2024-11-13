@@ -23,5 +23,6 @@ namespace DriveMeCrazyApp.Models
         public string InsurantNum { get; set; } = null!;
 
         public string UserPhoneNum { get; set; } = null!;
+        public bool IsManager { get; set; }
     }
 }

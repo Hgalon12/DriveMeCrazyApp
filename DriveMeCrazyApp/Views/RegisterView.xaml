@@ -2,16 +2,23 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DriveMeCrazyApp.Views.RegisterView"
-             Title="RegisterView">
-    
+             Title="RegisterView"
+             BackgroundColor="LightYellow">
+    <ScrollView>
     <Grid>
 
       
         <!-- Main Content -->
         <VerticalStackLayout IsEnabled="{Binding NotInServerCall}" Padding="20">
-  
+            <Label
+       Margin="50,0,0,20"
+       FontFamily="JumperBold"
+       FontSize="35"
+       HorizontalTextAlignment="Center"
+       Text="Signup  "
+       TextColor="#5072A7" />
             <!-- Photo -->
-            <Frame BorderColor="Black" Padding="5" Margin="15" HeightRequest="170" WidthRequest="170">
+            <Frame BorderColor="Black" Padding="5" Margin="15" HeightRequest="130" WidthRequest="130" BackgroundColor="White">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
@@ -103,7 +110,7 @@ VerticalOptions="End">
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Label Text="InsurantNum" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
+                <Label Text="PhoneNum" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
                 <Label Text="{Binding PhoneNumError}" IsVisible="{Binding ShowPhoneNumError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
             </Grid>
             <Entry Placeholder="Type PhoneNum" Text="{Binding PhoneNum}" Style="{StaticResource entryStyle}" />
@@ -141,4 +148,5 @@ VerticalOptions="End">
                    VerticalOptions="Center" 
                    HorizontalOptions="Center" />
     </Grid>
+    </ScrollView>
 </ContentPage>

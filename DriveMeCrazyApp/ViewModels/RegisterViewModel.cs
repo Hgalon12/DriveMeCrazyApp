@@ -466,7 +466,7 @@ namespace DriveMeCrazyApp.ViewModels
         {
             //Password must include characters and numbers and be longer than 4 characters
             if (string.IsNullOrEmpty(phoneNum) ||
-                phoneNum.Length < 10 ||
+                phoneNum.Length < 9 ||
                 !phoneNum.Any(char.IsDigit))
             {
                 this.ShowPhoneNumError = true;
@@ -508,7 +508,7 @@ namespace DriveMeCrazyApp.ViewModels
                     CarId = CarId,
                     InsurantNum = InsurantNum,
                     UserPhoneNum=PhoneNum,
-                    //IsManager = false
+                     IsManager = false
                 };
 
                 //Call the Register method on the proxy to register the new user
