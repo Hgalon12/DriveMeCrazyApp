@@ -4,26 +4,53 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:DriveMeCrazyApp"
-    Shell.FlyoutBehavior="Disabled"
-    Title="DriveMeCrazyApp">
+    xmlns:views="clr-namespace:DriveMeCrazyApp.Views"
+    Shell.FlyoutBehavior="Flyout"
+    Title="DriveMeCrazyApp"
+    BackgroundColor="LightYellow">
+
+
+
 
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="tabs">
         <ShellContent
-            Title="Tasks" Icon="tasks2.png"
-            ContentTemplate="{DataTemplate views:TasksView}"
-            Route="Tasks" />
+            Title="Profile" Icon="profileimage.jpg"
+            ContentTemplate="{DataTemplate views:ProfileView}"
+            Route="Profile" />
         <ShellContent
-    Title="Profile" Icon="profile.png"
-    ContentTemplate="{DataTemplate views:EditProfileView}"
-    Route="Profile" />
+    Title="Assignments" Icon="assignmet.jpg" 
+    ContentTemplate="{DataTemplate views:AssignmentView}"
+    Route="Assignment" />
+        <ShellContent
+  Title="RequestCar" Icon="requestcar.jpg"
+        ContentTemplate="{DataTemplate views:RequestCarView}"
+  Route="RequestCar" />
+        <ShellContent
+Title="AddCar" Icon="addcar.png"
+ContentTemplate="{DataTemplate views:AddCarView}"
+Route="AddCar" />
+        <ShellContent
+Title="HighScores" Icon="highscores.png" 
+ContentTemplate="{DataTemplate views:HighScoresView}"
+Route="HighScores" />
+        <ShellContent
+Title="Calender" Icon="calender.jpg" 
+ContentTemplate="{DataTemplate views:CalenderView}"
+Route="Calender" />
+        <ShellContent
+Title="Data" Icon="data.jpg"
+ContentTemplate="{DataTemplate views:DataView}"
+Route="Data" />
+
+
+
         <ShellContent IsVisible="{Binding IsManager}"
-Title="Report" Icon="manager2.png"
-ContentTemplate="{DataTemplate views:ManagerReport}"
-Route="Report" />
+Title="ApproveRequest" Icon="Aprove.jpg" 
+ContentTemplate="{DataTemplate views:ApproveRequestView}"
+Route="ApproveRequest" />
 
 
     </FlyoutItem>
-    <MenuItem Text="Logout" Command="{Binding LogoutCommand}" />
 
 
 </Shell>

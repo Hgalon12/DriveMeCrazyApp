@@ -65,6 +65,14 @@
 	  <None Remove="Resources\Fonts\Karantina-Light.ttf" />
 	  <None Remove="Resources\Fonts\Karantina-Regular.ttf" />
 	  <None Remove="Resources\Fonts\SPEEDRACE PERSONAL USE ONLY!.ttf" />
+	  <None Remove="Resources\Images\AddCar.png" />
+	  <None Remove="Resources\Images\Aprove.jpg" />
+	  <None Remove="Resources\Images\Assignmet.jpg" />
+	  <None Remove="Resources\Images\Calender.jpg" />
+	  <None Remove="Resources\Images\Data.jpg" />
+	  <None Remove="Resources\Images\HighScores.png" />
+	  <None Remove="Resources\Images\ProfileImage.jpg" />
+	  <None Remove="Resources\Images\RequestCar.jpg" />
 	</ItemGroup>
 
 	<ItemGroup>
