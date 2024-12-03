@@ -93,16 +93,7 @@ VerticalOptions="End">
                 <Label Text="{Binding CarIdError}" IsVisible="{Binding ShowCarIdError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
             </Grid>
             <Entry Placeholder="Type CarId" Text="{Binding CarId}" Style="{StaticResource entryStyle}" />
-            <!-- ביטוח -->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Label Text="InsurantNum" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
-                <Label Text="{Binding InsurantNumError}" IsVisible="{Binding ShowInsurantNumError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
-            </Grid>
-            <Entry Placeholder="Type InsurantNum" Text="{Binding InsurantNum}" Style="{StaticResource entryStyle}" />
+          
 
             <!-- phonenum -->
             <Grid>

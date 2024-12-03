@@ -29,7 +29,7 @@ namespace DriveMeCrazyApp.ViewModels
             PasswordError = "Password must be at least 4 characters long and contain letters and numbers";
             PhoneNumError = "Phone number must be 10 digits";
             CarIdError = "CarId is required";
-            InsurantNumError= "InsurantNum is required";
+           
         }
 
 
@@ -380,49 +380,7 @@ namespace DriveMeCrazyApp.ViewModels
             this.ShowCarIdError = string.IsNullOrEmpty(CarId);
         }
         #endregion
-        #region InsurantNum
-        private bool showinsurantNumError;
-
-        public bool ShowInsurantNumError
-        {
-            get => showinsurantNumError;
-            set
-            {
-                showinsurantNumError = value;
-                OnPropertyChanged("ShowInsurantNumError");
-            }
-        }
-
-        private string insurantNum;
-
-        public string InsurantNum
-        {
-            get => insurantNum;
-            set
-            {
-                insurantNum = value;
-                ValidateInsurantNumError();
-                OnPropertyChanged("InsurantNum");
-            }
-        }
-
-        private string insurantNumError;
-
-        public string InsurantNumError
-        {
-            get => insurantNumError;
-            set
-            {
-                insurantNumError = value;
-                OnPropertyChanged("InsurantNumError");
-            }
-        }
-
-        private void ValidateInsurantNumError()
-        {
-            this.ShowInsurantNumError = string.IsNullOrEmpty(InsurantNum);
-        }
-        #endregion
+     
 
         #region PhoneNum
         private bool showPhoneNumError;
@@ -494,9 +452,9 @@ namespace DriveMeCrazyApp.ViewModels
             ValidatePassword();
             ValidateCarIdError();
             ValidatePhoneNumError();
-            ValidateInsurantNumError();
+           
 
-            if (!ShowNameError && !ShowLastNameError && !ShowEmailError && !ShowPasswordError && !ShowCarIdError && !ShowPhoneNumError && !ShowInsurantNumError)
+            if (!ShowNameError && !ShowLastNameError && !ShowEmailError && !ShowPasswordError && !ShowCarIdError && !ShowPhoneNumError )
             {
                 //Create a new AppUser object with the data from the registration form
                 var newUser = new TableUser
@@ -506,7 +464,6 @@ namespace DriveMeCrazyApp.ViewModels
                     UserEmail = Email,
                     UserPassword = Password,
                     CarId = CarId,
-                    InsurantNum = InsurantNum,
                     UserPhoneNum=PhoneNum,
                      IsManager = false
                 };
