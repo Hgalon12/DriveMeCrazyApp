@@ -29,7 +29,10 @@
 Title="AddCar" Icon="addcar.png"
 ContentTemplate="{DataTemplate views:AddCarView}"
 Route="AddCar" />
-        <ShellContent
+    </FlyoutItem>
+    
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="tabs">
+    <ShellContent
 Title="HighScores" Icon="highscores.png" 
 ContentTemplate="{DataTemplate views:HighScoresView}"
 Route="HighScores" />
