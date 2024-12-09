@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui.Converters;
+using DriveMeCrazyApp.Models;
 using DriveMeCrazyApp.Services;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace DriveMeCrazyApp.ViewModels
         public AddCarViewModel(DriveMeCrazyWebAPIProxy proxy)
         {
             this.proxy = proxy;
+            this.RegisterCarCommand = new Command(OnRegister);
 
         }
 
@@ -66,6 +68,213 @@ namespace DriveMeCrazyApp.ViewModels
         }
         #endregion
 
+        #region Car Type
+
+        private int carType;
+
+        public int  CarType
+        {
+            get => carType;
+            set
+            {
+                carType = value;
+                OnPropertyChanged("CarType");
+            }
+        }
+
+
+
+
+        #endregion
+
+        #region CarId
+        private bool showNumOfPlacesError;
+
+        public bool ShowNumOfPlacesError
+        {
+            get => showNumOfPlacesError;
+            set
+            {
+                showNumOfPlacesError = value;
+                OnPropertyChanged("ShowNumOfPlacesError");
+            }
+        }
+
+        private int numOfPlaces;
+
+        public int NumOfPlaces
+        {
+            get => numOfPlaces;
+            set
+            {
+                numOfPlaces = value;
+                ValidateNumOfPlacesError();
+                OnPropertyChanged("numOfPlaces");
+            }
+        }
+
+        private string numOfPlacesError;
+
+        public string NumOfPlacesError
+        {
+            get => numOfPlacesError;
+            set
+            {
+                numOfPlacesError = value;
+                OnPropertyChanged("numOfPlacesError");
+            }
+        }
+
+        private void ValidateNumOfPlacesError()
+        {
+            if (numOfPlaces == null)
+            {
+                this.ShowNumOfPlacesError = true;
+            }
+
+        }
+        #endregion
+
+        #region NickName
+        private bool showNickNameError;
+
+        public bool ShowNickNameError
+        {
+            get => showNickNameError;
+            set
+            {
+                showNickNameError = value;
+                OnPropertyChanged("ShowNickNameError");
+            }
+        }
+
+        private string nickName;
+
+        public string NickName
+        {
+            get => nickName;
+            set
+            {
+                nickName = value;
+                ValidateNickName();
+                OnPropertyChanged("NickName");
+            }
+        }
+
+        private string nickNameError;
+
+        public string NickNameError
+        {
+            get => nickNameError;
+            set
+            {
+                nickNameError = value;
+                OnPropertyChanged("NickNameError");
+            }
+        }
+
+        private void ValidateNickName()
+        {
+            this.ShowNickNameError = string.IsNullOrEmpty(NickName);
+        }
+        #endregion
+
+        #region Photo
+
+        private string photoURL;
+
+        public string PhotoURL
+        {
+            get => photoURL;
+            set
+            {
+                photoURL = value;
+                OnPropertyChanged("PhotoURL");
+            }
+        }
+
+        private string localPhotoPath;
+
+        public string LocalPhotoPath
+        {
+            get => localPhotoPath;
+            set
+            {
+                localPhotoPath = value;
+                OnPropertyChanged("LocalPhotoPath");
+            }
+        }
+
+        public Command UploadPhotoCommand { get; }
+        //This method open the file picker to select a photo
+        private async void OnUploadPhoto()
+        {
+            try
+            {
+                var result = await MediaPicker.Default.CapturePhotoAsync(new MediaPickerOptions
+                {
+                    Title = "Please select a photo",
+                });
+
+                if (result != null)
+                {
+                    // The user picked a file
+                    this.LocalPhotoPath = result.FullPath;
+                    this.PhotoURL = result.FullPath;
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+
+        }
+        public Command GalleryPhotoCommand { get; }
+        //This method open the file picker to select a photo
+        private async void OnGalleryPhoto()
+        {
+            try
+            {
+                var result = await MediaPicker.Default.PickPhotoAsync(new MediaPickerOptions
+                {
+                    Title = "Please select a photo",
+                });
+
+                if (result != null)
+                {
+                    // The user picked a file
+                    this.LocalPhotoPath = result.FullPath;
+                    this.PhotoURL = result.FullPath;
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+
+        }
+
+        private void UpdatePhotoURL(string virtualPath)
+        {
+            Random r = new Random();
+            PhotoURL = proxy.GetImagesBaseAddress() + virtualPath + "?v=" + r.Next();
+            LocalPhotoPath = "";
+        }
+
+        #endregion
+        public Command RegisterCarCommand { get; }
+
+        private void OnRegister()
+        {
+            TableCar tableCar = new TableCar()
+            {
+                IdCar = CarId,
+               NickName = NickName,
+                OwnerId = ((App)Application.Current).LoggedInUser.Id,
+                TypeId=CarType,
+            };
+            //InServerCall = true;
+            //tableCar = await proxy.RegisterCar(tableCar);
+            //InServerCall = false;
+        }
 
     }
 }
