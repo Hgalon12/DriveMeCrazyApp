@@ -3,10 +3,104 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DriveMeCrazyApp.Views.AddCarView"
              Title="AddCarView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ScrollView>
+        <Grid>
+
+            <!-- Main Content -->
+            <VerticalStackLayout IsEnabled="{Binding NotInServerCall}" Padding="20">
+                <Label
+               Margin="50,0,0,20"
+               FontFamily="JumperBold"
+               FontSize="35"
+               HorizontalTextAlignment="Center"
+               Text="Add Car"
+               TextColor="#5072A7" />
+
+                <!-- Car Photo -->
+                <Frame BorderColor="Black" Padding="5" Margin="15" HeightRequest="130" WidthRequest="130" BackgroundColor="White">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image x:Name="theImageCar" Source="{Binding LocalPhotoPath}" HeightRequest="170" />
+                        <Label Grid.Row="1"
+                           Text="Click Here To Pick a Photo!"
+                           TextColor="Blue"
+                           HorizontalOptions="Center"
+                           VerticalOptions="End">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding UploadPhotoCommand}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label Grid.Row="2"
+                           Text="Click Here To Upload Photo from Gallery!"
+                           TextColor="Blue"
+                           HorizontalOptions="Center"
+                           VerticalOptions="End">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding GalleryPhotoCommand}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                </Frame>
+
+                <!-- Car NickName -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="NickName" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
+                    <Label Text="{Binding NickNameError}" IsVisible="{Binding ShowNickNameError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
+                </Grid>
+                <Entry Placeholder="Type NickName" Text="{Binding NickName}" Style="{StaticResource entryStyle}" />
+
+                <!-- Car Type -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Car Type" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
+                    <Label Text="{Binding CarTypeError}" IsVisible="{Binding ShowCarTypeError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
+                </Grid>
+                <Entry Placeholder="Type Car Type" Text="{Binding CarType}" Style="{StaticResource entryStyle}" />
+
+                <!-- Number of Places -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Number of Places" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
+                    <Label Text="{Binding NumOfPlacesError}" IsVisible="{Binding ShowNumOfPlacesError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
+                </Grid>
+                <Entry Placeholder="Type Number of Places" Text="{Binding NumOfPlaces}" Style="{StaticResource entryStyle}" />
+
+             
+               
+
+                <!-- Register and Cancel Buttons -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Text="Register" Command="{Binding RegisterCarCommand}" IsEnabled="{Binding NotInServerCall}" Grid.Column="1" Style="{StaticResource buttonStyle}" />
+                    <Button Text="Cancel" Command="{Binding CancelCarCommand}" IsEnabled="{Binding NotInServerCall}" Grid.Column="0" Style="{StaticResource buttonStyle}"/>
+                </Grid>
+            </VerticalStackLayout>
+
+            <!-- Centered ActivityIndicator -->
+            <ActivityIndicator IsRunning="{Binding InServerCall}" 
+                   Color="Red" 
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Center" />
+        </Grid>
+    </ScrollView>
 </ContentPage>

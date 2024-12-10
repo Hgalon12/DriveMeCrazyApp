@@ -14,7 +14,7 @@ namespace DriveMeCrazyApp.Models
         public int OwnerId { get; set; }
         public string NickName { get; set; } = null!;
 
-        public string ProfileImagePath { get; set; } = "";
+        public string CarImagePath { get; set; } = "";
 
        
 

@@ -130,7 +130,7 @@ namespace DriveMeCrazyApp.Services
         public async Task<TableCar?> RegisterCar(TableCar car)
         {
             //Set URI to the specific function API
-            string url = $"{this.baseUrl}register";
+            string url = $"{this.baseUrl}registerCar";
             try
             {
                 //Call the server API

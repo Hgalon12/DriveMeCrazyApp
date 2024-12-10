@@ -87,7 +87,7 @@ namespace DriveMeCrazyApp.ViewModels
 
         #endregion
 
-        #region CarId
+        #region Num of places
         private bool showNumOfPlacesError;
 
         public bool ShowNumOfPlacesError
@@ -108,7 +108,7 @@ namespace DriveMeCrazyApp.ViewModels
             set
             {
                 numOfPlaces = value;
-                ValidateNumOfPlacesError();
+                ValidateNumOfPlaces();
                 OnPropertyChanged("numOfPlaces");
             }
         }
@@ -125,7 +125,7 @@ namespace DriveMeCrazyApp.ViewModels
             }
         }
 
-        private void ValidateNumOfPlacesError()
+        private void ValidateNumOfPlaces()
         {
             if (numOfPlaces == null)
             {
@@ -262,19 +262,66 @@ namespace DriveMeCrazyApp.ViewModels
         #endregion
         public Command RegisterCarCommand { get; }
 
-        private void OnRegister()
+        public async void OnRegister()
         {
-            TableCar tableCar = new TableCar()
+          
+            ValidateCarIdError();
+            ValidateNickName(); // לדוגמה, וולידציה לשם הרכב
+            ValidateNumOfPlaces(); // וולידציה לנתיב התמונה של הרכב
+
+            // אם כל הוולידציות עברו
+            if (!ShowCarIdError && !ShowNickNameError&&!ShowNumOfPlacesError)
             {
-                IdCar = CarId,
-               NickName = NickName,
-                OwnerId = ((App)Application.Current).LoggedInUser.Id,
-                TypeId=CarType,
-            };
-            //InServerCall = true;
-            //tableCar = await proxy.RegisterCar(tableCar);
-            //InServerCall = false;
+                // יוצרים אובייקט חדש של רכב עם הנתונים מהטופס
+                var newCar = new TableCar
+                {
+                    NickName = NickName,   // שם הרכב
+                    TypeId = CarType,       // סוג הרכב
+                    NumOfPlaces = NumOfPlaces, // מספר מקומות
+                    OwnerId = ((App)Application.Current).LoggedInUser.Id,     // מזהה בעל הרכב (אם יש)
+                   // נתיב לתמונה של הרכב
+                };
+
+                // מבצע את הקריאה לשירות לצורך רישום הרכב
+                InServerCall = true;
+                newCar = await proxy.RegisterCar(newCar); // יש לוודא שהשירות תומך ב-RegisterCar
+                InServerCall = false;
+
+                // אם הרישום היה מוצלח
+                if (newCar != null)
+                {
+                    // אם צריך להעלות תמונה של הרכב
+                    if (!string.IsNullOrEmpty(LocalPhotoPath))
+                    {
+                        TableCar? updatedCar = await proxy.UploadCarImage(LocalPhotoPath); 
+                        if (updatedCar == null)
+                        {
+                            InServerCall = false;
+                            await Application.Current.MainPage.DisplayAlert("Registration", "Car Data Was Saved BUT Car image upload failed", "ok");
+                        }
+                    }
+
+                    InServerCall = false;
+
+                    // אם הכל בסדר, נווט לאחור
+                    ((App)(Application.Current)).MainPage.Navigation.PopAsync();
+                }
+                else
+                {
+                    // אם הרישום נכשל, מציג הודעת שגיאה
+                    string errorMsg = "Registration failed. Please try again.";
+                    await Application.Current.MainPage.DisplayAlert("Registration", errorMsg, "ok");
+                }
+            }
         }
 
+
+
+
+
+
     }
+    
+
+   
 }
