@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DriveMeCrazyApp.Views.AddCarView"
-             Title="AddCarView">
+             Title="AddCarView"
+             BackgroundColor="LightYellow">
     <ScrollView>
         <Grid>
 
@@ -59,40 +60,27 @@
                     <Label Text="{Binding NickNameError}" IsVisible="{Binding ShowNickNameError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
                 </Grid>
                 <Entry Placeholder="Type NickName" Text="{Binding NickName}" Style="{StaticResource entryStyle}" />
-
-                <!-- Car Type -->
+                <!-- Car Id -->
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Label Text="Car Type" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
-                    <Label Text="{Binding CarTypeError}" IsVisible="{Binding ShowCarTypeError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
+                    <Label Text="CarID" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
+                    <Label Text="{Binding CarIdError}" IsVisible="{Binding ShowCarIdError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
                 </Grid>
-                <Entry Placeholder="Type Car Type" Text="{Binding CarType}" Style="{StaticResource entryStyle}" />
+                <Entry Placeholder="Type CarIdError" Text="{Binding CarId}" Style="{StaticResource entryStyle}" />
 
-                <!-- Number of Places -->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Label Text="Number of Places" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
-                    <Label Text="{Binding NumOfPlacesError}" IsVisible="{Binding ShowNumOfPlacesError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
-                </Grid>
-                <Entry Placeholder="Type Number of Places" Text="{Binding NumOfPlaces}" Style="{StaticResource entryStyle}" />
-
-             
                
 
-                <!-- Register and Cancel Buttons -->
+                <!-- Register    -->
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Button Text="Register" Command="{Binding RegisterCarCommand}" IsEnabled="{Binding NotInServerCall}" Grid.Column="1" Style="{StaticResource buttonStyle}" />
-                    <Button Text="Cancel" Command="{Binding CancelCarCommand}" IsEnabled="{Binding NotInServerCall}" Grid.Column="0" Style="{StaticResource buttonStyle}"/>
+                 
                 </Grid>
             </VerticalStackLayout>
 

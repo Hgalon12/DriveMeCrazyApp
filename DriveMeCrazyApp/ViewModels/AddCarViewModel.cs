@@ -17,7 +17,13 @@ namespace DriveMeCrazyApp.ViewModels
         {
             this.proxy = proxy;
             this.RegisterCarCommand = new Command(OnRegister);
-
+       
+            UploadPhotoCommand = new Command(OnUploadPhoto);
+            GalleryPhotoCommand = new Command(OnGalleryPhoto);
+            PhotoURL = proxy.GetDefaultProfilePhotoUrl();
+            LocalPhotoPath = "";
+            CarIdError = "CarId is required";
+            NickNameError = "NickName is required";
         }
 
         #region CarId
@@ -262,22 +268,25 @@ namespace DriveMeCrazyApp.ViewModels
         #endregion
         public Command RegisterCarCommand { get; }
 
+     
+
+
         public async void OnRegister()
         {
           
             ValidateCarIdError();
             ValidateNickName(); // לדוגמה, וולידציה לשם הרכב
-            ValidateNumOfPlaces(); // וולידציה לנתיב התמונה של הרכב
+             // וולידציה לנתיב התמונה של הרכב
 
             // אם כל הוולידציות עברו
-            if (!ShowCarIdError && !ShowNickNameError&&!ShowNumOfPlacesError)
+            if (!ShowCarIdError && !ShowNickNameError)
             {
                 // יוצרים אובייקט חדש של רכב עם הנתונים מהטופס
                 var newCar = new TableCar
                 {
                     NickName = NickName,   // שם הרכב
-                    TypeId = CarType,       // סוג הרכב
-                    NumOfPlaces = NumOfPlaces, // מספר מקומות
+                    TypeId = 1,       // סוג הרכב
+                    NumOfPlaces = 5,// מספר מקומות
                     OwnerId = ((App)Application.Current).LoggedInUser.Id,     // מזהה בעל הרכב (אם יש)
                    // נתיב לתמונה של הרכב
                 };
@@ -314,6 +323,7 @@ namespace DriveMeCrazyApp.ViewModels
                 }
             }
         }
+        
 
 
 

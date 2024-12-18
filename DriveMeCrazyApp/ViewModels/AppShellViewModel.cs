@@ -42,5 +42,18 @@ namespace DriveMeCrazyApp.ViewModels
 
             ((App)Application.Current).MainPage = new NavigationPage(serviceProvider.GetService<LoginView>());
         }
+
+        public Command AddCarCommand
+        {
+            get
+            {
+                return new Command(OnAddCar);
+            }
+        }
+        //this method will be trigger upon Logout button click
+        public async void OnAddCar()
+        {
+            await Shell.Current.GoToAsync("addCar");
+        }
     }
 }

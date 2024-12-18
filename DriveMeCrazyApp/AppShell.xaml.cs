@@ -1,4 +1,5 @@
 ﻿using DriveMeCrazyApp.ViewModels;
+using DriveMeCrazyApp.Views;
 
 namespace DriveMeCrazyApp
 {
@@ -8,6 +9,13 @@ namespace DriveMeCrazyApp
         {
             this.BindingContext = vm;
             InitializeComponent();
+            RegisterRoutes();
+        }
+
+        private void RegisterRoutes()
+        {
+            Routing.RegisterRoute("addCar", typeof(AddCarView));
+            
         }
     }
 }

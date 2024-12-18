@@ -5,55 +5,65 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:DriveMeCrazyApp"
     xmlns:views="clr-namespace:DriveMeCrazyApp.Views"
-    Shell.FlyoutBehavior="Flyout"
     Title="DriveMeCrazyApp"
-    BackgroundColor="LightYellow">
+    BackgroundColor="LightYellow"
+    Shell.FlyoutBehavior="Flyout">
 
 
 
 
+  
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="tabs">
         <ShellContent
-            Title="Profile" Icon="profileimage.jpg"
+       Title="Calender"
+        ContentTemplate="{DataTemplate views:CalenderView}"
+         Icon="calender.jpg"
+           Route="Calender" />
+        <ShellContent
+            Title="Profile"
             ContentTemplate="{DataTemplate views:ProfileView}"
+            Icon="profileimage.jpg"
             Route="Profile" />
         <ShellContent
-    Title="Assignments" Icon="assignmet.jpg" 
-    ContentTemplate="{DataTemplate views:AssignmentView}"
-    Route="Assignment" />
+            Title="Assignments"
+            ContentTemplate="{DataTemplate views:AssignmentView}"
+            Icon="assignmet.jpg"
+            Route="Assignment" />
         <ShellContent
-  Title="RequestCar" Icon="requestcar.jpg"
-        ContentTemplate="{DataTemplate views:RequestCarView}"
-  Route="RequestCar" />
-        <ShellContent
-Title="AddCar" Icon="addcar.png"
-ContentTemplate="{DataTemplate views:AddCarView}"
-Route="AddCar" />
+            Title="RequestCar"
+            ContentTemplate="{DataTemplate views:RequestCarView}"
+            Icon="requestcar.jpg"
+            Route="RequestCar" />
+
     </FlyoutItem>
-    
+
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="tabs">
-    <ShellContent
-Title="HighScores" Icon="highscores.png" 
-ContentTemplate="{DataTemplate views:HighScoresView}"
-Route="HighScores" />
         <ShellContent
-Title="Calender" Icon="calender.jpg" 
-ContentTemplate="{DataTemplate views:CalenderView}"
-Route="Calender" />
+            Title="HighScores"
+            ContentTemplate="{DataTemplate views:HighScoresView}"
+            Icon="highscores.png"
+          Route="HighScores" />
+       
         <ShellContent
-Title="Data" Icon="data.jpg"
-ContentTemplate="{DataTemplate views:DataView}"
-Route="Data" />
+            Title="Data"
+            ContentTemplate="{DataTemplate views:DataView}"
+            Icon="data.jpg"
+            Route="Data" />
 
 
 
-        <ShellContent IsVisible="{Binding IsManager}"
-Title="ApproveRequest" Icon="Aprove.jpg" 
-ContentTemplate="{DataTemplate views:ApproveRequestView}"
-Route="ApproveRequest" />
+        <ShellContent
+            Title="ApproveRequest"
+            ContentTemplate="{DataTemplate views:ApproveRequestView}"
+            Icon="Aprove.jpg"
+            IsVisible="{Binding IsManager}"
+            Route="ApproveRequest" />
 
 
     </FlyoutItem>
-
-
+    <MenuItem
+        Command="{Binding AddCarCommand}"
+        IconImageSource="addcar.png"
+        Text="Add Car" />
+    <MenuItem Text="Logout" Command="{Binding LogoutCommand}" />
 </Shell>
