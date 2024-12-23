@@ -231,6 +231,30 @@ namespace DriveMeCrazyApp.Services
                 return null;
             }
         }
-
+        public async Task<bool> UpdateUser(TableUser user)
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}updateuser";
+            try
+            {
+                //Call the server API
+                string json = JsonSerializer.Serialize(user);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }

@@ -20,7 +20,7 @@ namespace DriveMeCrazyApp.Models
 
         public string UserPassword { get; set; } = null!;
 
-    
+        public string ProfileImagePath { get; set; } = ""; 
 
         public string UserPhoneNum { get; set; } = null!;
         public bool IsManager { get; set; }
