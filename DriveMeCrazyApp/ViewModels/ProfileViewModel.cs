@@ -27,6 +27,12 @@ namespace DriveMeCrazyApp.ViewModels
             PasswordError = "Password must be at least 4 characters long and contain letters and numbers";
             PhoneNumError = "Phone number must be 10 digits";
             CarIdError = "CarId is required";
+            TableUser u = ((App)Application.Current).LoggedInUser;
+            Name = u.UserName;
+            LastName=u.UserLastName;
+            Email=u.UserEmail;
+            Password=u.UserPassword;
+            PhotoURL = proxy.GetImagesBaseAddress() + u.ProfileImagePath;
         }
 
         #region Name
@@ -340,7 +346,7 @@ namespace DriveMeCrazyApp.ViewModels
             get => showCarIdError;
             set
             {
-                showNameError = value;
+                showCarIdError = value;
                 OnPropertyChanged("ShowCarIdError");
             }
         }
@@ -365,7 +371,7 @@ namespace DriveMeCrazyApp.ViewModels
             get => carIdError;
             set
             {
-                nameError = value;
+               carIdError = value;
                 OnPropertyChanged("CarIdError");
             }
         }

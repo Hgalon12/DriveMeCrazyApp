@@ -72,6 +72,7 @@
 	  <None Remove="Resources\Images\Data.jpg" />
 	  <None Remove="Resources\Images\HighScores.png" />
 	  <None Remove="Resources\Images\home.png" />
+	  <None Remove="Resources\Images\passwordeye.jpg" />
 	  <None Remove="Resources\Images\ProfileImage.jpg" />
 	  <None Remove="Resources\Images\RequestCar.jpg" />
 	</ItemGroup>

@@ -196,10 +196,10 @@ namespace DriveMeCrazyApp.Services
                 return null;
             }
         }
-        public async Task<TableCar?> UploadCarImage(string imagePath)
+        public async Task<TableCar?> UploadCarImage(string imagePath, int idCar)
         {
             //Set URI to the specific function API
-            string url = $"{this.baseUrl}uploadcarimage";
+            string url = $"{this.baseUrl}uploadcarimage?carId={idCar}";
             try
             {
                 //Create the form data

@@ -287,7 +287,9 @@ namespace DriveMeCrazyApp.ViewModels
                     NickName = NickName,   // שם הרכב
                     TypeId = 1,       // סוג הרכב
                     NumOfPlaces = 5,// מספר מקומות
-                    OwnerId = ((App)Application.Current).LoggedInUser.Id,     // מזהה בעל הרכב (אם יש)
+                    OwnerId = ((App)Application.Current).LoggedInUser.Id,  
+                    IdCar=CarId
+                    // מזהה בעל הרכב (אם יש)
                    // נתיב לתמונה של הרכב
                 };
 
@@ -302,7 +304,7 @@ namespace DriveMeCrazyApp.ViewModels
                     // אם צריך להעלות תמונה של הרכב
                     if (!string.IsNullOrEmpty(LocalPhotoPath))
                     {
-                        TableCar? updatedCar = await proxy.UploadCarImage(LocalPhotoPath); 
+                        TableCar? updatedCar = await proxy.UploadCarImage(LocalPhotoPath,newCar.IdCar); 
                         if (updatedCar == null)
                         {
                             InServerCall = false;
