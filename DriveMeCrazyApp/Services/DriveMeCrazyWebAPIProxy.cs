@@ -196,7 +196,7 @@ namespace DriveMeCrazyApp.Services
                 return null;
             }
         }
-        public async Task<TableCar?> UploadCarImage(string imagePath, int idCar)
+        public async Task<TableCar?> UploadCarImage(string imagePath, string idCar)
         {
             //Set URI to the specific function API
             string url = $"{this.baseUrl}uploadcarimage?carId={idCar}";
@@ -234,7 +234,7 @@ namespace DriveMeCrazyApp.Services
         public async Task<bool> UpdateUser(TableUser user)
         {
             //Set URI to the specific function API
-            string url = $"{this.baseUrl}updateuser";
+            string url = $"{this.baseUrl}updateprofile";
             try
             {
                 //Call the server API

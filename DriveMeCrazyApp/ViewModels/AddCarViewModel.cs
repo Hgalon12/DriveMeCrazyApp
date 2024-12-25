@@ -39,9 +39,9 @@ namespace DriveMeCrazyApp.ViewModels
             }
         }
 
-        private int carId;
+        private string carId;
 
-        public int CarId
+        public string CarId
         {
             get => carId;
             set
@@ -285,8 +285,6 @@ namespace DriveMeCrazyApp.ViewModels
                 var newCar = new TableCar
                 {
                     NickName = NickName,   // שם הרכב
-                    TypeId = 1,       // סוג הרכב
-                    NumOfPlaces = 5,// מספר מקומות
                     OwnerId = ((App)Application.Current).LoggedInUser.Id,  
                     IdCar=CarId
                     // מזהה בעל הרכב (אם יש)
@@ -313,7 +311,7 @@ namespace DriveMeCrazyApp.ViewModels
                     }
 
                     InServerCall = false;
-
+                  
                     // אם הכל בסדר, נווט לאחור
                     ((App)(Application.Current)).MainPage.Navigation.PopAsync();
                 }

@@ -8,9 +8,8 @@ namespace DriveMeCrazyApp.Models
 {
     public class TableCar
     {
-        public int IdCar { get; set; }
-        public int TypeId { get; set; }
-        public int NumOfPlaces { get; set; }
+        public string IdCar { get; set; }
+    
         public int OwnerId { get; set; }
         public string NickName { get; set; } = null!;
 

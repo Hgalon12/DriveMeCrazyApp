@@ -14,6 +14,7 @@ namespace DriveMeCrazyApp.ViewModels
         private DriveMeCrazyWebAPIProxy proxy;
         public ProfileViewModel(DriveMeCrazyWebAPIProxy proxy)
         {
+            this.proxy = proxy;
             this.SaveCommand=new Command(OnSave);   
             ShowPasswordCommand = new Command(OnShowPassword);
             UploadPhotoCommand = new Command(OnUploadPhoto);
@@ -32,6 +33,8 @@ namespace DriveMeCrazyApp.ViewModels
             LastName=u.UserLastName;
             Email=u.UserEmail;
             Password=u.UserPassword;
+            PhoneNum = u.UserPhoneNum;
+            CarId = u.CarId;
             PhotoURL = proxy.GetImagesBaseAddress() + u.ProfileImagePath;
         }
 
