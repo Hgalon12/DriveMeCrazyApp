@@ -90,9 +90,9 @@ VerticalOptions="End">
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Label Text="CarId" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
-                <Label Text="{Binding CarIdError}" IsVisible="{Binding ShowCarIdError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
+                    <Label Text="{Binding CarOwnerIdError}" IsVisible="{Binding ShowCarOwnerIdError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
             </Grid>
-            <Entry Placeholder="Type CarId" Text="{Binding CarId}" Style="{StaticResource entryStyle}" />
+                <Entry Placeholder="Type CarOwnerId" Text="{Binding CarOwnerId}" Style="{StaticResource entryStyle}" />
           
 
             <!-- phonenum -->

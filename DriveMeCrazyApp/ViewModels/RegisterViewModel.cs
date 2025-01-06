@@ -28,7 +28,6 @@ namespace DriveMeCrazyApp.ViewModels
             EmailError = "Email is required";
             PasswordError = "Password must be at least 4 characters long and contain letters and numbers";
             PhoneNumError = "Phone number must be 10 digits";
-            CarIdError = "CarId is required";
            
         }
 
@@ -338,11 +337,11 @@ namespace DriveMeCrazyApp.ViewModels
         #endregion
 
         #region CarId
-        private bool showCarIdError;
+        private bool showCarOwnerIdError;
 
-        public bool ShowCarIdError
+        public bool ShowCarOwnerIdError
         {
-            get => showCarIdError;
+            get => showCarOwnerIdError;
             set
             {
                 showNameError = value;
@@ -350,37 +349,37 @@ namespace DriveMeCrazyApp.ViewModels
             }
         }
 
-        private string carId;
+        private int carOwnerId;
 
-        public string CarId
+        public int CarOwnerId
         {
-            get => carId;
+            get => carOwnerId;
             set
             {
-                carId = value;
-                ValidateCarIdError();
+                carOwnerId = value;
+                ValidateCarOwnerIdError();
                 OnPropertyChanged("CarId");
             }
         }
 
-        private string carIdError;
+        private string carOwnerIdError;
 
-        public string CarIdError
+        public string CarOwnerIdError
         {
-            get => carIdError;
+            get => carOwnerIdError;
             set
             {
                 nameError = value;
-                OnPropertyChanged("CarIdError");
+                OnPropertyChanged("CarOwnerIdError");
             }
         }
 
-        private void ValidateCarIdError()
+        private void ValidateCarOwnerIdError()
         {
-            this.ShowCarIdError = string.IsNullOrEmpty(CarId);
+            
         }
         #endregion
-     
+
 
         #region PhoneNum
         private bool showPhoneNumError;
@@ -450,11 +449,11 @@ namespace DriveMeCrazyApp.ViewModels
             ValidateLastName();
             ValidateEmail();
             ValidatePassword();
-            ValidateCarIdError();
+
             ValidatePhoneNumError();
            
 
-            if (!ShowNameError && !ShowLastNameError && !ShowEmailError && !ShowPasswordError && !ShowCarIdError && !ShowPhoneNumError )
+            if (!ShowNameError && !ShowLastNameError && !ShowEmailError && !ShowPasswordError && !ShowPhoneNumError )
             {
                 //Create a new AppUser object with the data from the registration form
                 var newUser = new TableUser
@@ -463,7 +462,7 @@ namespace DriveMeCrazyApp.ViewModels
                     UserLastName = LastName,
                     UserEmail = Email,
                     UserPassword = Password,
-                    CarId = CarId,
+                    CarOwnerId=CarOwnerId,
                     UserPhoneNum=PhoneNum,
                      IsManager = false
                 };
