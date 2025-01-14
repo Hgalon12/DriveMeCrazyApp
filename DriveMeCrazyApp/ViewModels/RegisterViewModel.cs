@@ -10,6 +10,18 @@ namespace DriveMeCrazyApp.ViewModels
 {
     public class RegisterViewModel:ViewModelBase
     {
+        private bool iskid;
+        public bool Iskid
+        {
+            get => iskid;
+            set
+            {
+                iskid = value;
+                OnPropertyChanged("Iskid");
+
+
+            }
+        }
         private DriveMeCrazyWebAPIProxy proxy;
 
         public RegisterViewModel(DriveMeCrazyWebAPIProxy proxy)
@@ -28,6 +40,7 @@ namespace DriveMeCrazyApp.ViewModels
             EmailError = "Email is required";
             PasswordError = "Password must be at least 4 characters long and contain letters and numbers";
             PhoneNumError = "Phone number must be 10 digits";
+            Iskid = false;
            
         }
 
@@ -336,49 +349,68 @@ namespace DriveMeCrazyApp.ViewModels
 
         #endregion
 
-        #region CarId
-        private bool showCarOwnerIdError;
+        #region Email
+        private bool showEmailOwnerError;
 
-        public bool ShowCarOwnerIdError
+        public bool ShowEmailOwnerError
         {
-            get => showCarOwnerIdError;
+            get => showEmailOwnerError;
             set
             {
-                showNameError = value;
-                OnPropertyChanged("ShowCarIdError");
+                showEmailOwnerError = value;
+                OnPropertyChanged("ShowEmailError");
             }
         }
 
-        private int carOwnerId;
+        private string emailOwner;
 
-        public int CarOwnerId
+        public string EmailOwner
         {
-            get => carOwnerId;
+            get => emailOwner;
             set
             {
-                carOwnerId = value;
-                ValidateCarOwnerIdError();
-                OnPropertyChanged("CarId");
+                emailOwner = value;
+                ValidateEmailOwner();
+                OnPropertyChanged("Email");
             }
         }
 
-        private string carOwnerIdError;
+        private string emailErrorOwner;
 
-        public string CarOwnerIdError
+        public string EmailErrorOwner
         {
-            get => carOwnerIdError;
+            get => emailErrorOwner;
             set
             {
-                nameError = value;
-                OnPropertyChanged("CarOwnerIdError");
+                emailErrorOwner = value;
+                OnPropertyChanged("EmailErrorOwner");
             }
         }
 
-        private void ValidateCarOwnerIdError()
+        private void ValidateEmailOwner()
         {
-            
+            this.ShowEmailOwnerError = string.IsNullOrEmpty(Email);
+            if (!ShowEmailOwnerError)
+            {
+                //check if email is in the correct format using regular expression
+                if (!System.Text.RegularExpressions.Regex.IsMatch(Email, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"))
+                {
+                    EmailErrorOwner = "Email is not valid";
+                    ShowEmailOwnerError = true;
+                }
+                else
+                {
+                    EmailErrorOwner = "";
+                    ShowEmailOwnerError = false;
+                }
+            }
+            else
+            {
+                EmailError = "Email is required";
+            }
         }
         #endregion
+
 
 
         #region PhoneNum
@@ -436,8 +468,15 @@ namespace DriveMeCrazyApp.ViewModels
 
         #endregion
 
+        #region radio
 
-       
+        
+
+        
+
+        #endregion
+
+
 
 
         //Define a command for the register button
@@ -449,7 +488,6 @@ namespace DriveMeCrazyApp.ViewModels
             ValidateLastName();
             ValidateEmail();
             ValidatePassword();
-
             ValidatePhoneNumError();
            
 
@@ -462,7 +500,6 @@ namespace DriveMeCrazyApp.ViewModels
                     UserLastName = LastName,
                     UserEmail = Email,
                     UserPassword = Password,
-                    CarOwnerId=CarOwnerId,
                     UserPhoneNum=PhoneNum,
                      IsManager = false
                 };

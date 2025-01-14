@@ -27,14 +27,12 @@ namespace DriveMeCrazyApp.ViewModels
             EmailError = "Email is required";
             PasswordError = "Password must be at least 4 characters long and contain letters and numbers";
             PhoneNumError = "Phone number must be 10 digits";
-            CarIdError = "CarId is required";
             TableUser u = ((App)Application.Current).LoggedInUser;
             Name = u.UserName;
             LastName=u.UserLastName;
             Email=u.UserEmail;
             Password=u.UserPassword;
             PhoneNum = u.UserPhoneNum;
-            CarId = u.CarId;
             PhotoURL = proxy.GetImagesBaseAddress() + u.ProfileImagePath;
         }
 
@@ -341,49 +339,7 @@ namespace DriveMeCrazyApp.ViewModels
 
         #endregion
 
-        #region CarId
-        private bool showCarIdError;
-
-        public bool ShowCarIdError
-        {
-            get => showCarIdError;
-            set
-            {
-                showCarIdError = value;
-                OnPropertyChanged("ShowCarIdError");
-            }
-        }
-
-        private string carId;
-
-        public string CarId
-        {
-            get => carId;
-            set
-            {
-                carId = value;
-                ValidateCarIdError();
-                OnPropertyChanged("CarId");
-            }
-        }
-
-        private string carIdError;
-
-        public string CarIdError
-        {
-            get => carIdError;
-            set
-            {
-               carIdError = value;
-                OnPropertyChanged("CarIdError");
-            }
-        }
-
-        private void ValidateCarIdError()
-        {
-            this.ShowCarIdError = string.IsNullOrEmpty(CarId);
-        }
-        #endregion
+        
 
 
         #region PhoneNum
@@ -447,11 +403,11 @@ namespace DriveMeCrazyApp.ViewModels
             ValidateLastName();
             ValidateEmail();
             ValidatePassword();
-            ValidateCarIdError();
+        
             ValidatePhoneNumError();
 
 
-            if (!ShowNameError && !ShowLastNameError && !ShowEmailError && !ShowPasswordError && !ShowCarIdError && !ShowPhoneNumError)
+            if (!ShowNameError && !ShowLastNameError && !ShowEmailError && !ShowPasswordError  && !ShowPhoneNumError)
             {
 
                 //Update AppUser object with the data from the Edit form
