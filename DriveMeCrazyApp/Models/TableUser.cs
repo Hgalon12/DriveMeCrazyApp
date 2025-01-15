@@ -12,7 +12,7 @@ namespace DriveMeCrazyApp.Models
 
         public string UserName { get; set; } = null!;
 
-        public int CarOwnerId { get; set; }
+        public int? CarOwnerId { get; set; }
         public string? CarOwnerEmail { get; set; }
         public string UserLastName { get; set; } = null!;
 

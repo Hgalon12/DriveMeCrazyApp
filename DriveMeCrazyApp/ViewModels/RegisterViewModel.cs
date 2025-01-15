@@ -483,7 +483,7 @@ namespace DriveMeCrazyApp.ViewModels
         public Command RegisterCommand { get; }
         public Command CancelCommand { get; }
         public async void OnRegister()
-        {
+         {
             ValidateName();
             ValidateLastName();
             ValidateEmail();
@@ -501,9 +501,15 @@ namespace DriveMeCrazyApp.ViewModels
                     UserEmail = Email,
                     UserPassword = Password,
                     UserPhoneNum=PhoneNum,
-                     IsManager = false
+                    IsManager = false,
+                    CarOwnerId = null,
+                    CarOwnerEmail = null
                 };
 
+                if (Iskid)
+                {
+                    newUser.CarOwnerEmail = EmailOwner;
+                }
                 //Call the Register method on the proxy to register the new user
                 InServerCall = true;
                 newUser = await proxy.Register(newUser);

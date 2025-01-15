@@ -103,6 +103,7 @@ namespace DriveMeCrazyApp.Services
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await client.PostAsync(url, content);
                 //Check status
+                
                 if (response.IsSuccessStatusCode)
                 {
                     //Extract the content as string
