@@ -501,7 +501,7 @@ namespace DriveMeCrazyApp.ViewModels
                     UserEmail = Email,
                     UserPassword = Password,
                     UserPhoneNum=PhoneNum,
-                    IsManager = false,
+                     IsManager=false,
                     CarOwnerId = null,
                     CarOwnerEmail = null
                 };
@@ -509,6 +509,10 @@ namespace DriveMeCrazyApp.ViewModels
                 if (Iskid)
                 {
                     newUser.CarOwnerEmail = EmailOwner;
+                }
+                else
+                {
+                    newUser.IsManager = true;
                 }
                 //Call the Register method on the proxy to register the new user
                 InServerCall = true;

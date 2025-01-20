@@ -1,12 +1,71 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DriveMeCrazyApp.Views.RequestCarView"
-             Title="RequestCarView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+<ContentPage
+    x:Class="DriveMeCrazyApp.Views.RequestCarView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="RequestCarView"
+    BackgroundColor="LightYellow">
+    <Grid>
+        <VerticalStackLayout>
+            <Label
+                Margin="50,0,0,20"
+                FontFamily="JumperBold"
+                FontSize="35"
+                HorizontalTextAlignment="Center"
+                Text="Request Car"
+                TextColor="#5072A7" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label
+                    Grid.Column="0"
+                    Style="{StaticResource labelNameStyle}"
+                    Text="  Reason" />
+                <Label
+                    Grid.Column="1"
+                    IsVisible="{Binding ShowReasonError}"
+                    Style="{StaticResource labelErrorStyle}"
+                    Text="{Binding ReasonError}" />
+            </Grid>
+           
+            <Label></Label>
+            <Frame>
+                <Editor
+                    HeightRequest="100"
+                    Placeholder="Type Reason"
+                    Style="{StaticResource entryStyle}"
+                    Text="{Binding Reason}" />
+            </Frame>
+            <Label> </Label>
+            <Label></Label>
+            <Label
+                FontSize="Medium"
+                Text="Select Date:"
+                TextColor="#333" />
+            <Frame
+                Padding="10"
+                BackgroundColor="White"
+                CornerRadius="10"
+                HasShadow="True">
+                <DatePicker BackgroundColor="White" Date="{Binding Date}" />
+            </Frame>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button
+                    Grid.Column="1"
+                    Command="{Binding RequestCommand}"
+                    IsEnabled="{Binding NotInServerCall}"
+                    Style="{StaticResource buttonStyle}"
+                    Text="Send Request" />
+
+            </Grid>
+
+        </VerticalStackLayout>
+    </Grid>
+
 </ContentPage>
