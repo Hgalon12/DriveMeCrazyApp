@@ -2,6 +2,7 @@
 using DriveMeCrazyApp.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,8 +17,28 @@ namespace DriveMeCrazyApp.ViewModels
         {
             this.proxy = proxy;
             ReasonError = "Request Is Require";
+            Date = DateTime.Now;
+            Cars = new ObservableCollection<TableCar>();
+            ReadCarsFromServer();
             RequestCommand = new Command(OnRegister);
 
+        }
+
+        private async void ReadCarsFromServer()
+        {
+            //Call proxy method to read cars from servers
+            //List<T....> l = proxy.tatatata...
+            //Cars = new Obser///<////>(l);
+        }
+        private ObservableCollection<TableCar> cars;
+        public ObservableCollection<TableCar> Cars
+        {
+            get => cars;
+            set
+            {
+                cars = value;
+                OnPropertyChanged();
+            }
         }
         #region Reason
         private bool showReasonError;

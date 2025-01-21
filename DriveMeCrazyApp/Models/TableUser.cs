@@ -23,6 +23,18 @@ namespace DriveMeCrazyApp.Models
         public string ProfileImagePath { get; set; } = ""; 
 
         public string UserPhoneNum { get; set; } = null!;
-        public bool IsManager { get; set; }
+        public bool IsManager { 
+            get
+            {
+                return this.CarOwnerId == null;
+            }
+        }
+        public bool IsKid
+        {
+            get
+            {
+                return this.CarOwnerId != null;
+            }
+        }
     }
 }
