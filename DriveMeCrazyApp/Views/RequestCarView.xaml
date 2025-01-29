@@ -5,52 +5,59 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="RequestCarView"
     BackgroundColor="LightYellow">
-    <Grid>
-        <VerticalStackLayout>
+    <ScrollView>
+    <Grid Padding="20">
+        <VerticalStackLayout Spacing="20">
+
+            <!-- Header -->
             <Label
-                Margin="50,0,0,20"
                 FontFamily="JumperBold"
                 FontSize="35"
                 HorizontalTextAlignment="Center"
                 Text="Request Car"
                 TextColor="#5072A7" />
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Label
-                    Grid.Column="0"
-                    Style="{StaticResource labelNameStyle}"
-                    Text="  Reason" />
-                <Label
-                    Grid.Column="1"
-                    IsVisible="{Binding ShowReasonError}"
-                    Style="{StaticResource labelErrorStyle}"
-                    Text="{Binding ReasonError}" />
-            </Grid>
-           
-            <Label></Label>
-            <Frame>
+
+            <!-- Cars Selection -->
+                <Label Text="Chose a car"/>
+                <CollectionView ItemsSource="{Binding Cars}"
+                            SelectionMode="Single"
+                            SelectedItem="{Binding SelectedCar}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10">
+                            <Label Text="{Binding NickName}" FontSize="Medium" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- Reason Input -->
+            <Label Text="Reason" Style="{StaticResource labelNameStyle}" />
+            <Label IsVisible="{Binding ShowReasonError}"
+                   Style="{StaticResource labelErrorStyle}"
+                   Text="{Binding ReasonError}" />
+
+            <Frame Padding="10" BackgroundColor="White" CornerRadius="10" HasShadow="True">
                 <Editor
                     HeightRequest="100"
                     Placeholder="Type Reason"
                     Style="{StaticResource entryStyle}"
                     Text="{Binding Reason}" />
             </Frame>
-            <Label> </Label>
-            <Label></Label>
-            <Label
-                FontSize="Medium"
-                Text="Select Date:"
-                TextColor="#333" />
-            <Frame
-                Padding="10"
-                BackgroundColor="White"
-                CornerRadius="10"
-                HasShadow="True">
+
+            <!-- Date Picker -->
+            <Label Text="Select Date:" FontSize="Medium" TextColor="#333" />
+            <Frame Padding="10" BackgroundColor="White" CornerRadius="10" HasShadow="True">
                 <DatePicker BackgroundColor="White" Date="{Binding Date}" />
             </Frame>
+
+            <!-- Time Picker -->
+            <Label Text="Select Time:" FontSize="Medium" TextColor="#333" />
+            <Frame Padding="10" BackgroundColor="White" CornerRadius="10" HasShadow="True">
+                <TimePicker BackgroundColor="White" Time="{Binding Hours}" />
+            </Frame>
+
+            <!-- Submit Button -->
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -62,10 +69,9 @@
                     IsEnabled="{Binding NotInServerCall}"
                     Style="{StaticResource buttonStyle}"
                     Text="Send Request" />
-
             </Grid>
 
         </VerticalStackLayout>
     </Grid>
-
+    </ScrollView>
 </ContentPage>

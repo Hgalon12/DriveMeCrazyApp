@@ -1,4 +1,5 @@
 ﻿using DriveMeCrazyApp.Models;
+//using Org.Apache.Http.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -291,5 +292,64 @@ namespace DriveMeCrazyApp.Services
                 return null;
             }
         }
-    }
+
+
+
+
+
+
+
+        public async Task<List<TableCar>> GetAllCarByDriver()
+        {
+            try
+            {
+                string url = $"{baseUrl}GetAllCars"; // Endpoint של ה-API לקבלת כל המכוניות
+                HttpResponseMessage response = await client.GetAsync(url);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    // המרת התוכן שנקבל לאובייקטים
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    return JsonSerializer.Deserialize<List<TableCar>>(resContent, options);
+                }
+                else
+                {
+                    return null; // או להחזיר רשימה ריקה, תלוי איך אתה רוצה לטפל בכישלון
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
 }

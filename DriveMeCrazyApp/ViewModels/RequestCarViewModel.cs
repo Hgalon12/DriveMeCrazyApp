@@ -26,6 +26,12 @@ namespace DriveMeCrazyApp.ViewModels
 
         private async void ReadCarsFromServer()
         {
+           
+                List<TableCar> listCars = await proxy.GetAllCarByDriver();
+                Cars = new ObservableCollection<TableCar>(listCars);
+               
+
+            
             //Call proxy method to read cars from servers
             //List<T....> l = proxy.tatatata...
             //Cars = new Obser///<////>(l);
@@ -39,6 +45,12 @@ namespace DriveMeCrazyApp.ViewModels
                 cars = value;
                 OnPropertyChanged();
             }
+        }
+        private TableCar selectedCar;
+        public TableCar SelectedCar
+        {
+            get => selectedCar;
+            set { selectedCar = value; OnPropertyChanged(); }
         }
         #region Reason
         private bool showReasonError;
@@ -83,6 +95,12 @@ namespace DriveMeCrazyApp.ViewModels
             this.ShowReasonError = string.IsNullOrEmpty(Reason);
         }
         #endregion
+        private TimeSpan hours;
+        public TimeSpan Hours
+        {
+            get => hours;
+            set { hours = value; OnPropertyChanged(); }
+        }
         private DateTime date;
         public DateTime Date
         {
@@ -107,8 +125,8 @@ namespace DriveMeCrazyApp.ViewModels
                 {
 
                     UserId = ((App)Application.Current).LoggedInUser.Id,
-                    IdCar ="1234",
-                    WhenIneedthecar = Date,
+                    IdCar =selectedCar.IdCar,
+                    WhenIneedthecar = Date+Hours,
                     Reason = Reason,
 
                 };
