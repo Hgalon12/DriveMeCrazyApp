@@ -20,8 +20,8 @@
             <!-- Cars Selection -->
                 <Label Text="Choose a Car" />
                 <Picker ItemsSource="{Binding Cars}"
-SelectedItem="{Binding SelectedCar}"
-ItemDisplayBinding="{Binding NickName}">
+                SelectedItem="{Binding SelectedCar}"
+                ItemDisplayBinding="{Binding NickName}">
                 </Picker>
                 <!-- Reason Input -->
             <Label Text="Reason" Style="{StaticResource labelNameStyle}" />
