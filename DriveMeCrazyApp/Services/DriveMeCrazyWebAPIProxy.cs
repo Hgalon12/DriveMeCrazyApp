@@ -326,7 +326,68 @@ namespace DriveMeCrazyApp.Services
                 return null;
             }
         }
-    
+        public async Task<List<TableCar>> GetAllCar()
+        {
+            try
+            {
+                string url = $"{baseUrl}GetAllCarRegistred"; // Endpoint של ה-API לקבלת כל המכוניות
+                HttpResponseMessage response = await client.GetAsync(url);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    // המרת התוכן שנקבל לאובייקטים
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    return JsonSerializer.Deserialize<List<TableCar>>(resContent, options);
+                }
+                else
+                {
+                    return null; // או להחזיר רשימה ריקה, תלוי איך אתה רוצה לטפל בכישלון
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+
+        public async Task<ChoreType?> AddChore(ChoreType chore)
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}AddChore";
+            try
+            {
+                //Call the server API
+                string json = JsonSerializer.Serialize(chore);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    ChoreType? result = JsonSerializer.Deserialize<ChoreType>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
 
 
 
@@ -349,7 +410,5 @@ namespace DriveMeCrazyApp.Services
 
 
 
-
-
-}
+    }
 }

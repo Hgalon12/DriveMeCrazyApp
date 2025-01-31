@@ -1,9 +1,12 @@
+using DriveMeCrazyApp.ViewModels;
+
 namespace DriveMeCrazyApp.Views;
 
 public partial class AssignmentView : ContentPage
 {
-	public AssignmentView()
+	public AssignmentView(AssignmentViewModel vm)
 	{
+		this.BindingContext = vm;
 		InitializeComponent();
 	}
 }

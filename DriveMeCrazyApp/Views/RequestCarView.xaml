@@ -18,20 +18,12 @@
                 TextColor="#5072A7" />
 
             <!-- Cars Selection -->
-                <Label Text="Chose a car"/>
-                <CollectionView ItemsSource="{Binding Cars}"
-                            SelectionMode="Single"
-                            SelectedItem="{Binding SelectedCar}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout Padding="10">
-                            <Label Text="{Binding NickName}" FontSize="Medium" />
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-
-            <!-- Reason Input -->
+                <Label Text="Choose a Car" />
+                <Picker ItemsSource="{Binding Cars}"
+SelectedItem="{Binding SelectedCar}"
+ItemDisplayBinding="{Binding NickName}">
+                </Picker>
+                <!-- Reason Input -->
             <Label Text="Reason" Style="{StaticResource labelNameStyle}" />
             <Label IsVisible="{Binding ShowReasonError}"
                    Style="{StaticResource labelErrorStyle}"

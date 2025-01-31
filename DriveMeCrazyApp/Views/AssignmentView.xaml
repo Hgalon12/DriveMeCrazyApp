@@ -2,11 +2,71 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DriveMeCrazyApp.Views.AssignmentView"
+             BackgroundColor="LightYellow"
              Title="AssignmentView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+  
+        <Grid Padding="20">
+            <VerticalStackLayout Spacing="20">
+
+                <!-- Header -->
+                <Label
+            FontFamily="JumperBold"
+            FontSize="35"
+            HorizontalTextAlignment="Center"
+            Text="Add Chore"
+            TextColor="#5072A7" />
+
+                <!-- Cars Selection -->
+            <Label Text="Choose a Car" />
+            <Picker ItemsSource="{Binding Cars}"
+        SelectedItem="{Binding SelectedCar}"
+        ItemDisplayBinding="{Binding NickName}">
+            </Picker>
+
+
+            <!-- Name Input -->
+                <Label Text="Chore Name " Style="{StaticResource labelNameStyle}" />
+                <Label IsVisible="{Binding ShowNameError}"
+               Style="{StaticResource labelErrorStyle}"
+               Text="{Binding NameError}" />
+
+                <Frame Padding="10" BackgroundColor="White" CornerRadius="10" HasShadow="True">
+                    <Entry
+                Placeholder="Enter Chore name"
+                Style="{StaticResource entryStyle}"
+                Text="{Binding Name}" />
+                </Frame>
+
+                <!-- Score Input -->
+                <Label Text="Score" FontSize="Medium" TextColor="#333" />
+                <Label IsVisible="{Binding ShowScoreError}"
+               Style="{StaticResource labelErrorStyle}"
+               Text="{Binding ScoreError}" />
+
+                <Frame Padding="10" BackgroundColor="White" CornerRadius="10" HasShadow="True">
+                    <Entry
+                Keyboard="Numeric"
+                Placeholder="Enter score"
+                Style="{StaticResource entryStyle}"
+                Text="{Binding Score}" />
+                </Frame>
+
+                <!-- Submit Button -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button
+                Grid.Column="1"
+                Command="{Binding AddCommand}"
+                IsEnabled="{Binding NotInServerCall}"
+                Style="{StaticResource buttonStyle}"
+                Text="Submit" />
+                </Grid>
+
+            </VerticalStackLayout>
+        </Grid>
+
+   
 </ContentPage>
