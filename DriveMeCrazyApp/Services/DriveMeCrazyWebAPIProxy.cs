@@ -421,6 +421,73 @@ namespace DriveMeCrazyApp.Services
         }
 
 
+        public async Task<bool> ChangeRestStatusToApproved(int  id)
+        {
+            string url = $"{this.baseUrl}ChangeStatusRequestToAprrove";
+            try
+            {
+                //Call the server API
+                string json = JsonSerializer.Serialize(id);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    bool result = JsonSerializer.Deserialize<bool>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+
+        public async Task<bool> ChangeRestStatusToReject(RequestCar request)
+        {
+            string url = $"{this.baseUrl}ChangeStatusRequestToRegject";
+            try
+            {
+                //Call the server API
+                string json = JsonSerializer.Serialize(request.RequestId);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    bool result = JsonSerializer.Deserialize<bool>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
 
 
 

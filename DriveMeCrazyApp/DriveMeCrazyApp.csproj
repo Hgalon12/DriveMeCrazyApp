@@ -69,7 +69,9 @@
 	  <None Remove="Resources\Images\Aprove.jpg" />
 	  <None Remove="Resources\Images\Assignmet.jpg" />
 	  <None Remove="Resources\Images\Calender.jpg" />
+	  <None Remove="Resources\Images\checkmarkicon.png" />
 	  <None Remove="Resources\Images\Data.jpg" />
+	  <None Remove="Resources\Images\declineicon.png" />
 	  <None Remove="Resources\Images\HighScores.png" />
 	  <None Remove="Resources\Images\home.png" />
 	  <None Remove="Resources\Images\passwordeye.jpg" />
