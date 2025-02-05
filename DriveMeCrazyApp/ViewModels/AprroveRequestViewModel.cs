@@ -64,9 +64,12 @@ namespace DriveMeCrazyApp.ViewModels
         public async void ChangeRestStatusToApprove()
         {
             ErrorMsg = "";
-            bool success = await this.proxy.ChangeRestStatusToApproved(SelectedReq.RequestId);
+            bool success = await this.proxy.ChangeRestStatusToApproved(SelectedReq);
+            
             if (success)
             {
+                ReadReqFromServer();
+
                 ErrorMsg = "Status Changed to Approved";
             }
             else
@@ -80,6 +83,7 @@ namespace DriveMeCrazyApp.ViewModels
             bool success = await this.proxy.ChangeRestStatusToReject(SelectedReq);
             if (success)
             {
+                ReadReqFromServer();
                 ErrorMsg = "Status Changed To Declined";
             }
             else

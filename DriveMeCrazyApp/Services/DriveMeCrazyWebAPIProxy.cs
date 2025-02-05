@@ -421,13 +421,13 @@ namespace DriveMeCrazyApp.Services
         }
 
 
-        public async Task<bool> ChangeRestStatusToApproved(int  id)
+        public async Task<bool> ChangeRestStatusToApproved(RequestCar r)
         {
             string url = $"{this.baseUrl}ChangeStatusRequestToAprrove";
             try
             {
                 //Call the server API
-                string json = JsonSerializer.Serialize(id);
+                string json = JsonSerializer.Serialize(r);
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await client.PostAsync(url, content);
                 //Check status
@@ -457,11 +457,11 @@ namespace DriveMeCrazyApp.Services
 
         public async Task<bool> ChangeRestStatusToReject(RequestCar request)
         {
-            string url = $"{this.baseUrl}ChangeStatusRequestToRegject";
+            string url = $"{this.baseUrl}ChangeStatusRequestToDecline";
             try
             {
                 //Call the server API
-                string json = JsonSerializer.Serialize(request.RequestId);
+                string json = JsonSerializer.Serialize(request);
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await client.PostAsync(url, content);
                 //Check status
