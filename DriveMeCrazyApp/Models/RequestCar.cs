@@ -21,5 +21,7 @@ namespace DriveMeCrazyApp.Models
 
         public int StatusId { get; set; }
 
+     
+
     }
 }

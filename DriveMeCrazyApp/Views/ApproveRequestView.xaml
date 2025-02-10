@@ -84,7 +84,7 @@
                                 TextColor="#333333" />
                                     <Label
                                 FontSize="14"
-                                Text="{Binding UserId}"
+                                Text="{Binding Requester.UserName}"
                                 TextColor="#333333" />
                                 </StackLayout>
                             </SwipeView>
