@@ -70,7 +70,8 @@ namespace DriveMeCrazyApp.ViewModels
             {
                 ReadReqFromServer();
 
-                ErrorMsg = "Status Changed to Approved";
+                await Application.Current.MainPage.DisplayAlert("Success!", "Request status changed to approved", "ok");
+                ReadReqFromServer();
             }
             else
                 ErrorMsg = "Something Went Wrong";
@@ -84,7 +85,9 @@ namespace DriveMeCrazyApp.ViewModels
             if (success)
             {
                 ReadReqFromServer();
-                ErrorMsg = "Status Changed To Declined";
+                
+                await Application.Current.MainPage.DisplayAlert("Success!", "request's status changed to declined", "ok");
+                ReadReqFromServer();
             }
             else
                 ErrorMsg = "Something went Wrong";

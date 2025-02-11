@@ -457,7 +457,7 @@ namespace DriveMeCrazyApp.Services
 
         public async Task<bool> ChangeRestStatusToReject(RequestCar request)
         {
-            string url = $"{this.baseUrl}ChangeStatusRequestToDecline";
+            string url = $"{this.baseUrl}ChangeStatusRequestToRegject";
             try
             {
                 //Call the server API
