@@ -49,7 +49,12 @@
                 <TimePicker BackgroundColor="White" Time="{Binding Hours}" />
             </Frame>
 
-            <!-- Submit Button -->
+                <!-- Time Picker -->
+                <Label Text="Select Time until you need the car:" FontSize="Medium" TextColor="#333" />
+                <Frame Padding="10" BackgroundColor="White" CornerRadius="10" HasShadow="True">
+                    <TimePicker BackgroundColor="White" Time="{Binding HoursUntil}" />
+                </Frame>
+                <!-- Submit Button -->
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />

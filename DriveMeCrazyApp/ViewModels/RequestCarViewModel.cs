@@ -101,6 +101,13 @@ namespace DriveMeCrazyApp.ViewModels
             get => hours;
             set { hours = value; OnPropertyChanged(); }
         }
+
+        private TimeSpan hoursUntil;
+        public TimeSpan HoursUntil
+        {
+            get => hoursUntil;
+            set { hoursUntil = value; OnPropertyChanged(); }
+        }
         private DateTime date;
         public DateTime Date
         {
@@ -127,6 +134,7 @@ namespace DriveMeCrazyApp.ViewModels
                     UserId = ((App)Application.Current).LoggedInUser.Id,
                     IdCar =selectedCar.IdCar,
                     WhenIneedthecar = Date+Hours,
+                    UntilWhenIneedthecar= Date+HoursUntil,
                     Reason = Reason,
 
                 };

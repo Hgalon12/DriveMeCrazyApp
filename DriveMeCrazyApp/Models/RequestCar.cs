@@ -17,6 +17,7 @@ namespace DriveMeCrazyApp.Models
 
         public DateTime? WhenIneedthecar { get; set; }
 
+        public DateTime? UntilWhenIneedthecar { get; set; }
         public string Reason { get; set; } = null;
 
         public int StatusId { get; set; }
