@@ -330,7 +330,7 @@ namespace DriveMeCrazyApp.Services
         {
             try
             {
-                string url = $"{baseUrl}GetAllCarRegistred"; // Endpoint של ה-API לקבלת כל המכוניות
+                string url = $"{baseUrl}GetAllCar"; // Endpoint של ה-API לקבלת כל המכוניות
                 HttpResponseMessage response = await client.GetAsync(url);
 
                 if (response.IsSuccessStatusCode)
@@ -354,6 +354,34 @@ namespace DriveMeCrazyApp.Services
             }
         }
 
+
+        public async Task<List<TableUser>> GetAllUser()
+        {
+            try
+            {
+                string url = $"{baseUrl}GetAllUserByOwner"; // Endpoint של ה-API לקבלת כל המכוניות
+                HttpResponseMessage response = await client.GetAsync(url);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    // המרת התוכן שנקבל לאובייקטים
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    return JsonSerializer.Deserialize<List<TableUser>>(resContent, options);
+                }
+                else
+                {
+                    return null; // או להחזיר רשימה ריקה, תלוי איך אתה רוצה לטפל בכישלון
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
         public async Task<List<RequestCar>> GetAllRequest()
         {
             try
@@ -489,7 +517,33 @@ namespace DriveMeCrazyApp.Services
         }
 
 
+        public async Task <DriverCar?> AddDriver(string carId, int userId)
+        {
+            try
+            {
+                string url = $"{baseUrl}adddriver?carId={carId}&userId={userId}"; // Endpoint של ה-API לקבלת כל המכוניות
+                HttpResponseMessage response = await client.GetAsync(url);
 
+                if (response.IsSuccessStatusCode)
+                {
+                    // המרת התוכן שנקבל לאובייקטים
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    return JsonSerializer.Deserialize < DriverCar > (resContent, options);
+                }
+                else
+                {
+                    return null; // או להחזיר רשימה ריקה, תלוי איך אתה רוצה לטפל בכישלון
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
 
 
 

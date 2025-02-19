@@ -102,6 +102,9 @@
 	  <MauiXaml Update="Views\DataView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\DriverCarView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\HighScoresView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

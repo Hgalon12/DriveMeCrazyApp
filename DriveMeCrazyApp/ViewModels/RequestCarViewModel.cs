@@ -132,9 +132,9 @@ namespace DriveMeCrazyApp.ViewModels
                 {
 
                     UserId = ((App)Application.Current).LoggedInUser.Id,
-                    IdCar =selectedCar.IdCar,
-                    WhenIneedthecar = Date+Hours,
-                    UntilWhenIneedthecar= Date+HoursUntil,
+                    IdCar = selectedCar.IdCar,
+                    WhenIneedthecar = new DateTime(Date.Year, Date.Month, Date.Day, Hours.Hours, Hours.Minutes, 0, DateTimeKind.Unspecified),
+                    UntilWhenIneedthecar = new DateTime(Date.Year, Date.Month, Date.Day, HoursUntil.Hours, HoursUntil.Minutes, 0, DateTimeKind.Unspecified),
                     Reason = Reason,
 
                 };

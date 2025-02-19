@@ -51,6 +51,7 @@ namespace DriveMeCrazyApp
             builder.Services.AddTransient<CalenderView>();
             builder.Services.AddTransient<DataView>();
             builder.Services.AddTransient<ApproveRequestView>();
+            builder.Services.AddTransient<DriverCarView>();
             return builder;
         }
 
@@ -73,6 +74,7 @@ namespace DriveMeCrazyApp
             builder.Services.AddTransient<CalendarViewModel>();
             builder.Services.AddTransient<DataViewModel>();
             builder.Services.AddTransient<AprroveRequestViewModel>();
+            builder.Services.AddTransient<DriverCarViewModel>();
 
             return builder;
         }

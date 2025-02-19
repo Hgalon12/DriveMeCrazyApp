@@ -53,11 +53,18 @@
 
 
         <ShellContent
-            Title="ApproveRequest"
-            ContentTemplate="{DataTemplate views:ApproveRequestView}"
+            Title="Add Driver "
+            ContentTemplate="{DataTemplate views:DriverCarView}"
             Icon="Aprove.jpg"
             IsVisible="{Binding IsManager}"
-            Route="ApproveRequest" />
+            Route="DriverCar" />
+        
+        <ShellContent
+      Title="ApproveRequest"
+      ContentTemplate="{DataTemplate views:ApproveRequestView}"
+      Icon="Aprove.jpg"
+      IsVisible="{Binding IsManager}"
+      Route="ApproveRequest" />
 
 
     </FlyoutItem>
