@@ -27,7 +27,8 @@ namespace DriveMeCrazyApp.ViewModels
         {
 
             List<TableCar> listCars = await proxy.GetAllCar();
-            Cars = new ObservableCollection<TableCar>(listCars);
+            if (listCars != null)
+                Cars = new ObservableCollection<TableCar>(listCars);
 
 
 
@@ -52,7 +53,8 @@ namespace DriveMeCrazyApp.ViewModels
         {
 
             List<TableUser> listUsers = await proxy.GetAllUser();
-            Users = new ObservableCollection<TableUser>(listUsers);
+            if (listUsers != null)
+                Users = new ObservableCollection<TableUser>(listUsers);
 
 
 

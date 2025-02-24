@@ -1,46 +1,47 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DriveMeCrazyApp.Views.DriverCarView"
-             Title="DriverCarView">
+<ContentPage
+    x:Class="DriveMeCrazyApp.Views.DriverCarView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="DriverCarView">
     <Grid Padding="20">
         <VerticalStackLayout Spacing="20">
 
-            <!-- Header -->
+            <!--  Header  -->
             <Label
-    FontFamily="JumperBold"
-    FontSize="35"
-    HorizontalTextAlignment="Center"
-    Text="Add Driver"
-    TextColor="#5072A7" />
-            <!-- User Selection -->
+                FontFamily="JumperBold"
+                FontSize="35"
+                HorizontalTextAlignment="Center"
+                Text="Add Driver"
+                TextColor="#5072A7" />
+            <!--  User Selection  -->
             <Label Text="Choose User" />
-            <Picker ItemsSource="{Binding Users}"
-SelectedItem="{Binding SelectedUser}"
-ItemDisplayBinding="{Binding Name}">
-            </Picker>
+            <Picker
+                ItemDisplayBinding="{Binding UserName}"
+                ItemsSource="{Binding Users}"
+                SelectedItem="{Binding SelectedUser}" />
 
 
-            <!-- Cars Selection -->
+            <!--  Cars Selection  -->
             <Label Text="Choose a Car" />
-            <Picker ItemsSource="{Binding Cars}"
-SelectedItem="{Binding SelectedCar}"
-ItemDisplayBinding="{Binding NickName}">
-            </Picker>
+            <Picker
+                ItemDisplayBinding="{Binding NickName}"
+                ItemsSource="{Binding Cars}"
+                SelectedItem="{Binding SelectedCar}" />
 
 
-            <!-- Submit Button -->
+            <!--  Submit Button  -->
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Button
-        Grid.Column="1"
-        Command="{Binding AddCommand}"
-        IsEnabled="{Binding NotInServerCall}"
-        Style="{StaticResource buttonStyle}"
-        Text="Submit" />
+                    Grid.Column="1"
+                    Command="{Binding AddCommand}"
+                    IsEnabled="{Binding NotInServerCall}"
+                    Style="{StaticResource buttonStyle}"
+                    Text="Submit" />
             </Grid>
 
         </VerticalStackLayout>

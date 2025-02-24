@@ -330,7 +330,7 @@ namespace DriveMeCrazyApp.Services
         {
             try
             {
-                string url = $"{baseUrl}GetAllCar"; // Endpoint של ה-API לקבלת כל המכוניות
+                string url = $"{baseUrl}GetAllCars"; // Endpoint של ה-API לקבלת כל המכוניות
                 HttpResponseMessage response = await client.GetAsync(url);
 
                 if (response.IsSuccessStatusCode)
