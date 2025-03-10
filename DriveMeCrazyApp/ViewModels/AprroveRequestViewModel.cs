@@ -68,7 +68,7 @@ namespace DriveMeCrazyApp.ViewModels
             
             if (success)
             {
-                ReadReqFromServer();
+              
 
                 await Application.Current.MainPage.DisplayAlert("Success!", "Request status changed to approved", "ok");
                 ReadReqFromServer();
