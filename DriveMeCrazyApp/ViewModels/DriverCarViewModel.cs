@@ -82,7 +82,7 @@ namespace DriveMeCrazyApp.ViewModels
         public async void OnAdd()
         {
 
-            var driver = new DriverCar
+            DriverCar  driver = new DriverCar
             {
                 UserId = SelectedUser.Id,
                 IdCar = SelectedCar.IdCar,

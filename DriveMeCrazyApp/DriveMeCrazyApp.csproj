@@ -99,6 +99,9 @@
 	  <MauiXaml Update="Views\CalenderView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\CarListView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\DataView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
