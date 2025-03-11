@@ -4,9 +4,55 @@
              x:Class="DriveMeCrazyApp.Views.CarListView"
              Title="CarListView">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        
+        <Label
+    Margin="30,0,0,20"
+    FontFamily="JumperBold"
+    FontSize="25"
+    HorizontalTextAlignment="Center"
+    Text="My Cars"
+    TextColor="#5072A7" />
+        <Label/>
+        <CollectionView ItemsSource="{Binding Cars}" SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image
+                            Grid.Column="0"
+                            Source="{Binding CarImagePath}"
+                            WidthRequest="100" />
+                        <StackLayout
+                            Grid.Column="1"
+                            Padding="20"
+                            VerticalOptions="Center">
+                            <Label
+                                FontAttributes="Italic"
+                                FontSize="Small"
+                                Text="{ Binding NickName}" />
+                            <Label
+                                FontAttributes="Italic"
+                                FontSize="Small"
+                                Text="{Binding IdCar}" />
+                           
+
+                        </StackLayout>
+                    </Grid>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Text="AddDriver" Command="{Binding button}" IsEnabled="{Binding NotInServerCall}" Grid.Column="1" Style="{StaticResource buttonStyle}" />
+
+        </Grid>
     </VerticalStackLayout>
 </ContentPage>

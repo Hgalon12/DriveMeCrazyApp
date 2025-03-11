@@ -53,11 +53,12 @@
 
 
         <ShellContent
-            Title="Add Driver "
-            ContentTemplate="{DataTemplate views:DriverCarView}"
-            Icon="Aprove.jpg"
+            Title="ListCars "
+            ContentTemplate="{DataTemplate views:CarListView}"
+            Icon="list.png"
             IsVisible="{Binding IsManager}"
-            Route="DriverCar" />
+            Route="CarList" />
+     
         
         <ShellContent
       Title="ApproveRequest"

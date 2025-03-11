@@ -15,7 +15,8 @@ namespace DriveMeCrazyApp
         private void RegisterRoutes()
         {
             Routing.RegisterRoute("addCar", typeof(AddCarView));
-            
+            Routing.RegisterRoute("addDriver", typeof(DriverCarView));
+
         }
     }
 }
