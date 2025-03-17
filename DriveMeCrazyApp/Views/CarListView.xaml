@@ -24,7 +24,7 @@
                         </Grid.ColumnDefinitions>
                         <Image
                             Grid.Column="0"
-                            Source="{Binding CarImagePath}"
+                            Source="{Binding FullImagePath}"
                             WidthRequest="100" />
                         <StackLayout
                             Grid.Column="1"

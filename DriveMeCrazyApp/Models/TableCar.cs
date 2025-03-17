@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DriveMeCrazyApp.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,14 @@ namespace DriveMeCrazyApp.Models
 
         public string CarImagePath { get; set; } = "";
 
-       
+       public string FullImagePath
+        {
+            get
+            
+            {
+                return DriveMeCrazyWebAPIProxy.ImageBaseAddress+ this.CarImagePath;
+            }
+        }
 
 
     }

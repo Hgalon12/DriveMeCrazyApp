@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DriveMeCrazyApp.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,15 @@ namespace DriveMeCrazyApp.Models
 
         public string UserPassword { get; set; } = null!;
 
-        public string ProfileImagePath { get; set; } = ""; 
+        public string ProfileImagePath { get; set; } = "";
+        public string FullImagePath
+        {
+            get
+
+            {
+                return DriveMeCrazyWebAPIProxy.ImageBaseAddress + this.ProfileImagePath;
+            }
+        }
 
         public string UserPhoneNum { get; set; } = null!;
         public bool IsManager { 
