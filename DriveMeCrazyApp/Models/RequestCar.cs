@@ -14,6 +14,7 @@ namespace DriveMeCrazyApp.Models
         public TableUser? Requester { get; set; } 
 
         public string IdCar { get; set; } = null!;
+        public TableCar? Car { get; set; } = null!;
 
         public DateTime? WhenIneedthecar { get; set; }
 

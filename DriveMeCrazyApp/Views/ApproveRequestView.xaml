@@ -5,96 +5,95 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:models="clr-namespace:DriveMeCrazyApp.Models"
     Title="ApproveRequestView">
-   
-        <VerticalStackLayout
-    Margin="15"
-    Padding="25"
-    BackgroundColor="#F8F9FA"
-    Spacing="20">
 
-            <Label
-        FontFamily="JumperBold"
-        FontSize="35"
-        HorizontalTextAlignment="Center"
-        Text="Request Car Approval"
-        TextColor="#5072A7" />
+    <VerticalStackLayout
+        Margin="15"
+        Padding="25"
+        BackgroundColor="#F8F9FA"
+        Spacing="20">
 
-            <Label
-        FontSize="16"
-        HorizontalTextAlignment="Center"
-        Text="Swipe right to approve and left to decline"
-        TextColor="#555555" />
+        <Label
+            FontFamily="JumperBold"
+            FontSize="35"
+            HorizontalTextAlignment="Center"
+            Text="Request Car Approval"
+            TextColor="#5072A7" />
 
-            <CollectionView
-        x:Name="RequestCarList"
-        HeightRequest="250"
-        ItemsSource="{Binding Req}"
-        SelectedItem="{Binding SelectedReq}"
-        SelectionMode="Single"
-        >
+        <Label
+            FontSize="16"
+            HorizontalTextAlignment="Center"
+            Text="Swipe right to approve and left to decline"
+            TextColor="#555555" />
 
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="models:RequestCar">
-                        <Frame
-                    Margin="0,5"
-                    Padding="15"
-                    BackgroundColor="White"
-                    BorderColor="#E0E0E0"
-                    CornerRadius="10"
-                    HasShadow="True">
+        <CollectionView
+            x:Name="RequestCarList"
+            EmptyView="No Requests was found"
+            HeightRequest="250"
+            ItemsSource="{Binding Req}"
+            SelectedItem="{Binding SelectedReq}"
+            SelectionMode="Single">
 
-                            <SwipeView Grid.Column="0">
-                                <SwipeView.LeftItems>
-                                    <SwipeItems>
-                                        <SwipeItem
-                                    BackgroundColor="#FF5A5F"
-                                    Command="{Binding Source={x:Reference RequestCarList}, Path=BindingContext.DeclineCommand}"
-                                    CommandParameter="{Binding .}"
-                                    IconImageSource="declineicon.png"
-                                    Text="Decline"
-                                     />
-                                    </SwipeItems>
-                                </SwipeView.LeftItems>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:RequestCar">
+                    <Frame
+                        Margin="0,5"
+                        Padding="15"
+                        BackgroundColor="White"
+                        BorderColor="#E0E0E0"
+                        CornerRadius="10"
+                        HasShadow="True">
 
-                                <SwipeView.RightItems>
-                                    <SwipeItems>
-                                        <SwipeItem
-                                    BackgroundColor="#4CAF50"
-                                    Command="{Binding Source={x:Reference RequestCarList}, Path=BindingContext.ApproveCommand}"
-                                    CommandParameter="{Binding .}"
-                                    IconImageSource="checkmarkicon.png"
-                                    Text="Approve"
-                                    />
-                                    </SwipeItems>
-                                </SwipeView.RightItems>
+                        <SwipeView Grid.Column="0">
+                            <SwipeView.LeftItems>
+                                <SwipeItems>
+                                    <SwipeItem
+                                        BackgroundColor="#FF5A5F"
+                                        Command="{Binding Source={x:Reference RequestCarList}, Path=BindingContext.DeclineCommand}"
+                                        CommandParameter="{Binding .}"
+                                        IconImageSource="declineicon.png"
+                                        Text="Decline" />
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
 
-                                <StackLayout Padding="10" Spacing="5">
-                                    <Label
-                                FontAttributes="Bold"
-                                FontSize="16"
-                                Text="{Binding IdCar}"
-                                TextColor="#1E3A8A" />
-                                    <Label
-                                FontSize="14"
-                                Text="{Binding Reason}"
-                                TextColor="#333333" />
-                                    <Label
-                                FontSize="14"
-                                Text="{Binding WhenIneedthecar}"
-                                TextColor="#333333" />
-                                    <Label
-                                FontSize="14"
-                                Text="{Binding Requester.UserName}"
-                                TextColor="#333333" />
-                                </StackLayout>
-                            </SwipeView>
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </VerticalStackLayout>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem
+                                        BackgroundColor="#4CAF50"
+                                        Command="{Binding Source={x:Reference RequestCarList}, Path=BindingContext.ApproveCommand}"
+                                        CommandParameter="{Binding .}"
+                                        IconImageSource="checkmarkicon.png"
+                                        Text="Approve" />
+                                </SwipeItems>
+                            </SwipeView.RightItems>
 
-       
+                            <StackLayout Padding="10" Spacing="5">
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="16"
+                                    Text="{Binding IdCar}"
+                                    TextColor="#1E3A8A" />
+                                <Label
+                                    FontSize="14"
+                                    Text="{Binding Reason}"
+                                    TextColor="#333333" />
+                                <Label
+                                    FontSize="14"
+                                    Text="{Binding WhenIneedthecar}"
+                                    TextColor="#333333" />
+                                <Label
+                                    FontSize="14"
+                                    Text="{Binding Requester.UserName}"
+                                    TextColor="#333333" />
+                                <Image Source="{Binding Car.FullImagePath}" />
+                            </StackLayout>
+                        </SwipeView>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
 
-    
+
+
+
 </ContentPage>
