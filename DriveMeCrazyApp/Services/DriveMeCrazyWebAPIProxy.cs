@@ -409,6 +409,33 @@ namespace DriveMeCrazyApp.Services
                 return null;
             }
         }
+        public async Task<List<RequestCar>> GetAllRequest12()
+        {
+            try
+            {
+                string url = $"{baseUrl}GetAllRequestPanndingAndAprove"; // Endpoint של ה-API לקבלת כל המכוניות
+                HttpResponseMessage response = await client.GetAsync(url);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    // המרת התוכן שנקבל לאובייקטים
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    return JsonSerializer.Deserialize<List<RequestCar>>(resContent, options);
+                }
+                else
+                {
+                    return null; // או להחזיר רשימה ריקה, תלוי איך אתה רוצה לטפל בכישלון
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
 
 
 

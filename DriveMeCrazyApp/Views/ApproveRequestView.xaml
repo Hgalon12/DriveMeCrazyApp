@@ -28,7 +28,7 @@
         <CollectionView
             x:Name="RequestCarList"
             EmptyView="No Requests was found"
-            HeightRequest="250"
+            HeightRequest="500"
             ItemsSource="{Binding Req}"
             SelectedItem="{Binding SelectedReq}"
             SelectionMode="Single">
@@ -66,25 +66,46 @@
                                 </SwipeItems>
                             </SwipeView.RightItems>
 
-                            <StackLayout Padding="10" Spacing="5">
-                                <Label
-                                    FontAttributes="Bold"
-                                    FontSize="16"
-                                    Text="{Binding IdCar}"
-                                    TextColor="#1E3A8A" />
-                                <Label
-                                    FontSize="14"
-                                    Text="{Binding Reason}"
-                                    TextColor="#333333" />
-                                <Label
-                                    FontSize="14"
-                                    Text="{Binding WhenIneedthecar}"
-                                    TextColor="#333333" />
-                                <Label
-                                    FontSize="14"
-                                    Text="{Binding Requester.UserName}"
-                                    TextColor="#333333" />
-                                <Image Source="{Binding Car.FullImagePath}" />
+                            <!-- שינוי כאן - שם הרכב ב-bold וירוק זית -->
+                            <StackLayout Padding="10" Spacing="5" Orientation="Horizontal">
+                                <StackLayout VerticalOptions="Center" Spacing="5" HorizontalOptions="FillAndExpand">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="16"
+                                        Text="{Binding IdCar}"
+                                        TextColor="#1E3A8A" />
+                                    <Label
+                                        FontSize="14"
+                                        Text="{Binding Reason}"
+                                        TextColor="#333333" />
+                                    <Label
+                                        FontSize="14"
+                                        Text="{Binding WhenIneedthecar}"
+                                        TextColor="#333333" />
+                                    <Label
+                                        FontSize="14"
+                                        Text="{Binding Requester.UserName}"
+                                        TextColor="#333333" />
+                                </StackLayout>
+
+                                <!-- שם הרכב ב-bold וירוק זית מעל התמונה -->
+                                <StackLayout HorizontalOptions="Center">
+                                    <Label
+                                        FontSize="22"
+                                        FontAttributes="Bold"
+                                        Text="{Binding Car.NickName}"
+                                        TextColor="#1EBEE1" />
+                                    <!-- צבע ירוק זית -->
+
+                                    <Frame
+                                        WidthRequest="100"
+                                        HeightRequest="100"
+                                        BorderColor="#E0E0E0"
+                                        CornerRadius="10"
+                                        HasShadow="True">
+                                        <Image Source="{Binding Car.FullImagePath}" Aspect="AspectFill" />
+                                    </Frame>
+                                </StackLayout>
                             </StackLayout>
                         </SwipeView>
                     </Frame>
@@ -92,8 +113,4 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
     </VerticalStackLayout>
-
-
-
-
 </ContentPage>
