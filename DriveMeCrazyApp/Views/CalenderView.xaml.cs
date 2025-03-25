@@ -1,9 +1,12 @@
+using DriveMeCrazyApp.ViewModels;
+
 namespace DriveMeCrazyApp.Views;
 
 public partial class CalenderView : ContentPage
 {
-	public CalenderView()
+	public CalenderView(CalendarViewModel vm)
 	{
+		this.BindingContext = vm;
 		InitializeComponent();
 	}
 }

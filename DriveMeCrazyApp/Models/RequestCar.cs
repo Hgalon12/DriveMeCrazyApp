@@ -23,6 +23,23 @@ namespace DriveMeCrazyApp.Models
 
         public int StatusId { get; set; }
 
+        public string Description
+        {
+            get
+            {
+                if (StatusId == 1)
+                {
+                    if (Requester != null)
+                        return $"{Requester.UserName} - Between {WhenIneedthecar.Value.Hour} to {UntilWhenIneedthecar.Value.Hour}  Status: Approve";
+                }
+
+                if (Requester != null)
+                    return $"{Requester.UserName} - Between {WhenIneedthecar.Value.Hour} to {UntilWhenIneedthecar.Value.Hour}  Status: Pannding";
+                else
+                    return $"Unknown - Between {WhenIneedthecar.Value.Hour} to {UntilWhenIneedthecar.Value.Hour}";
+            }
+        }
+
      
 
     }
