@@ -36,8 +36,7 @@ namespace DriveMeCrazyApp.ViewModels
             List<TableCar> listCars = await proxy.GetAllCar();
             if (listCars != null)
                 Cars = new ObservableCollection<TableCar>(listCars);
-
-
+            
         }
 
         public Command button { get; }
@@ -46,5 +45,6 @@ namespace DriveMeCrazyApp.ViewModels
             //Navigate to the task details page
             await Shell.Current.GoToAsync("addDriver");
         }
+     
     }
 }

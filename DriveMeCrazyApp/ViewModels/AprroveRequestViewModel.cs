@@ -1,5 +1,6 @@
 ﻿using DriveMeCrazyApp.Models;
 using DriveMeCrazyApp.Services;
+using Microsoft.Maui.Controls;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,7 +22,10 @@ namespace DriveMeCrazyApp.ViewModels
             ApproveCommand = new Command(ChangeRestStatusToApprove);
             DeclineCommand = new Command(ChangeRestStatusToDecline);
         }
+      
 
+
+        
         private async void ReadReqFromServer()
         {
 
@@ -29,7 +33,7 @@ namespace DriveMeCrazyApp.ViewModels
             Req = new ObservableCollection<RequestCar>(list);
 
         }
-
+        
         private ObservableCollection<RequestCar> req;
         public ObservableCollection<RequestCar> Req
         {

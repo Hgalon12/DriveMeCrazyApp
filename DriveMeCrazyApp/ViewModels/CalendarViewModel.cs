@@ -114,6 +114,11 @@ namespace DriveMeCrazyApp.ViewModels
             bool success = await this.proxy.ChangeRestStatusToReject(r);
         }
 
+        public override void Refresh()
+        {
+            base.Refresh();
+          
 
+        }
     }
 }

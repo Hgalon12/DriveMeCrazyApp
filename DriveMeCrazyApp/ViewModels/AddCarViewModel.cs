@@ -311,7 +311,7 @@ namespace DriveMeCrazyApp.ViewModels
                     }
 
                     InServerCall = false;
-                  
+                    
                     // אם הכל בסדר, נווט לאחור
                     ((App)(Application.Current)).MainPage.Navigation.PopAsync();
                 }
@@ -323,7 +323,8 @@ namespace DriveMeCrazyApp.ViewModels
                 }
             }
         }
-        
+       
+
 
 
 

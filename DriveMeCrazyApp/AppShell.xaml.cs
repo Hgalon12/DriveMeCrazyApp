@@ -19,5 +19,13 @@ namespace DriveMeCrazyApp
             Routing.RegisterRoute("approveRequest", typeof(AprroveRequestViewModel));
 
         }
+        public event Action<Type> DataChanged;
+        public void Refresh(Type type)
+        {
+            if (DataChanged != null)
+            {
+                DataChanged(type);
+            }
+        }
     }
 }
