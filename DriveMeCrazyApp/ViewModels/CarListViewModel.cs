@@ -45,6 +45,12 @@ namespace DriveMeCrazyApp.ViewModels
             //Navigate to the task details page
             await Shell.Current.GoToAsync("addDriver");
         }
-     
+        public override void Refresh()
+        {
+            ReadCarsFromServer();
+
+
+        }
+
     }
 }

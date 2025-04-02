@@ -23,6 +23,17 @@ namespace DriveMeCrazyApp.Models
 
         public int StatusId { get; set; }
 
+        public bool ShowApproveButton
+        {
+            get
+            {
+                TableUser currentUser = ((App)Application.Current).LoggedInUser;
+                return (StatusId == 2 && currentUser.IsManager);
+            }
+        }
+        
+
+
         public string Description
         {
             get

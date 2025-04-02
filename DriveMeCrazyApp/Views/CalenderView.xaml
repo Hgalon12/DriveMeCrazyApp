@@ -17,33 +17,39 @@
                         <Label Text="{Binding Description}" />
 
                         <StackLayout
-        Orientation="Horizontal"
-        HorizontalOptions="CenterAndExpand"
-        VerticalOptions="Center"
-        Spacing="10">
+                            HorizontalOptions="CenterAndExpand"
+                            Orientation="Horizontal"
+                            Spacing="10"
+                            VerticalOptions="Center">
 
                             <Button
-            Command="{Binding Source={x:Reference thePage}, Path=BindingContext.ApproveCommand}"
-            CommandParameter="{Binding}"
-            IsVisible="{Binding Source={x:Reference thePage}, Path=BindingContext.IsManager}"
-            Text="Approve"
-            WidthRequest="100"
+                                BackgroundColor="Green"
+                                Command="{Binding Source={x:Reference thePage}, Path=BindingContext.ApproveCommand}"
+                                CommandParameter="{Binding}"
                                 HeightRequest="50"
-                                BackgroundColor="Green"/>
+                                IsVisible="{Binding ShowApproveButton}"
+                                Text="Approve"
+                                WidthRequest="100" />
 
-                                <Button
-            Command="{Binding Source={x:Reference thePage}, Path=BindingContext.DeclineCommand}"
-            CommandParameter="{Binding}"
-            IsVisible="{Binding Source={x:Reference thePage}, Path=BindingContext.IsManager}"
-            Text="Decline"
-                                    BackgroundColor="Red"
-            WidthRequest="100" 
-                                    HeightRequest="50" />
+                            <Button
+                                BackgroundColor="Red"
+                                Command="{Binding Source={x:Reference thePage}, Path=BindingContext.DeclineCommand}"
+                                CommandParameter="{Binding}"
+                                HeightRequest="50"
+                                IsVisible="{Binding Source={x:Reference thePage}, Path=BindingContext.IsManager}"
+                                Text="Decline"
+                                WidthRequest="100" />
                         </StackLayout>
                     </VerticalStackLayout>
 
                 </DataTemplate>
             </cal:Calendar.EventTemplate>
         </cal:Calendar>
+        <Button
+            Grid.Column="1"
+            Command="{Binding RequestCarCommand}"
+            Style="{StaticResource buttonStyle}"
+            Text="ReqestCar" />
+
     </VerticalStackLayout>
 </ContentPage>

@@ -76,6 +76,7 @@ namespace DriveMeCrazyApp.ViewModels
 
                 await Application.Current.MainPage.DisplayAlert("Success!", "Request status changed to approved", "ok");
                 ReadReqFromServer();
+                ((AppShell)Shell.Current).Refresh(typeof(CalendarViewModel));
             }
             else
                 ErrorMsg = "Something Went Wrong";

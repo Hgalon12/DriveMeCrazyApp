@@ -31,6 +31,7 @@ namespace DriveMeCrazyApp.ViewModels
             Events = new EventCollection();
             ApproveCommand= new Command<RequestCar>(OnApprove);
             DeclineCommand= new Command<RequestCar>(OnDecline);
+            RequestCarCommand = new Command(OnRequest);
             ReadRequestCar();
 
 
@@ -106,17 +107,24 @@ namespace DriveMeCrazyApp.ViewModels
         public async void OnApprove(RequestCar r)
         {
             bool success = await this.proxy.ChangeRestStatusToApproved(r);
+            Refresh();
         }
 
         public ICommand DeclineCommand { get; set; }
         public async void OnDecline(RequestCar r)
         {
             bool success = await this.proxy.ChangeRestStatusToReject(r);
+            Refresh();
         }
-
+        public ICommand RequestCarCommand { get; set; }
+        public async void OnRequest()
+        {
+            //Navigate to the task details page
+            await Shell.Current.GoToAsync("requestCar");
+        }
         public override void Refresh()
         {
-            base.Refresh();
+            ReadRequestCar();
           
 
         }

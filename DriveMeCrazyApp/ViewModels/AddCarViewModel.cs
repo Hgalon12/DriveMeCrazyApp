@@ -311,7 +311,7 @@ namespace DriveMeCrazyApp.ViewModels
                     }
 
                     InServerCall = false;
-                    
+                    ((AppShell)Shell.Current).Refresh(typeof(CarListViewModel));
                     // אם הכל בסדר, נווט לאחור
                     ((App)(Application.Current)).MainPage.Navigation.PopAsync();
                 }
