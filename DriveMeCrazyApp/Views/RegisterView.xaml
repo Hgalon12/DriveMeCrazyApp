@@ -4,250 +4,232 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="RegisterView"
-    BackgroundColor="LightYellow">
+    BackgroundColor="#daebe8">
     <ScrollView>
         <Grid>
+            <!-- Background with subtle gradient effect -->
+            <BoxView>
+                <BoxView.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#daebe8" Offset="0.0" />
+                        <GradientStop Color="#cfe0e8" Offset="1.0" />
+                    </LinearGradientBrush>
+                </BoxView.Background>
+            </BoxView>
 
-
-            <!--  Main Content  -->
-            <VerticalStackLayout Padding="20" IsEnabled="{Binding NotInServerCall}">
+            <!-- Main Content -->
+            <VerticalStackLayout Padding="25" IsEnabled="{Binding NotInServerCall}">
                 <Label
-                    Margin="50,0,0,20"
+                    Margin="0,10,0,30"
                     FontFamily="JumperBold"
-                    FontSize="35"
+                    FontSize="36"
                     HorizontalTextAlignment="Center"
-                    Text="Signup  "
-                    TextColor="#5072A7" />
-                <!--  Photo  -->
+                    Text="Create Account"
+                    TextColor="#87bdd8"
+                    FontAttributes="Bold" />
+
+                <!-- Photo Frame -->
                 <Frame
-                    Margin="15"
+                    Margin="0,0,0,20"
                     Padding="5"
                     BackgroundColor="White"
-                    BorderColor="Black"
-                    HeightRequest="130"
-                    WidthRequest="130">
+                    BorderColor="#b7d7e8"
+                    CornerRadius="75"
+                    HeightRequest="150"
+                    WidthRequest="150"
+                    HorizontalOptions="Center"
+                    HasShadow="True">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
                         <Image
                             x:Name="theImageBug"
-                            HeightRequest="170"
-                            Source="{Binding PhotoURL}" />
-                        <Label
-                            Grid.Row="1"
-                            HorizontalOptions="Center"
-                            Text="Click Here To pic a Photo!"
-                            TextColor="Blue"
-                            VerticalOptions="End">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding UploadPhotoCommand}" />
-                            </Label.GestureRecognizers>
-
-                        </Label>
-                        <Label
-                            Grid.Row="2"
-                            HorizontalOptions="Center"
-                            Text="Click Here To Upload Photo from Gallery!"
-                            TextColor="Blue"
-                            VerticalOptions="End">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding GalleryPhotoCommand}" />
-                            </Label.GestureRecognizers>
-
-                        </Label>
+                            HeightRequest="140"
+                            Source="{Binding PhotoURL}"
+                            Aspect="AspectFill" />
+                        <VerticalStackLayout Grid.Row="1" BackgroundColor="#87bdd8" Opacity="0.85">
+                            <Label
+                                HorizontalOptions="Center"
+                                Text="Add Photo"
+                                TextColor="White"
+                                FontSize="14"
+                                Padding="5">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding UploadPhotoCommand}" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </VerticalStackLayout>
                     </Grid>
                 </Frame>
-                <!--  First Name  -->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Label
-                        Grid.Column="0"
-                        Style="{StaticResource labelNameStyle}"
-                        Text="First Name" />
-                    <Label
-                        Grid.Column="1"
-                        IsVisible="{Binding ShowNameError}"
-                        Style="{StaticResource labelErrorStyle}"
-                        Text="{Binding NameError}" />
-                </Grid>
-                <Entry
-                    Placeholder="Type First Name"
-                    Style="{StaticResource entryStyle}"
-                    Text="{Binding Name}" />
 
-                <!--  Last Name  -->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Label
-                        Grid.Column="0"
-                        Style="{StaticResource labelNameStyle}"
-                        Text="Last Name" />
-                    <Label
-                        Grid.Column="1"
-                        IsVisible="{Binding ShowLastNameError}"
-                        Style="{StaticResource labelErrorStyle}"
-                        Text="{Binding LastNameError}" />
-                </Grid>
-                <Entry
-                    Placeholder="Type Last Name"
-                    Style="{StaticResource entryStyle}"
-                    Text="{Binding LastName}" />
-
-                <!--  Email  -->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Label
-                        Grid.Column="0"
-                        Style="{StaticResource labelNameStyle}"
-                        Text="Email" />
-                    <Label
-                        Grid.Column="1"
-                        IsVisible="{Binding ShowEmailError}"
-                        Style="{StaticResource labelErrorStyle}"
-                        Text="{Binding EmailError}" />
-                </Grid>
-                <Entry
-                    Placeholder="Type Email"
-                    Style="{StaticResource entryStyle}"
-                    Text="{Binding Email}" />
-
-                <!--<Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Label Text="CarId" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
-                    <Label Text="{Binding CarOwnerIdError}" IsVisible="{Binding ShowCarOwnerIdError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
-            </Grid>
-                <Entry Placeholder="Type CarOwnerId" Text="{Binding CarOwnerId}" Style="{StaticResource entryStyle}" />-->
-
-
-                <!--  phonenum  -->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Label
-                        Grid.Column="0"
-                        Style="{StaticResource labelNameStyle}"
-                        Text="PhoneNum" />
-                    <Label
-                        Grid.Column="1"
-                        IsVisible="{Binding ShowPhoneNumError}"
-                        Style="{StaticResource labelErrorStyle}"
-                        Text="{Binding PhoneNumError}" />
-                </Grid>
-                <Entry
-                    Placeholder="Type PhoneNum"
-                    Style="{StaticResource entryStyle}"
-                    Text="{Binding PhoneNum}" />
-                <!--  Password  -->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Label
-                        Grid.Column="0"
-                        Style="{StaticResource labelNameStyle}"
-                        Text="Password" />
-                    <Label
-                        Grid.Column="1"
-                        IsVisible="{Binding ShowPasswordError}"
-                        Style="{StaticResource labelErrorStyle}"
-                        Text="{Binding PasswordError}" />
-                </Grid>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="40" />
-                    </Grid.ColumnDefinitions>
+                <!-- First Name -->
+                <Label
+                    Style="{StaticResource labelNameStyle}"
+                    Text="First Name"
+                    TextColor="#87bdd8"
+                    FontAttributes="Bold"
+                    Margin="10,0" />
+                <Frame CornerRadius="10" HasShadow="False" Padding="15,0" BackgroundColor="White" BorderColor="#b7d7e8" Margin="0,5,0,15">
                     <Entry
-                        Grid.Column="0"
-                        IsPassword="{Binding IsPassword}"
-                        Placeholder="Type Password"
+                        Placeholder="Enter First Name"
+                        PlaceholderColor="#b7d7e8"
                         Style="{StaticResource entryStyle}"
-                        Text="{Binding Password}" />
-                    <ImageButton
-                        Grid.Column="1"
-                        Command="{Binding ShowPasswordCommand}"
-                        HeightRequest="25"
-                        Source="passwordeye.jpg" />
-                </Grid>
-                <StackLayout RadioButtonGroup.GroupName="type" RadioButtonGroup.SelectedValue="{Binding Iskid}">
-                    <Label Margin="10" Text="Choose your type of user " />
-                    <RadioButton
-                        Content="parent"
-                        GroupName="type"
-                        Value="False" />
-                    <RadioButton
-                        Content="kid"
-                        GroupName="type"
-                        Value="True" />
+                        Text="{Binding Name}"
+                        BackgroundColor="Transparent" />
+                </Frame>
+
+                <!-- Last Name -->
+                <Label
+                    Style="{StaticResource labelNameStyle}"
+                    Text="Last Name"
+                    TextColor="#87bdd8"
+                    FontAttributes="Bold"
+                    Margin="10,0" />
+                <Frame CornerRadius="10" HasShadow="False" Padding="15,0" BackgroundColor="White" BorderColor="#b7d7e8" Margin="0,5,0,15">
+                    <Entry
+                        Placeholder="Enter Last Name"
+                        PlaceholderColor="#b7d7e8"
+                        Style="{StaticResource entryStyle}"
+                        Text="{Binding LastName}"
+                        BackgroundColor="Transparent" />
+                </Frame>
+
+                <!-- Email -->
+                <Label
+                    Style="{StaticResource labelNameStyle}"
+                    Text="Email"
+                    TextColor="#87bdd8"
+                    FontAttributes="Bold"
+                    Margin="10,0" />
+                <Frame CornerRadius="10" HasShadow="False" Padding="15,0" BackgroundColor="White" BorderColor="#b7d7e8" Margin="0,5,0,15">
+                    <Entry
+                        Placeholder="Enter Email"
+                        PlaceholderColor="#b7d7e8"
+                        Style="{StaticResource entryStyle}"
+                        Text="{Binding Email}"
+                        BackgroundColor="Transparent" />
+                </Frame>
+
+                <!-- Phone -->
+                <Label
+                    Style="{StaticResource labelNameStyle}"
+                    Text="Phone Number"
+                    TextColor="#87bdd8"
+                    FontAttributes="Bold"
+                    Margin="10,0" />
+                <Frame CornerRadius="10" HasShadow="False" Padding="15,0" BackgroundColor="White" BorderColor="#b7d7e8" Margin="0,5,0,15">
+                    <Entry
+                        Placeholder="Enter Phone Number"
+                        PlaceholderColor="#b7d7e8"
+                        Style="{StaticResource entryStyle}"
+                        Text="{Binding PhoneNum}"
+                        BackgroundColor="Transparent"
+                        Keyboard="Telephone" />
+                </Frame>
+
+                <!-- Password -->
+                <Label
+                    Style="{StaticResource labelNameStyle}"
+                    Text="Password"
+                    TextColor="#87bdd8"
+                    FontAttributes="Bold"
+                    Margin="10,0" />
+                <Frame CornerRadius="10" HasShadow="False" Padding="15,0" BackgroundColor="White" BorderColor="#b7d7e8" Margin="0,5,0,15">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="40" />
                         </Grid.ColumnDefinitions>
-                        <Label
+                        <Entry
                             Grid.Column="0"
-                            IsVisible="{Binding Iskid}"
-                            Style="{StaticResource labelNameStyle}"
-                            Text="Email" />
-                        <Label
+                            IsPassword="{Binding IsPassword}"
+                            Placeholder="Enter Password"
+                            PlaceholderColor="#b7d7e8"
+                            Style="{StaticResource entryStyle}"
+                            Text="{Binding Password}"
+                            BackgroundColor="Transparent" />
+                        <ImageButton
                             Grid.Column="1"
-                            IsVisible="{Binding ShowEmailErrorOwner}"
-                            Style="{StaticResource labelErrorStyle}"
-                            Text="{Binding EmailErrorOwner}" />
+                            Command="{Binding ShowPasswordCommand}"
+                            HeightRequest="25"
+                            Source="passwordeye.jpg" />
                     </Grid>
-                    <Entry
-                        IsVisible="{Binding Iskid}"
-                        Placeholder="Type parent Email "
-                        Style="{StaticResource entryStyle}"
-                        Text="{Binding EmailOwner}" />
-                </StackLayout>
-                <!--  Register and Cancel Buttons  -->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Button
-                        Grid.Column="1"
-                        Command="{Binding RegisterCommand}"
-                        IsEnabled="{Binding NotInServerCall}"
-                        Style="{StaticResource buttonStyle}"
-                        Text="Register" />
+                </Frame>
+
+                <!-- User Type Selection -->
+                <Frame CornerRadius="10" HasShadow="False" BackgroundColor="White" BorderColor="#b7d7e8" Padding="15" Margin="0,10,0,20">
+                    <StackLayout RadioButtonGroup.GroupName="type" RadioButtonGroup.SelectedValue="{Binding Iskid}" Spacing="10">
+                        <Label Margin="0,5,0,10" Text="User Type" TextColor="#87bdd8" FontAttributes="Bold" />
+
+                        <Grid ColumnDefinitions="Auto,*" Margin="0,5">
+                            <RadioButton
+                                Grid.Column="0"
+                                Content="Parent"
+                                GroupName="type"
+                                Value="False"
+                                TextColor="#87bdd8" />
+                        </Grid>
+
+                        <Grid ColumnDefinitions="Auto,*" Margin="0,5">
+                            <RadioButton
+                                Grid.Column="0"
+                                Content="Child"
+                                GroupName="type"
+                                Value="True"
+                                TextColor="#87bdd8" />
+                        </Grid>
+
+                        <StackLayout IsVisible="{Binding Iskid}" Margin="0,10,0,0">
+                            <Label 
+                                Text="Parent Email"
+                                TextColor="#87bdd8"
+                                FontAttributes="Bold"
+                                Margin="5,0" />
+                            <Entry
+                                Placeholder="Enter Parent Email"
+                                PlaceholderColor="#b7d7e8"
+                                Style="{StaticResource entryStyle}"
+                                Text="{Binding EmailOwner}"
+                                BackgroundColor="Transparent"
+                                Margin="0,5" />
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+
+                <!-- Register and Cancel Buttons -->
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="15" Margin="0,5,0,20">
                     <Button
                         Grid.Column="0"
                         Command="{Binding CancelCommand}"
                         IsEnabled="{Binding NotInServerCall}"
-                        Style="{StaticResource buttonStyle}"
-                        Text="Cancel" />
+                        Text="Cancel"
+                        BackgroundColor="#cfe0e8"
+                        TextColor="#87bdd8"
+                        CornerRadius="20"
+                        FontAttributes="Bold"
+                        HeightRequest="50" />
+                    <Button
+                        Grid.Column="1"
+                        Command="{Binding RegisterCommand}"
+                        IsEnabled="{Binding NotInServerCall}"
+                        Text="Register"
+                        BackgroundColor="#87bdd8"
+                        TextColor="White"
+                        CornerRadius="20" 
+                        FontAttributes="Bold"
+                        HeightRequest="50" />
                 </Grid>
             </VerticalStackLayout>
-            <!--  Centered ActivityIndicator  -->
+
+            <!-- Centered ActivityIndicator -->
             <ActivityIndicator
                 HorizontalOptions="Center"
                 IsRunning="{Binding InServerCall}"
                 VerticalOptions="Center"
-                Color="Red" />
+                Scale="1.5"
+                Color="#87bdd8" />
         </Grid>
     </ScrollView>
 </ContentPage>

@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:DriveMeCrazyApp"
     xmlns:views="clr-namespace:DriveMeCrazyApp.Views"
     Title="DriveMeCrazyApp"
-    BackgroundColor="LightYellow"
+    BackgroundColor="#87bdd8"
     Shell.FlyoutBehavior="Flyout">
 
 

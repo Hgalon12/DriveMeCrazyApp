@@ -3,92 +3,110 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DriveMeCrazyApp.Views.AddCarView"
              Title="AddCarView"
-             BackgroundColor="LightYellow">
+             BackgroundColor="#daebe8">
     <ScrollView>
         <Grid>
+            <BoxView>
+                <BoxView.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#daebe8" Offset="0.0" />
+                        <GradientStop Color="#cfe0e8" Offset="1.0" />
+                    </LinearGradientBrush>
+                </BoxView.Background>
+            </BoxView>
 
             <!-- Main Content -->
-            <VerticalStackLayout IsEnabled="{Binding NotInServerCall}" Padding="20">
+            <VerticalStackLayout IsEnabled="{Binding NotInServerCall}" Padding="25" Spacing="15">
                 <Label
-               Margin="50,0,0,20"
-               FontFamily="JumperBold"
-               FontSize="35"
-               HorizontalTextAlignment="Center"
-               Text="Add Car"
-               TextColor="#5072A7" />
+                    Margin="0,10,0,30"
+                    FontFamily="JumperBold"
+                    FontSize="36"
+                    HorizontalTextAlignment="Center"
+                    Text="Add New Vehicle"
+                    TextColor="#87bdd8"
+                    FontAttributes="Bold" />
 
                 <!-- Car Photo -->
-                <Frame BorderColor="Black" Padding="5" Margin="15" HeightRequest="130" WidthRequest="130" BackgroundColor="White">
+                <Frame BorderColor="#b7d7e8" Padding="10" Margin="25,0" HeightRequest="180" WidthRequest="180" 
+                       BackgroundColor="White" CornerRadius="90" HasShadow="True" HorizontalOptions="Center">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Image x:Name="theImageCar" Source="{Binding LocalPhotoPath}" HeightRequest="170" />
-                        <Label Grid.Row="1"
-                           Text="Click Here To Pick a Photo!"
-                           TextColor="Blue"
-                           HorizontalOptions="Center"
-                           VerticalOptions="End">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding UploadPhotoCommand}"/>
-                            </Label.GestureRecognizers>
-                        </Label>
-                        <Label Grid.Row="2"
-                           Text="Click Here To Upload Photo from Gallery!"
-                           TextColor="Blue"
-                           HorizontalOptions="Center"
-                           VerticalOptions="End">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding GalleryPhotoCommand}"/>
-                            </Label.GestureRecognizers>
-                        </Label>
+                        <Image x:Name="theImageCar" Source="{Binding LocalPhotoPath}" Aspect="AspectFill" HeightRequest="160" />
+                        <Frame Grid.Row="1" BackgroundColor="#87bdd8" Opacity="0.9" Padding="10,5" CornerRadius="0">
+                            <StackLayout Spacing="2">
+                                <Label
+                                    Text="Select Photo"
+                                    TextColor="White"
+                                    HorizontalOptions="Center"
+                                    FontSize="14"
+                                    FontAttributes="Bold">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding UploadPhotoCommand}"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                <Label
+                                    Text="From Gallery"
+                                    TextColor="White"
+                                    HorizontalOptions="Center"
+                                    FontSize="12">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding GalleryPhotoCommand}"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+                        </Frame>
                     </Grid>
                 </Frame>
 
                 <!-- Car NickName -->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Label Text="NickName" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
-                    <Label Text="{Binding NickNameError}" IsVisible="{Binding ShowNickNameError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
-                </Grid>
-                <Entry Placeholder="Type NickName" Text="{Binding NickName}" Style="{StaticResource entryStyle}" />
+                <Label Text="Vehicle Nickname" TextColor="#87bdd8" FontAttributes="Bold" Margin="10,15,10,5" />
+                <Frame CornerRadius="15" HasShadow="False" BackgroundColor="White" BorderColor="#b7d7e8" Padding="15,0" Margin="0,0,0,15">
+                    <Entry 
+                        Placeholder="Enter nickname for your vehicle" 
+                        Text="{Binding NickName}" 
+                        PlaceholderColor="#b7d7e8"
+                        Style="{StaticResource entryStyle}" 
+                        BackgroundColor="Transparent" />
+                </Frame>
+                <Label Text="{Binding NickNameError}" IsVisible="{Binding ShowNickNameError}" 
+                       TextColor="#FF6B6B" Margin="15,-10,0,5" FontSize="12" />
+
                 <!-- Car Id -->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Label Text="CarID" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
-                    <Label Text="{Binding CarIdError}" IsVisible="{Binding ShowCarIdError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
-                </Grid>
-                <Entry Placeholder="Type CarIdError" Text="{Binding CarId}" Style="{StaticResource entryStyle}" />
+                <Label Text="Vehicle ID" TextColor="#87bdd8" FontAttributes="Bold" Margin="10,5,10,5" />
+                <Frame CornerRadius="15" HasShadow="False" BackgroundColor="White" BorderColor="#b7d7e8" Padding="15,0" Margin="0,0,0,15">
+                    <Entry 
+                        Placeholder="Enter vehicle ID/license plate" 
+                        Text="{Binding CarId}" 
+                        PlaceholderColor="#b7d7e8"
+                        Style="{StaticResource entryStyle}" 
+                        BackgroundColor="Transparent" />
+                </Frame>
+                <Label Text="{Binding CarIdError}" IsVisible="{Binding ShowCarIdError}" 
+                       TextColor="#FF6B6B" Margin="15,-10,0,5" FontSize="12" />
 
-               
-
-                <!-- Register    -->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Button Text="Register" Command="{Binding RegisterCarCommand}" IsEnabled="{Binding NotInServerCall}" Grid.Column="1" Style="{StaticResource buttonStyle}" />
-                 
-                </Grid>
+                <!-- Register Button -->
+                <Button 
+                    Text="Register Vehicle" 
+                    Command="{Binding RegisterCarCommand}" 
+                    IsEnabled="{Binding NotInServerCall}" 
+                    BackgroundColor="#87bdd8"
+                    TextColor="White"
+                    CornerRadius="25"
+                    FontAttributes="Bold"
+                    HeightRequest="50"
+                    Margin="50,20,50,10" />
             </VerticalStackLayout>
 
             <!-- Centered ActivityIndicator -->
-            <ActivityIndicator IsRunning="{Binding InServerCall}" 
-                   Color="Red" 
-                   VerticalOptions="Center" 
-                   HorizontalOptions="Center" />
+            <ActivityIndicator 
+                IsRunning="{Binding InServerCall}" 
+                Color="#87bdd8" 
+                Scale="1.5"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
         </Grid>
     </ScrollView>
 </ContentPage>

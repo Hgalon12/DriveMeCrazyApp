@@ -6,63 +6,113 @@
     xmlns:droid="clr-namespace:CommunityToolkit.Maui.PlatformConfiguration.AndroidSpecific;assembly=CommunityToolkit.Maui"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="LoginView"
-    droid:NavigationBar.Color="LightYellow"
-    droid:NavigationBar.Style="LightContent"
-    Background="LightYellow">
+    droid:NavigationBar.Color="#daebe8"
+    droid:NavigationBar.Style="DarkContent"
+    Background="#daebe8">
     <ContentPage.Behaviors>
-        <toolkit:StatusBarBehavior StatusBarColor="LightYellow" StatusBarStyle="DarkContent" />
+        <toolkit:StatusBarBehavior StatusBarColor="#daebe8" StatusBarStyle="DarkContent" />
     </ContentPage.Behaviors>
-    <VerticalStackLayout Padding="20" Spacing="15">
-        <!--<Image Source="dotnet_bot.jpg" />-->
-        <Label
-            Margin="50,0,0,20"
-            FontFamily="JumperBold"
-            FontSize="73"
-            HorizontalTextAlignment="Center"
-            Text="LOG IN  "
-            TextColor="#5072A7" />
 
-        <Entry
-            IsEnabled="{Binding NotInServerCall}"
-            Keyboard="Email"
-            Placeholder="Email 📪"
-            PlaceholderColor="Brown"
-            Text="{Binding Email}" />
-        <Label Margin="-10" />
-        <Entry
-            FontFamily="Beabas"
-            IsEnabled="{Binding NotInServerCall}"
-            IsPassword="True"
-            Placeholder="Password 🔑"
-            PlaceholderColor="Brown"
-            Text="{Binding Password}" />
+    <Grid>
+        <!-- Background with subtle gradient effect -->
+        <BoxView>
+            <BoxView.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#daebe8" Offset="0.0" />
+                    <GradientStop Color="#cfe0e8" Offset="1.0" />
+                </LinearGradientBrush>
+            </BoxView.Background>
+        </BoxView>
 
-        <Button
-            BackgroundColor="#5072A7"
-            Command="{Binding LoginCommand}"
-            FontFamily="Beabas"
-            FontSize="15"
-            IsEnabled="{Binding NotInServerCall}"
-            Text="L o g i n" />
-        <Label
-            HorizontalOptions="Center"
-            Text="{Binding ErrorMsg}"
-            TextColor="Red" />
-        <Label
-            FontFamily="Beabas"
-            FontSize="Medium"
-            HorizontalOptions="Center"
-            IsEnabled="{Binding NotInServerCall}"
-            Text="Don't Have an account? register"
-            TextColor="Navy"
-            VerticalOptions="End">
+        <VerticalStackLayout Padding="25" Spacing="18">
+            <!-- App Logo/Icon space -->
+            <Image 
+                HeightRequest="100" 
+                WidthRequest="100"
+                HorizontalOptions="Center"
+                Margin="0,20,0,10" />
 
+            <!-- Header Text -->
+            <Label
+                Margin="0,10,0,30"
+                FontFamily="JumperBold"
+                FontSize="40"
+                HorizontalTextAlignment="Center"
+                Text="WELCOME"
+                TextColor="#87bdd8"
+                FontAttributes="Bold" />
 
-            <Label.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding RegisterCommand}" />
-            </Label.GestureRecognizers>
-        </Label>
+            <!-- Email Entry with rounded frame -->
+            <Frame CornerRadius="25" HasShadow="True" Padding="15,5" BackgroundColor="White" BorderColor="#b7d7e8">
+                <Grid ColumnDefinitions="Auto,*">
+                    <Image Source="emailicon.png" HeightRequest="24" WidthRequest="24" HorizontalOptions="Center" VerticalOptions="Center" Margin="5,0,10,0" />
+                    <Entry
+                        Grid.Column="1"
+                        IsEnabled="{Binding NotInServerCall}"
+                        Keyboard="Email"
+                        Placeholder="Email"
+                        PlaceholderColor="#b7d7e8"
+                        Text="{Binding Email}"
+                        BackgroundColor="Transparent" />
+                </Grid>
+            </Frame>
 
-        <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red" />
-    </VerticalStackLayout>
+            <!-- Password Entry with rounded frame -->
+            <Frame CornerRadius="25" HasShadow="True" Padding="15,5" BackgroundColor="White" BorderColor="#b7d7e8" Margin="0,10,0,5">
+                <Grid ColumnDefinitions="Auto,*">
+                    <Image Source="passwordicon.png" HeightRequest="24" WidthRequest="24" HorizontalOptions="Center" VerticalOptions="Center" Margin="5,0,10,0" />
+                    <Entry
+                        Grid.Column="1"
+                        FontFamily="Beabas"
+                        IsEnabled="{Binding NotInServerCall}"
+                        IsPassword="True"
+                        Placeholder="Password"
+                        PlaceholderColor="#b7d7e8"
+                        Text="{Binding Password}"
+                        BackgroundColor="Transparent" />
+                </Grid>
+            </Frame>
+
+            <!-- Login Button -->
+            <Button
+                Margin="50,20,50,5"
+                BackgroundColor="#87bdd8"
+                Command="{Binding LoginCommand}"
+                CornerRadius="25"
+                FontAttributes="Bold"
+                FontFamily="Beabas"
+                FontSize="18"
+                HeightRequest="50"
+                IsEnabled="{Binding NotInServerCall}"
+                Text="Log In"
+                TextColor="White" />
+
+            <!-- Error Message -->
+            <Label
+                Margin="0,5"
+                HorizontalOptions="Center"
+                Text="{Binding ErrorMsg}"
+                TextColor="#FF6B6B" />
+
+            <!-- Register Link -->
+            <Frame BackgroundColor="Transparent" BorderColor="Transparent" Padding="5" Margin="0,15,0,0">
+                <Label
+                    FontFamily="Beabas"
+                    FontSize="Medium"
+                    HorizontalOptions="Center"
+                    IsEnabled="{Binding NotInServerCall}"
+                    Text="Don't have an account? Register here"
+                    TextColor="#87bdd8"
+                    TextDecorations="Underline"
+                    VerticalOptions="End">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding RegisterCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Frame>
+
+            <!-- Activity Indicator -->
+            <ActivityIndicator IsRunning="{Binding InServerCall}" Color="#87bdd8" Scale="1.5" Margin="0,15,0,0" />
+        </VerticalStackLayout>
+    </Grid>
 </ContentPage>

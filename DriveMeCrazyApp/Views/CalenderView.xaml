@@ -5,46 +5,51 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:cal="clr-namespace:Plugin.Maui.Calendar.Controls;assembly=Plugin.Maui.Calendar"
     x:Name="thePage"
-    Title="CalenderView">
-    <VerticalStackLayout>
+    Title="CalenderView"
+    BackgroundColor="#AFDDFF">
+    <VerticalStackLayout Padding="10" Spacing="10" >
+   
+        
+        <Frame CornerRadius="20">
+            
+            <cal:Calendar Events="{Binding Events}" EventsScrollViewVisible="True">
+                <cal:Calendar.EventTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout>
+                            <Image HeightRequest="50" Source="{Binding Car.FullImagePath}" />
+                            <Label Text="{Binding Description}" />
 
+                            <StackLayout
+                      HorizontalOptions="CenterAndExpand"
+                      Orientation="Horizontal"
+                      Spacing="10"
+                      VerticalOptions="Center">
 
-        <cal:Calendar Events="{Binding Events}" EventsScrollViewVisible="True">
-            <cal:Calendar.EventTemplate>
-                <DataTemplate>
-                    <VerticalStackLayout>
-                        <Image HeightRequest="50" Source="{Binding Car.FullImagePath}" />
-                        <Label Text="{Binding Description}" />
+                                <Button
+                          BackgroundColor="Green"
+                          Command="{Binding Source={x:Reference thePage}, Path=BindingContext.ApproveCommand}"
+                          CommandParameter="{Binding}"
+                          HeightRequest="50"
+                          IsVisible="{Binding ShowApproveButton}"
+                          Text="Approve"
+                          WidthRequest="100" />
 
-                        <StackLayout
-                            HorizontalOptions="CenterAndExpand"
-                            Orientation="Horizontal"
-                            Spacing="10"
-                            VerticalOptions="Center">
+                                <Button
+                          BackgroundColor="Red"
+                          Command="{Binding Source={x:Reference thePage}, Path=BindingContext.DeclineCommand}"
+                          CommandParameter="{Binding}"
+                          HeightRequest="50"
+                          IsVisible="{Binding Source={x:Reference thePage}, Path=BindingContext.IsManager}"
+                          Text="Decline"
+                          WidthRequest="100" />
+                            </StackLayout>
+                        </VerticalStackLayout>
 
-                            <Button
-                                BackgroundColor="Green"
-                                Command="{Binding Source={x:Reference thePage}, Path=BindingContext.ApproveCommand}"
-                                CommandParameter="{Binding}"
-                                HeightRequest="50"
-                                IsVisible="{Binding ShowApproveButton}"
-                                Text="Approve"
-                                WidthRequest="100" />
-
-                            <Button
-                                BackgroundColor="Red"
-                                Command="{Binding Source={x:Reference thePage}, Path=BindingContext.DeclineCommand}"
-                                CommandParameter="{Binding}"
-                                HeightRequest="50"
-                                IsVisible="{Binding Source={x:Reference thePage}, Path=BindingContext.IsManager}"
-                                Text="Decline"
-                                WidthRequest="100" />
-                        </StackLayout>
-                    </VerticalStackLayout>
-
-                </DataTemplate>
-            </cal:Calendar.EventTemplate>
-        </cal:Calendar>
+                    </DataTemplate>
+                </cal:Calendar.EventTemplate>
+            </cal:Calendar>
+        </Frame>
+      
         <Button
             Grid.Column="1"
             Command="{Binding RequestCarCommand}"
