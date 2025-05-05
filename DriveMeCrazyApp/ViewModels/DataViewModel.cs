@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DriveMeCrazyApp.ViewModels
 {
-    internal class DataViewModel
+    public class DataViewModel :ViewModelBase
     {
     }
 }
