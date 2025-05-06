@@ -576,31 +576,37 @@ namespace DriveMeCrazyApp.Services
 
 
 
-        //public async Task<bool> GetCarUsage(int parentId, int days )
-        //{
-        //    //Set URI to the specific function API
-        //    string url = $"{this.baseUrl}getCarUsage";
-        //    try
-        //    {
-        //        //Call the server API
-        //        string json = JsonSerializer.Serialize(parentId,days);
-        //        StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-        //        HttpResponseMessage response = await client.PostAsync(url, content);
-        //        //Check status
-        //        if (response.IsSuccessStatusCode)
-        //        {
-        //            return true;
-        //        }
-        //        else
-        //        {
-        //            return false;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return false;
-        //    }
-        //}
+        public async Task<List<CarUseChart>?> GetCarUsage(int parentId, int days)
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}getCarUsage?parentId={parentId}&days={days}";
+            try
+            {
+                //Call the server API
+                HttpResponseMessage response = await client.GetAsync(url);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+
+                    // המרת התוכן שנקבל לאובייקטים
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    List<CarUseChart>? output = JsonSerializer.Deserialize<List<CarUseChart>>(resContent, options);
+                    return output;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
 
 
 

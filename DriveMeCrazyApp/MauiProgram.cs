@@ -4,6 +4,8 @@ using DriveMeCrazyApp.Views;
 using Microsoft.Extensions.Logging;
 using Microsoft.Win32;
 using CommunityToolkit.Maui;
+using SkiaSharp.Views.Maui.Controls.Hosting;
+using Microcharts.Maui;
 namespace DriveMeCrazyApp
 {
     public static class MauiProgram
@@ -13,7 +15,7 @@ namespace DriveMeCrazyApp
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
-                .UseMauiCommunityToolkit()
+                .UseMauiCommunityToolkit().UseSkiaSharp().UseMicrocharts()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
