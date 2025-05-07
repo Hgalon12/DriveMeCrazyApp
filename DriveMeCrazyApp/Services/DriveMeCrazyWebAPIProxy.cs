@@ -576,7 +576,7 @@ namespace DriveMeCrazyApp.Services
 
 
 
-        public async Task<List<CarUseChart>?> GetCarUsage(int parentId, int days)
+        public async Task<List<CarUseChart>?> GetCarUsage(int? parentId, int days)
         {
             //Set URI to the specific function API
             string url = $"{this.baseUrl}getCarUsage?parentId={parentId}&days={days}";
