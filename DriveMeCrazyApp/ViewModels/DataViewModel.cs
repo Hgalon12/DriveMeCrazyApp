@@ -52,7 +52,37 @@ namespace DriveMeCrazyApp.ViewModels
                 {
                     list = await proxy.GetCarUsage(u.CarOwnerId, 7);
                 }
-                Chart = new ObservableCollection<CarUseChart>(list);
+
+                if (list != null)
+                {
+                    Chart = new ObservableCollection<CarUseChart>(list);
+                }
+                else
+                    Chart = new ObservableCollection<CarUseChart>();
+
+                // הוספת כל הערכים מ-Chart אל entries
+                List<ChartEntry> entries = new List<ChartEntry>();
+                entries.Clear();
+                foreach (var carUse in Chart)
+                {
+                    entries.Add(new ChartEntry((float)carUse.Hours)
+                    {
+                        Color = SKColor.Parse("#3498db"),
+                        Label = carUse.Name,
+                        ValueLabel = carUse.Hours.ToString()
+                    });
+                }
+                ExampleChart = new BarChart()
+                {
+                    Entries = entries,
+                    LabelTextSize = 30,
+                    LabelOrientation = Orientation.Horizontal,
+                    SerieLabelTextSize = 30,
+                    ValueLabelOption = ValueLabelOption.OverElement,
+                    ValueLabelOrientation = Orientation.Horizontal,
+                    
+
+                };
             }
         }
         private DriveMeCrazyWebAPIProxy proxy;
@@ -63,19 +93,9 @@ namespace DriveMeCrazyApp.ViewModels
             Chart = new ObservableCollection<CarUseChart>();
             ReadChart();
 
-            List<ChartEntry> entries = new List<ChartEntry>();
-            entries.Clear();
+           
 
-            // הוספת כל הערכים מ-Chart אל entries
-            foreach (var carUse in Chart)
-            {
-                entries.Add(new ChartEntry((float)carUse.Hours)
-                {
-                    Color = SKColor.Parse("#3498db"),
-                    Label = carUse.Name,
-                    ValueLabel = carUse.Hours.ToString()
-                });
-            }
+            
             //entries.Add(new ChartEntry(7)
             //{
             //    Color = SKColor.Parse("#3498db"),
@@ -95,16 +115,7 @@ namespace DriveMeCrazyApp.ViewModels
             //    Label = "Amit",
             //    ValueLabel = "5"
             //});
-            ExampleChart = new BarChart()
-            {
-                Entries = entries,
-                LabelTextSize = 30,
-                LabelOrientation = Orientation.Horizontal,
-                SerieLabelTextSize = 30,
-                ValueLabelOption = ValueLabelOption.OverElement,
-                ValueLabelOrientation = Orientation.Horizontal,
-                
-            };
+            
             
 
 

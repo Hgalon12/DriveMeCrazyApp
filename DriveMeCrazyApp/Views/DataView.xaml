@@ -4,8 +4,8 @@
              xmlns:charts="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
              x:Class="DriveMeCrazyApp.Views.DataView"
              Title="DataView">
-    <VerticalStackLayout>
+    <Grid>
         <charts:ChartView Chart="{Binding ExampleChart}" HeightRequest="250"></charts:ChartView>
        
-    </VerticalStackLayout>
+    </Grid>
 </ContentPage>
