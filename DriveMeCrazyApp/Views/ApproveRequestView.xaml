@@ -4,113 +4,134 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:models="clr-namespace:DriveMeCrazyApp.Models"
-    Title="ApproveRequestView">
+    Title="ApproveRequestView"
+    BackgroundColor="Transparent">
 
-    <VerticalStackLayout
-        Margin="15"
-        Padding="25"
-        BackgroundColor="#F8F9FA"
-        Spacing="20">
+    <ScrollView>
+        <Grid>
+            <!-- רקע מדורג כמו בשאר -->
+            <BoxView>
+                <BoxView.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#daebe8" Offset="0.0" />
+                        <GradientStop Color="#cfe0e8" Offset="1.0" />
+                    </LinearGradientBrush>
+                </BoxView.Background>
+            </BoxView>
 
-        <Label
-            FontFamily="JumperBold"
-            FontSize="35"
-            HorizontalTextAlignment="Center"
-            Text="Request Car Approval"
-            TextColor="#5072A7" />
+            <VerticalStackLayout Padding="25" Spacing="10">
 
-        <Label
-            FontSize="16"
-            HorizontalTextAlignment="Center"
-            Text="Swipe right to approve and left to decline"
-            TextColor="#555555" />
+                <!-- כותרת -->
+                <Label
+                    FontFamily="JumperBold"
+                    FontSize="36"
+                    HorizontalTextAlignment="Center"
+                    Text="Request Car Approval"
+                    TextColor="#87bdd8"
+                    FontAttributes="Bold"
+                    Margin="0,10,0,5" />
 
-        <CollectionView
-            x:Name="RequestCarList"
-            EmptyView="No Requests was found"
-            HeightRequest="500"
-            ItemsSource="{Binding Req}"
-            SelectedItem="{Binding SelectedReq}"
-            SelectionMode="Single">
+                <Label
+                    FontSize="16"
+                    HorizontalTextAlignment="Center"
+                    Text="Swipe right to approve and left to decline"
+                    TextColor="#555"
+                    Margin="0,0,0,15" />
 
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:RequestCar">
-                    <Frame
-                        Margin="0,5"
-                        Padding="15"
-                        BackgroundColor="White"
-                        BorderColor="#E0E0E0"
-                        CornerRadius="10"
-                        HasShadow="True">
+                <!-- רשימת הבקשות -->
+                <CollectionView
+                    x:Name="RequestCarList"
+                    EmptyView="No Requests were found"
+                    ItemsSource="{Binding Req}"
+                    SelectedItem="{Binding SelectedReq}"
+                    SelectionMode="Single"
+                    Margin="0,0,0,20">
 
-                        <SwipeView Grid.Column="0">
-                            <SwipeView.LeftItems>
-                                <SwipeItems>
-                                    <SwipeItem
-                                        BackgroundColor="#FF5A5F"
-                                        Command="{Binding Source={x:Reference RequestCarList}, Path=BindingContext.DeclineCommand}"
-                                        CommandParameter="{Binding .}"
-                                        IconImageSource="declineicon.png"
-                                        Text="Decline" />
-                                </SwipeItems>
-                            </SwipeView.LeftItems>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:RequestCar">
+                            <Frame
+                                Margin="0,5"
+                                Padding="10"
+                                BackgroundColor="White"
+                                BorderColor="#b7d7e8"
+                                CornerRadius="15"
+                                HasShadow="True">
 
-                            <SwipeView.RightItems>
-                                <SwipeItems>
-                                    <SwipeItem
-                                        BackgroundColor="#4CAF50"
-                                        Command="{Binding Source={x:Reference RequestCarList}, Path=BindingContext.ApproveCommand}"
-                                        CommandParameter="{Binding .}"
-                                        IconImageSource="checkmarkicon.png"
-                                        Text="Approve" />
-                                </SwipeItems>
-                            </SwipeView.RightItems>
+                                <SwipeView>
 
-                            <!-- שינוי כאן - שם הרכב ב-bold וירוק זית -->
-                            <StackLayout Padding="10" Spacing="5" Orientation="Horizontal">
-                                <StackLayout VerticalOptions="Center" Spacing="5" HorizontalOptions="FillAndExpand">
-                                    <Label
-                                        FontAttributes="Bold"
-                                        FontSize="16"
-                                        Text="{Binding IdCar}"
-                                        TextColor="#1E3A8A" />
-                                    <Label
-                                        FontSize="14"
-                                        Text="{Binding Reason}"
-                                        TextColor="#333333" />
-                                    <Label
-                                        FontSize="14"
-                                        Text="{Binding WhenIneedthecar}"
-                                        TextColor="#333333" />
-                                    <Label
-                                        FontSize="14"
-                                        Text="{Binding Requester.UserName}"
-                                        TextColor="#333333" />
-                                </StackLayout>
+                                    <SwipeView.LeftItems>
+                                        <SwipeItems>
+                                            <SwipeItem
+                                                BackgroundColor="#FF6B6B"
+                                                Command="{Binding Source={x:Reference RequestCarList}, Path=BindingContext.DeclineCommand}"
+                                                CommandParameter="{Binding .}"
+                                                IconImageSource="declineicon.png"
+                                                Text="Decline" />
+                                        </SwipeItems>
+                                    </SwipeView.LeftItems>
 
-                                <!-- שם הרכב ב-bold וירוק זית מעל התמונה -->
-                                <StackLayout HorizontalOptions="Center">
-                                    <Label
-                                        FontSize="22"
-                                        FontAttributes="Bold"
-                                        Text="{Binding Car.NickName}"
-                                        TextColor="#1EBEE1" />
-                                    <!-- צבע ירוק זית -->
+                                    <SwipeView.RightItems>
+                                        <SwipeItems>
+                                            <SwipeItem
+                                                BackgroundColor="#4CAF50"
+                                                Command="{Binding Source={x:Reference RequestCarList}, Path=BindingContext.ApproveCommand}"
+                                                CommandParameter="{Binding .}"
+                                                IconImageSource="checkmarkicon.png"
+                                                Text="Approve" />
+                                        </SwipeItems>
+                                    </SwipeView.RightItems>
 
-                                    <Frame
-                                        WidthRequest="100"
-                                        HeightRequest="100"
-                                        BorderColor="#E0E0E0"
-                                        CornerRadius="10"
-                                        HasShadow="True">
-                                        <Image Source="{Binding Car.FullImagePath}" Aspect="AspectFill" />
-                                    </Frame>
-                                </StackLayout>
-                            </StackLayout>
-                        </SwipeView>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </VerticalStackLayout>
+                                    <Grid ColumnSpacing="10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- פרטי הבקשה -->
+                                        <VerticalStackLayout Grid.Column="0" Spacing="5">
+                                            <Label
+                                                FontAttributes="Bold"
+                                                FontSize="16"
+                                                Text="{Binding IdCar}"
+                                                TextColor="#1E3A8A" />
+                                            <Label
+                                                FontSize="14"
+                                                Text="{Binding Reason}"
+                                                TextColor="#333333" />
+                                            <Label
+                                                FontSize="14"
+                                                Text="{Binding WhenIneedthecar}"
+                                                TextColor="#333333" />
+                                            <Label
+                                                FontSize="14"
+                                                Text="{Binding Requester.UserName}"
+                                                TextColor="#333333" />
+                                        </VerticalStackLayout>
+
+                                        <!-- תמונת רכב וכינוי -->
+                                        <VerticalStackLayout Grid.Column="1" Spacing="5" HorizontalOptions="Center">
+                                            <Label
+                                                FontSize="18"
+                                                FontAttributes="Bold"
+                                                Text="{Binding Car.NickName}"
+                                                TextColor="#1EBEE1"
+                                                HorizontalTextAlignment="Center" />
+                                            <Frame
+                                                WidthRequest="100"
+                                                HeightRequest="100"
+                                                BorderColor="#b7d7e8"
+                                                CornerRadius="10"
+                                                HasShadow="True">
+                                                <Image Source="{Binding Car.FullImagePath}" Aspect="AspectFill" />
+                                            </Frame>
+                                        </VerticalStackLayout>
+                                    </Grid>
+                                </SwipeView>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
 </ContentPage>

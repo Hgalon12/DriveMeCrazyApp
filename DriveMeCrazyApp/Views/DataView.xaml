@@ -4,8 +4,46 @@
              xmlns:charts="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
              x:Class="DriveMeCrazyApp.Views.DataView"
              Title="DataView">
-    <Grid>
-        <charts:ChartView Chart="{Binding ExampleChart}" HeightRequest="250"></charts:ChartView>
-       
-    </Grid>
+
+    <ScrollView>
+        <Grid>
+            <!-- רקע גרדיאנט -->
+            <BoxView>
+                <BoxView.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#daebe8" Offset="0.0" />
+                        <GradientStop Color="#cfe0e8" Offset="1.0" />
+                    </LinearGradientBrush>
+                </BoxView.Background>
+            </BoxView>
+
+            <!-- תוכן עיקרי -->
+            <VerticalStackLayout Padding="25" Spacing="15">
+
+                <Label
+                    Text="who spends the most time with the car?"
+                    FontFamily="JumperBold"
+                    FontSize="36"
+                    HorizontalTextAlignment="Center"
+                    TextColor="#87bdd8"
+                    FontAttributes="Bold"
+                    Margin="0,10,0,30" />
+
+                <Frame 
+                    BackgroundColor="White" 
+                    BorderColor="#b7d7e8" 
+                    CornerRadius="15" 
+                    Padding="10"
+                    HasShadow="True"
+                    HorizontalOptions="FillAndExpand"
+                    HeightRequest="300">
+
+                    <charts:ChartView Chart="{Binding ExampleChart}" 
+                                      VerticalOptions="FillAndExpand" />
+                </Frame>
+
+            </VerticalStackLayout>
+
+        </Grid>
+    </ScrollView>
 </ContentPage>
