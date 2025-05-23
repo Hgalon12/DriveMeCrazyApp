@@ -3,48 +3,83 @@
     x:Class="DriveMeCrazyApp.Views.DriverCarView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="DriverCarView">
-    <Grid Padding="20">
-        <VerticalStackLayout Spacing="20">
+    Title="DriverCarView"
+    BackgroundColor="#daebe8">
 
-            <!--  Header  -->
-            <Label
-                FontFamily="JumperBold"
-                FontSize="35"
-                HorizontalTextAlignment="Center"
-                Text="Add Driver"
-                TextColor="#5072A7" />
-            <!--  User Selection  -->
-            <Label Text="Choose User" />
-            <Picker
-                ItemDisplayBinding="{Binding UserName}"
-                ItemsSource="{Binding Users}"
-                SelectedItem="{Binding SelectedUser}" />
+    <ScrollView>
+        <Grid>
+            <!-- רקע גרדיאנט -->
+            <BoxView>
+                <BoxView.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#daebe8" Offset="0.0" />
+                        <GradientStop Color="#cfe0e8" Offset="1.0" />
+                    </LinearGradientBrush>
+                </BoxView.Background>
+            </BoxView>
 
+            <VerticalStackLayout Padding="25" Spacing="20" IsEnabled="{Binding NotInServerCall}">
+                <!-- כותרת -->
+                <Label
+                    FontFamily="JumperBold"
+                    FontSize="36"
+                    HorizontalTextAlignment="Center"
+                    Text="Add Driver"
+                    TextColor="#87bdd8"
+                    FontAttributes="Bold"
+                    Margin="0,10,0,30" />
 
-            <!--  Cars Selection  -->
-            <Label Text="Choose a Car" />
-            <Picker
-                ItemDisplayBinding="{Binding NickName}"
-                ItemsSource="{Binding Cars}"
-                SelectedItem="{Binding SelectedCar}" />
+                <!-- טקסט וה-Picker של המשתמש -->
+                <Label
+                    Text="Choose User"
+                    TextColor="#87bdd8"
+                    FontAttributes="Bold"
+                    Margin="10,0" />
+                <Frame CornerRadius="10" HasShadow="False" Padding="10,0" BackgroundColor="White" BorderColor="#b7d7e8" Margin="0,5,0,15">
+                    <Picker
+                        ItemDisplayBinding="{Binding UserName}"
+                        ItemsSource="{Binding Users}"
+                        SelectedItem="{Binding SelectedUser}"
+                        TextColor="#5072A7" />
+                </Frame>
 
+                <!-- טקסט וה-Picker של הרכב -->
+                <Label
+                    Text="Choose a Car"
+                    TextColor="#87bdd8"
+                    FontAttributes="Bold"
+                    Margin="10,0" />
+                <Frame CornerRadius="10" HasShadow="False" Padding="10,0" BackgroundColor="White" BorderColor="#b7d7e8" Margin="0,5,0,15">
+                    <Picker
+                        ItemDisplayBinding="{Binding NickName}"
+                        ItemsSource="{Binding Cars}"
+                        SelectedItem="{Binding SelectedCar}"
+                        TextColor="#5072A7" />
+                </Frame>
 
-            <!--  Submit Button  -->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Button
-                    Grid.Column="1"
-                    Command="{Binding AddCommand}"
-                    IsEnabled="{Binding NotInServerCall}"
-                    Style="{StaticResource buttonStyle}"
-                    Text="Submit" />
-            </Grid>
+                <!-- כפתור שליחה -->
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="15" Margin="0,5,0,20">
+                    <Button
+                        Grid.Column="1"
+                        Command="{Binding AddCommand}"
+                        IsEnabled="{Binding NotInServerCall}"
+                        Style="{StaticResource buttonStyle}"
+                        Text="Submit"
+                        BackgroundColor="#87bdd8"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="20"
+                        HeightRequest="50" />
+                </Grid>
 
-        </VerticalStackLayout>
-    </Grid>
-
+                <!-- אינדיקטור אם צריך -->
+                <ActivityIndicator
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    IsRunning="{Binding InServerCall}"
+                    Scale="1.5"
+                    Color="#87bdd8" />
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
 </ContentPage>

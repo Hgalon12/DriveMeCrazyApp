@@ -4,80 +4,81 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="RequestCarView"
-        BackgroundColor="#F8FBFF">
-    <ScrollView>
-        <Grid Padding="20">
-            <VerticalStackLayout Spacing="20">
-                <!-- Header with soft pastel design -->
-                <Frame BackgroundColor="#A5CAD2" CornerRadius="10" Padding="20,18" Margin="5,10,5,20" HasShadow="True">
-                    <Label
-                        FontFamily="Avenir"
-                        FontSize="32"
-                        HorizontalTextAlignment="Center"
-                        Text="Request Car"
-                        TextColor="#FFFFFF"
-                        FontAttributes="Bold" />
-                </Frame>
+    BackgroundColor="LightYellow">
 
-                <!-- Cars Selection -->
-                <Label Text="Choose a Car" FontSize="18" TextColor="#7A9CA5" FontAttributes="Bold" Margin="10,0,0,0" FontFamily="Avenir" />
-                <Frame Padding="15" BackgroundColor="White" CornerRadius="10" HasShadow="False" BorderColor="#E8F1F5">
+    <ScrollView>
+        <Grid>
+            <BoxView>
+                <BoxView.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#daebe8" Offset="0.0" />
+                        <GradientStop Color="#cfe0e8" Offset="1.0" />
+                    </LinearGradientBrush>
+                </BoxView.Background>
+            </BoxView>
+
+            <VerticalStackLayout IsEnabled="{Binding NotInServerCall}" Padding="25" Spacing="10">
+
+                <Label
+                    Margin="0,10,0,20"
+                    FontFamily="JumperBold"
+                    FontSize="36"
+                    HorizontalTextAlignment="Center"
+                    Text="Request Car"
+                    TextColor="#87bdd8"
+                    FontAttributes="Bold" />
+
+                <!-- Choose a Car -->
+                <Label Text="Choose a Car" TextColor="#87bdd8" FontAttributes="Bold" Margin="10,5,10,0" />
+                <Frame CornerRadius="15" HasShadow="False" BackgroundColor="White" BorderColor="#b7d7e8"
+                       Padding="15" Margin="0,0,0,2">
                     <Picker ItemsSource="{Binding Cars}"
                             SelectedItem="{Binding SelectedCar}"
                             ItemDisplayBinding="{Binding NickName}"
-                            BackgroundColor="Transparent">
-                    </Picker>
+                            BackgroundColor="Transparent"/>
                 </Frame>
 
-                <!-- Reason Input -->
-                <Label Text="Reason" FontSize="18" TextColor="#7A9CA5" FontAttributes="Bold" Margin="10,0,0,0" FontFamily="Avenir" />
+                <!-- Reason -->
+                <Label Text="Reason" TextColor="#87bdd8" FontAttributes="Bold" Margin="10,5,10,0" />
                 <Label IsVisible="{Binding ShowReasonError}"
-                       TextColor="#FF9AA2"
-                       FontSize="14"
-                       Text="{Binding ReasonError}" />
-                <Frame Padding="15" BackgroundColor="White" CornerRadius="10" HasShadow="False" BorderColor="#E8F1F5">
-                    <Editor
-                        HeightRequest="100"
-                        Placeholder="Provide reason for car request..."
-                        Text="{Binding Reason}"
-                        BackgroundColor="Transparent"
-                        TextColor="#5C6F75"
-                        FontSize="16" />
+                       TextColor="#FF6B6B"
+                       FontSize="12"
+                       Text="{Binding ReasonError}"
+                       Margin="15,-5,0,5"/>
+                <Frame CornerRadius="15" HasShadow="False" BackgroundColor="White" BorderColor="#b7d7e8"
+                       Padding="15" Margin="0,0,0,2">
+                    <Editor HeightRequest="100"
+                            Placeholder="Provide reason for car request..."
+                            Text="{Binding Reason}"
+                            BackgroundColor="Transparent"
+                            TextColor="#5C6F75"
+                            FontSize="16" />
                 </Frame>
 
-                <!-- Date Section -->
-                <Label Text="Select Date:" FontSize="18" TextColor="#7A9CA5" FontAttributes="Bold" Margin="10,0,0,0" FontFamily="Avenir" />
-                <Frame Padding="15" BackgroundColor="White" CornerRadius="10" HasShadow="False" BorderColor="#E8F1F5">
-                    <DatePicker BackgroundColor="Transparent" Date="{Binding Date}" TextColor="#5C6F75" FontSize="16" />
+                <!-- Date -->
+                <Label Text="Select Date:" TextColor="#87bdd8" FontAttributes="Bold" Margin="10,5,10,0" />
+                <Frame CornerRadius="15" HasShadow="False" BackgroundColor="White" BorderColor="#b7d7e8"
+                       Padding="15" Margin="0,0,0,2">
+                    <DatePicker Date="{Binding Date}" BackgroundColor="Transparent" TextColor="#5C6F75" FontSize="16" />
                 </Frame>
 
-                <!-- Time Section -->
+                <!-- Time Pickers -->
                 <Grid ColumnDefinitions="*,*" ColumnSpacing="15">
                     <VerticalStackLayout Grid.Column="0" Spacing="10">
-                        <Label Text="From:" FontSize="18" TextColor="#7A9CA5" FontAttributes="Bold" Margin="10,0,0,0" FontFamily="Avenir" />
-                        <Frame Padding="15" BackgroundColor="White" CornerRadius="10" HasShadow="False" BorderColor="#E8F1F5">
-                            <TimePicker BackgroundColor="Transparent" Time="{Binding Hours}" TextColor="#5C6F75" FontSize="16" />
+                        <Label Text="From:" TextColor="#87bdd8" FontAttributes="Bold" Margin="10,5,0,0" />
+                        <Frame CornerRadius="15" HasShadow="False" BackgroundColor="White" BorderColor="#b7d7e8"
+                               Padding="15" Margin="0,0,0,2">
+                            <TimePicker Time="{Binding Hours}" BackgroundColor="Transparent" TextColor="#5C6F75" FontSize="16" />
                         </Frame>
                     </VerticalStackLayout>
 
                     <VerticalStackLayout Grid.Column="1" Spacing="10">
-                        <Label Text="Until:" FontSize="18" TextColor="#7A9CA5" FontAttributes="Bold" Margin="10,0,0,0" FontFamily="Avenir" />
-                        <Frame Padding="15" BackgroundColor="White" CornerRadius="10" HasShadow="False" BorderColor="#E8F1F5">
-                            <TimePicker BackgroundColor="Transparent" Time="{Binding HoursUntil}" TextColor="#5C6F75" FontSize="16" />
+                        <Label Text="Until:" TextColor="#87bdd8" FontAttributes="Bold" Margin="10,5,0,0" />
+                        <Frame CornerRadius="15" HasShadow="False" BackgroundColor="White" BorderColor="#b7d7e8"
+                               Padding="15" Margin="0,0,0,2">
+                            <TimePicker Time="{Binding HoursUntil}" BackgroundColor="Transparent" TextColor="#5C6F75" FontSize="16" />
                         </Frame>
                     </VerticalStackLayout>
-                </Grid>
-
-                <!-- Decorative element -->
-                <Grid HeightRequest="30" Margin="0,10,0,10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <BoxView Grid.Column="0" HeightRequest="1" Color="#E8F1F5" VerticalOptions="Center" />
-                    <Label Grid.Column="1" Text="✦" FontSize="18" TextColor="#A5CAD2" HorizontalOptions="Center" Margin="15,0" />
-                    <BoxView Grid.Column="2" HeightRequest="1" Color="#E8F1F5" VerticalOptions="Center" />
                 </Grid>
 
                 <!-- Submit Button -->
@@ -85,18 +86,14 @@
                     Command="{Binding RequestCommand}"
                     IsEnabled="{Binding NotInServerCall}"
                     Text="Request Vehicle"
-                    BackgroundColor="#A5CAD2"
+                    BackgroundColor="#87bdd8"
                     TextColor="White"
                     CornerRadius="25"
-                    Padding="0,12"
-                    FontSize="18"
                     FontAttributes="Bold"
-                    FontFamily="Avenir"
-                    Margin="50,10,50,20">
-                </Button>
+                    HeightRequest="50"
+                    Margin="50,15,50,10" />
+
             </VerticalStackLayout>
         </Grid>
     </ScrollView>
 </ContentPage>
-
-

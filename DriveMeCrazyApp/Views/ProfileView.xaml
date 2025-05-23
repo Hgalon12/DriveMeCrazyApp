@@ -8,6 +8,7 @@
 
     <ScrollView>
         <Grid>
+            <!-- רקע דקורטיבי -->
             <BoxView>
                 <BoxView.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
@@ -19,6 +20,7 @@
 
             <VerticalStackLayout IsEnabled="{Binding NotInServerCall}" Padding="25" Spacing="10">
 
+                <!-- כותרת -->
                 <Label
                     Margin="0,10,0,20"
                     FontFamily="JumperBold"
@@ -28,38 +30,42 @@
                     TextColor="#87bdd8"
                     FontAttributes="Bold" />
 
-                <Frame BorderColor="#b7d7e8" Padding="10" Margin="25,0,25,10" HeightRequest="180" WidthRequest="180"
+                <!-- תצוגת תמונה עגולה -->
+                <Frame BorderColor="#b7d7e8" Padding="0" Margin="0,0,0,10" HeightRequest="180" WidthRequest="180"
                        BackgroundColor="White" CornerRadius="90" HasShadow="True" HorizontalOptions="Center">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Image x:Name="theImageBug" Source="{Binding PhotoUrl}" Aspect="AspectFill" HeightRequest="160" />
-                        <Frame Grid.Row="1" BackgroundColor="#87bdd8" Opacity="0.9" Padding="10,5" CornerRadius="0">
-                            <StackLayout Spacing="2">
-                                <Label
-                                    Text="pic Photo"
-                                    TextColor="White"
-                                    HorizontalOptions="Center"
-                                    FontSize="14"
-                                    FontAttributes="Bold">
-                                    <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding UploadPhotoCommand}" />
-                                    </Label.GestureRecognizers>
-                                </Label>
-                                <Label
-                                    Text=" Or From Gallery"
-                                    TextColor="White"
-                                    HorizontalOptions="Center"
-                                    FontSize="12">
-                                    <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding GalleryPhotoCommand}" />
-                                    </Label.GestureRecognizers>
-                                </Label>
-                            </StackLayout>
-                        </Frame>
-                    </Grid>
+                    <Image
+                        Source="{Binding FullImagePath}"
+                        Aspect="AspectFill"
+                        HeightRequest="180"
+                        WidthRequest="180"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Clip="EllipseGeometry Center=90,90 RadiusX=90 RadiusY=90" />
+                </Frame>
+
+                <!-- כפתורי העלאת תמונה -->
+                <Frame BackgroundColor="#87bdd8" Opacity="0.9" Padding="10,5" CornerRadius="15" Margin="0,0,0,10">
+                    <StackLayout Spacing="2">
+                        <Label
+                            Text="Take Photo"
+                            TextColor="White"
+                            HorizontalOptions="Center"
+                            FontSize="14"
+                            FontAttributes="Bold">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding UploadPhotoCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label
+                            Text="Or Choose from Gallery"
+                            TextColor="White"
+                            HorizontalOptions="Center"
+                            FontSize="12">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding GalleryPhotoCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
                 </Frame>
 
                 <!-- First Name -->
@@ -93,10 +99,10 @@
                        TextColor="#FF6B6B" Margin="15,-5,0,5" FontSize="12" />
 
                 <!-- PhoneNum -->
-                <Label Text="PhoneNum" TextColor="#87bdd8" FontAttributes="Bold" Margin="10,5,10,0" />
+                <Label Text="Phone Number" TextColor="#87bdd8" FontAttributes="Bold" Margin="10,5,10,0" />
                 <Frame CornerRadius="15" HasShadow="False" BackgroundColor="White" BorderColor="#b7d7e8"
                        Padding="15,0" Margin="0,0,0,2">
-                    <Entry Placeholder="Type PhoneNum" Text="{Binding PhoneNum}" PlaceholderColor="#b7d7e8"
+                    <Entry Placeholder="Type Phone Number" Text="{Binding PhoneNum}" PlaceholderColor="#b7d7e8"
                            Style="{StaticResource entryStyle}" BackgroundColor="Transparent" />
                 </Frame>
                 <Label Text="{Binding PhoneNumError}" IsVisible="{Binding ShowPhoneNumError}"
@@ -142,4 +148,3 @@
         </Grid>
     </ScrollView>
 </ContentPage>
-

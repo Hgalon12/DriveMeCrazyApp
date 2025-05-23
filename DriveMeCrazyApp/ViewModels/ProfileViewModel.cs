@@ -33,7 +33,7 @@ namespace DriveMeCrazyApp.ViewModels
             Email=u.UserEmail;
             Password=u.UserPassword;
             PhoneNum = u.UserPhoneNum;
-            PhotoURL = proxy.GetImagesBaseAddress() + u.ProfileImagePath;
+            PhotoURL = proxy.GetImagesBaseAddress() + u.FullImagePath;
         }
 
         #region Name
