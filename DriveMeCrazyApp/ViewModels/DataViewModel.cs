@@ -13,16 +13,44 @@ namespace DriveMeCrazyApp.ViewModels
 {
     public class DataViewModel :ViewModelBase
     {
-        private BarChart exampleChart;
-        public BarChart ExampleChart
+        private bool isDataExist;
+        public bool IsDataExist
         {
             get
             {
-                return exampleChart;
+                return isDataExist;
             }
             set
             {
-                exampleChart = value;
+                isDataExist = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool isDataNotExist;
+        public bool IsDataNotExist
+        {
+            get
+            {
+                return isDataNotExist;
+            }
+            set
+            {
+                isDataNotExist = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private BarChart usageChart;
+        public BarChart UsageChart
+        {
+            get
+            {
+                return usageChart;
+            }
+            set
+            {
+                usageChart = value;
                 OnPropertyChanged();
             }
         }
@@ -60,6 +88,9 @@ namespace DriveMeCrazyApp.ViewModels
                 else
                     Chart = new ObservableCollection<CarUseChart>();
 
+                IsDataExist = Chart.Count > 0;
+                IsDataNotExist = Chart.Count == 0;
+
                 // הוספת כל הערכים מ-Chart אל entries
                 List<ChartEntry> entries = new List<ChartEntry>();
                 entries.Clear();
@@ -72,7 +103,8 @@ namespace DriveMeCrazyApp.ViewModels
                         ValueLabel = carUse.Hours.ToString()
                     });
                 }
-                ExampleChart = new BarChart()
+
+                UsageChart = new BarChart()
                 {
                     Entries = entries,
                     LabelTextSize = 30,

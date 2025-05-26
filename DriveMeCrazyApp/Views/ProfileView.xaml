@@ -5,62 +5,77 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="ProfileView"
     BackgroundColor="LightYellow">
-
     <ScrollView>
         <Grid>
-            <!-- רקע דקורטיבי -->
+            <!--  רקע דקורטיבי  -->
             <BoxView>
                 <BoxView.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Color="#daebe8" Offset="0.0" />
-                        <GradientStop Color="#cfe0e8" Offset="1.0" />
+                        <GradientStop Offset="0.0" Color="#daebe8" />
+                        <GradientStop Offset="1.0" Color="#cfe0e8" />
                     </LinearGradientBrush>
                 </BoxView.Background>
             </BoxView>
 
-            <VerticalStackLayout IsEnabled="{Binding NotInServerCall}" Padding="25" Spacing="10">
+            <VerticalStackLayout
+                Padding="25"
+                IsEnabled="{Binding NotInServerCall}"
+                Spacing="10">
 
-                <!-- כותרת -->
+                <!--  כותרת  -->
                 <Label
                     Margin="0,10,0,20"
+                    FontAttributes="Bold"
                     FontFamily="JumperBold"
                     FontSize="36"
                     HorizontalTextAlignment="Center"
                     Text="Update User"
-                    TextColor="#87bdd8"
-                    FontAttributes="Bold" />
+                    TextColor="#87bdd8" />
 
-                <!-- תצוגת תמונה עגולה -->
-                <Frame BorderColor="#b7d7e8" Padding="0" Margin="0,0,0,10" HeightRequest="180" WidthRequest="180"
-                       BackgroundColor="White" CornerRadius="90" HasShadow="True" HorizontalOptions="Center">
+                <!--  תצוגת תמונה עגולה  -->
+                <Frame
+                    Margin="0,0,0,10"
+                    Padding="0"
+                    BackgroundColor="White"
+                    BorderColor="#b7d7e8"
+                    CornerRadius="90"
+                    HasShadow="True"
+                    HeightRequest="180"
+                    HorizontalOptions="Center"
+                    WidthRequest="180">
                     <Image
-                        Source="{Binding FullImagePath}"
                         Aspect="AspectFill"
+                        Clip="EllipseGeometry Center=90,90 RadiusX=90 RadiusY=90"
                         HeightRequest="180"
-                        WidthRequest="180"
                         HorizontalOptions="Center"
+                        Source="{Binding PhotoURL}"
                         VerticalOptions="Center"
-                        Clip="EllipseGeometry Center=90,90 RadiusX=90 RadiusY=90" />
+                        WidthRequest="180" />
                 </Frame>
 
-                <!-- כפתורי העלאת תמונה -->
-                <Frame BackgroundColor="#87bdd8" Opacity="0.9" Padding="10,5" CornerRadius="15" Margin="0,0,0,10">
+                <!--  כפתורי העלאת תמונה  -->
+                <Frame
+                    Margin="0,0,0,10"
+                    Padding="10,5"
+                    BackgroundColor="#87bdd8"
+                    CornerRadius="15"
+                    Opacity="0.9">
                     <StackLayout Spacing="2">
                         <Label
-                            Text="Take Photo"
-                            TextColor="White"
-                            HorizontalOptions="Center"
+                            FontAttributes="Bold"
                             FontSize="14"
-                            FontAttributes="Bold">
+                            HorizontalOptions="Center"
+                            Text="Take Photo"
+                            TextColor="White">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding UploadPhotoCommand}" />
                             </Label.GestureRecognizers>
                         </Label>
                         <Label
-                            Text="Or Choose from Gallery"
-                            TextColor="White"
+                            FontSize="12"
                             HorizontalOptions="Center"
-                            FontSize="12">
+                            Text="Or Choose from Gallery"
+                            TextColor="White">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding GalleryPhotoCommand}" />
                             </Label.GestureRecognizers>
@@ -68,83 +83,170 @@
                     </StackLayout>
                 </Frame>
 
-                <!-- First Name -->
-                <Label Text="First Name" TextColor="#87bdd8" FontAttributes="Bold" Margin="10,5,10,0" />
-                <Frame CornerRadius="15" HasShadow="False" BackgroundColor="White" BorderColor="#b7d7e8"
-                       Padding="15,0" Margin="0,0,0,2">
-                    <Entry Placeholder="Type First Name" Text="{Binding Name}" PlaceholderColor="#b7d7e8"
-                           Style="{StaticResource entryStyle}" BackgroundColor="Transparent" />
+                <!--  First Name  -->
+                <Label
+                    Margin="10,5,10,0"
+                    FontAttributes="Bold"
+                    Text="First Name"
+                    TextColor="#87bdd8" />
+                <Frame
+                    Margin="0,0,0,2"
+                    Padding="15,0"
+                    BackgroundColor="White"
+                    BorderColor="#b7d7e8"
+                    CornerRadius="15"
+                    HasShadow="False">
+                    <Entry
+                        BackgroundColor="Transparent"
+                        Placeholder="Type First Name"
+                        PlaceholderColor="#b7d7e8"
+                        Style="{StaticResource entryStyle}"
+                        Text="{Binding Name}" />
                 </Frame>
-                <Label Text="{Binding NameError}" IsVisible="{Binding ShowNameError}"
-                       TextColor="#FF6B6B" Margin="15,-5,0,5" FontSize="12" />
+                <Label
+                    Margin="15,-5,0,5"
+                    FontSize="12"
+                    IsVisible="{Binding ShowNameError}"
+                    Text="{Binding NameError}"
+                    TextColor="#FF6B6B" />
 
-                <!-- Last Name -->
-                <Label Text="Last Name" TextColor="#87bdd8" FontAttributes="Bold" Margin="10,5,10,0" />
-                <Frame CornerRadius="15" HasShadow="False" BackgroundColor="White" BorderColor="#b7d7e8"
-                       Padding="15,0" Margin="0,0,0,2">
-                    <Entry Placeholder="Type Last Name" Text="{Binding LastName}" PlaceholderColor="#b7d7e8"
-                           Style="{StaticResource entryStyle}" BackgroundColor="Transparent" />
+                <!--  Last Name  -->
+                <Label
+                    Margin="10,5,10,0"
+                    FontAttributes="Bold"
+                    Text="Last Name"
+                    TextColor="#87bdd8" />
+                <Frame
+                    Margin="0,0,0,2"
+                    Padding="15,0"
+                    BackgroundColor="White"
+                    BorderColor="#b7d7e8"
+                    CornerRadius="15"
+                    HasShadow="False">
+                    <Entry
+                        BackgroundColor="Transparent"
+                        Placeholder="Type Last Name"
+                        PlaceholderColor="#b7d7e8"
+                        Style="{StaticResource entryStyle}"
+                        Text="{Binding LastName}" />
                 </Frame>
-                <Label Text="{Binding LastNameError}" IsVisible="{Binding ShowLastNameError}"
-                       TextColor="#FF6B6B" Margin="15,-5,0,5" FontSize="12" />
+                <Label
+                    Margin="15,-5,0,5"
+                    FontSize="12"
+                    IsVisible="{Binding ShowLastNameError}"
+                    Text="{Binding LastNameError}"
+                    TextColor="#FF6B6B" />
 
-                <!-- Email -->
-                <Label Text="Email" TextColor="#87bdd8" FontAttributes="Bold" Margin="10,5,10,0" />
-                <Frame CornerRadius="15" HasShadow="False" BackgroundColor="White" BorderColor="#b7d7e8"
-                       Padding="15,0" Margin="0,0,0,2">
-                    <Entry Placeholder="Type Email" Text="{Binding Email}" PlaceholderColor="#b7d7e8"
-                           Style="{StaticResource entryStyle}" BackgroundColor="Transparent" />
+                <!--  Email  -->
+                <Label
+                    Margin="10,5,10,0"
+                    FontAttributes="Bold"
+                    Text="Email"
+                    TextColor="#87bdd8" />
+                <Frame
+                    Margin="0,0,0,2"
+                    Padding="15,0"
+                    BackgroundColor="White"
+                    BorderColor="#b7d7e8"
+                    CornerRadius="15"
+                    HasShadow="False">
+                    <Entry
+                        BackgroundColor="Transparent"
+                        Placeholder="Type Email"
+                        PlaceholderColor="#b7d7e8"
+                        Style="{StaticResource entryStyle}"
+                        Text="{Binding Email}" />
                 </Frame>
-                <Label Text="{Binding EmailError}" IsVisible="{Binding ShowEmailError}"
-                       TextColor="#FF6B6B" Margin="15,-5,0,5" FontSize="12" />
+                <Label
+                    Margin="15,-5,0,5"
+                    FontSize="12"
+                    IsVisible="{Binding ShowEmailError}"
+                    Text="{Binding EmailError}"
+                    TextColor="#FF6B6B" />
 
-                <!-- PhoneNum -->
-                <Label Text="Phone Number" TextColor="#87bdd8" FontAttributes="Bold" Margin="10,5,10,0" />
-                <Frame CornerRadius="15" HasShadow="False" BackgroundColor="White" BorderColor="#b7d7e8"
-                       Padding="15,0" Margin="0,0,0,2">
-                    <Entry Placeholder="Type Phone Number" Text="{Binding PhoneNum}" PlaceholderColor="#b7d7e8"
-                           Style="{StaticResource entryStyle}" BackgroundColor="Transparent" />
+                <!--  PhoneNum  -->
+                <Label
+                    Margin="10,5,10,0"
+                    FontAttributes="Bold"
+                    Text="Phone Number"
+                    TextColor="#87bdd8" />
+                <Frame
+                    Margin="0,0,0,2"
+                    Padding="15,0"
+                    BackgroundColor="White"
+                    BorderColor="#b7d7e8"
+                    CornerRadius="15"
+                    HasShadow="False">
+                    <Entry
+                        BackgroundColor="Transparent"
+                        Placeholder="Type Phone Number"
+                        PlaceholderColor="#b7d7e8"
+                        Style="{StaticResource entryStyle}"
+                        Text="{Binding PhoneNum}" />
                 </Frame>
-                <Label Text="{Binding PhoneNumError}" IsVisible="{Binding ShowPhoneNumError}"
-                       TextColor="#FF6B6B" Margin="15,-5,0,5" FontSize="12" />
+                <Label
+                    Margin="15,-5,0,5"
+                    FontSize="12"
+                    IsVisible="{Binding ShowPhoneNumError}"
+                    Text="{Binding PhoneNumError}"
+                    TextColor="#FF6B6B" />
 
-                <!-- Password -->
-                <Label Text="Password" TextColor="#87bdd8" FontAttributes="Bold" Margin="10,5,10,0" />
+                <!--  Password  -->
+                <Label
+                    Margin="10,5,10,0"
+                    FontAttributes="Bold"
+                    Text="Password"
+                    TextColor="#87bdd8" />
                 <Grid ColumnSpacing="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="40" />
                     </Grid.ColumnDefinitions>
-                    <Frame Grid.Column="0" CornerRadius="15" HasShadow="False" BackgroundColor="White"
-                           BorderColor="#b7d7e8" Padding="15,0" Margin="0,0,0,2">
-                        <Entry Placeholder="Type Password" Text="{Binding Password}" IsPassword="{Binding IsPassword}"
-                               PlaceholderColor="#b7d7e8" Style="{StaticResource entryStyle}"
-                               BackgroundColor="Transparent" />
+                    <Frame
+                        Grid.Column="0"
+                        Margin="0,0,0,2"
+                        Padding="15,0"
+                        BackgroundColor="White"
+                        BorderColor="#b7d7e8"
+                        CornerRadius="15"
+                        HasShadow="False">
+                        <Entry
+                            BackgroundColor="Transparent"
+                            IsPassword="{Binding IsPassword}"
+                            Placeholder="Type Password"
+                            PlaceholderColor="#b7d7e8"
+                            Style="{StaticResource entryStyle}"
+                            Text="{Binding Password}" />
                     </Frame>
                     <ImageButton
                         Grid.Column="1"
+                        Margin="0,0,0,5"
+                        BackgroundColor="Transparent"
                         Command="{Binding ShowPasswordCommand}"
                         HeightRequest="25"
-                        Source="passwordeye.jpg"
-                        BackgroundColor="Transparent"
-                        Margin="0,0,0,5"/>
+                        Source="passwordeye.jpg" />
                 </Grid>
-                <Label Text="{Binding PasswordError}" IsVisible="{Binding ShowPasswordError}"
-                       TextColor="#FF6B6B" Margin="15,-5,0,5" FontSize="12" />
+                <Label
+                    Margin="15,-5,0,5"
+                    FontSize="12"
+                    IsVisible="{Binding ShowPasswordError}"
+                    Text="{Binding PasswordError}"
+                    TextColor="#FF6B6B" />
 
-                <!-- Save Button -->
+                <!--  Save Button  -->
                 <Button
-                    Text="Save"
-                    Command="{Binding SaveCommand}"
-                    IsEnabled="{Binding NotInServerCall}"
+                    Margin="50,15,50,10"
                     BackgroundColor="#87bdd8"
-                    TextColor="White"
+                    Command="{Binding SaveCommand}"
                     CornerRadius="25"
                     FontAttributes="Bold"
                     HeightRequest="50"
-                    Margin="50,15,50,10" />
+                    IsEnabled="{Binding NotInServerCall}"
+                    Text="Save"
+                    TextColor="White" />
 
             </VerticalStackLayout>
         </Grid>
     </ScrollView>
+
 </ContentPage>

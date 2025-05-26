@@ -1,47 +1,62 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:charts="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
-             x:Class="DriveMeCrazyApp.Views.DataView"
-             Title="DataView">
+<ContentPage
+    x:Class="DriveMeCrazyApp.Views.DataView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:charts="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
+    Title="DataView">
 
     <ScrollView>
         <Grid>
-            <!-- רקע גרדיאנט -->
+            <!--  רקע גרדיאנט  -->
             <BoxView>
                 <BoxView.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Color="#daebe8" Offset="0.0" />
-                        <GradientStop Color="#cfe0e8" Offset="1.0" />
+                        <GradientStop Offset="0.0" Color="#daebe8" />
+                        <GradientStop Offset="1.0" Color="#cfe0e8" />
                     </LinearGradientBrush>
                 </BoxView.Background>
             </BoxView>
 
-            <!-- תוכן עיקרי -->
+            <!--  תוכן עיקרי  -->
             <VerticalStackLayout Padding="25" Spacing="15">
 
                 <Label
-                    Text="who spends the most time with the car?"
+                    Margin="0,10,0,30"
+                    FontAttributes="Bold"
                     FontFamily="JumperBold"
                     FontSize="36"
                     HorizontalTextAlignment="Center"
-                    TextColor="#87bdd8"
-                    FontAttributes="Bold"
-                    Margin="0,10,0,30" />
+                    Text="who spends the most time with the car?"
+                    TextColor="#87bdd8" />
 
-                <Frame 
-                    BackgroundColor="White" 
-                    BorderColor="#b7d7e8" 
-                    CornerRadius="15" 
+                <Frame
                     Padding="10"
+                    BackgroundColor="White"
+                    BorderColor="#b7d7e8"
+                    CornerRadius="15"
                     HasShadow="True"
+                    HeightRequest="300"
                     HorizontalOptions="FillAndExpand"
-                    HeightRequest="300">
+                    IsVisible="{Binding IsDataExist}">
 
-                    <charts:ChartView Chart="{Binding ExampleChart}" 
-                                      VerticalOptions="FillAndExpand" />
+                    <charts:ChartView Chart="{Binding UsageChart}" VerticalOptions="FillAndExpand" />
+
                 </Frame>
-
+                <Frame
+                    Padding="10"
+                    BackgroundColor="White"
+                    BorderColor="#b7d7e8"
+                    CornerRadius="15"
+                    HasShadow="True"
+                    HeightRequest="300"
+                    HorizontalOptions="FillAndExpand"
+                    IsVisible="{Binding IsDataNotExist}">
+                    <Label
+                        HorizontalOptions="Center"
+                        Text="No Data For this period of time"
+                        VerticalOptions="Center" />
+                </Frame>
             </VerticalStackLayout>
 
         </Grid>

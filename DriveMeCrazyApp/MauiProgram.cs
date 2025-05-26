@@ -46,10 +46,8 @@ namespace DriveMeCrazyApp
             builder.Services.AddTransient<AppShell>();
             builder.Services.AddTransient<RegisterView>();
             builder.Services.AddTransient<ProfileView>();
-            builder.Services.AddTransient<AssignmentView>();
             builder.Services.AddTransient<RequestCarView>();
             builder.Services.AddTransient<AddCarView>();
-            builder.Services.AddTransient<HighScoresView>();
             builder.Services.AddTransient<CalenderView>();
             builder.Services.AddTransient<DataView>();
             builder.Services.AddTransient<ApproveRequestView>();
@@ -70,10 +68,8 @@ namespace DriveMeCrazyApp
             builder.Services.AddTransient<AppShellViewModel>();
             builder.Services.AddTransient<RegisterViewModel>();
             builder.Services.AddTransient<ProfileViewModel>();
-            builder.Services.AddTransient<AssignmentViewModel>();
             builder.Services.AddTransient<RequestCarViewModel>();
             builder.Services.AddTransient<AddCarViewModel>();
-            builder.Services.AddTransient<HighScoresViewModel>();
             builder.Services.AddTransient<CalendarViewModel>();
             builder.Services.AddTransient<DataViewModel>();
             builder.Services.AddTransient<AprroveRequestViewModel>();

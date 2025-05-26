@@ -7,28 +7,25 @@
     xmlns:views="clr-namespace:DriveMeCrazyApp.Views"
     Title="DriveMeCrazyApp"
     BackgroundColor="#87bdd8"
-    Shell.FlyoutBehavior="Flyout">
+    Shell.FlyoutBehavior="Flyout"
+    Shell.TabBarBackgroundColor="#87bdd8">
 
 
 
 
-  
+
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="tabs">
         <ShellContent
-       Title="Calender"
-        ContentTemplate="{DataTemplate views:CalenderView}"
-         Icon="calender.jpg"
-           Route="Calender" />
+            Title="Calender"
+            ContentTemplate="{DataTemplate views:CalenderView}"
+            Icon="calender.jpg"
+            Route="Calender" />
         <ShellContent
             Title="Profile"
             ContentTemplate="{DataTemplate views:ProfileView}"
             Icon="profileimage.jpg"
             Route="Profile" />
-        <ShellContent
-            Title="Assignments"
-            ContentTemplate="{DataTemplate views:AssignmentView}"
-            Icon="assignmet.jpg"
-            Route="Assignment" />
+
         <ShellContent
             Title="RequestCar"
             ContentTemplate="{DataTemplate views:RequestCarView}"
@@ -38,12 +35,8 @@
     </FlyoutItem>
 
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="tabs">
-        <ShellContent
-            Title="HighScores"
-            ContentTemplate="{DataTemplate views:HighScoresView}"
-            Icon="highscores.png"
-          Route="HighScores" />
-       
+
+
         <ShellContent
             Title="Data"
             ContentTemplate="{DataTemplate views:DataView}"
@@ -58,20 +51,21 @@
             Icon="list.png"
             IsVisible="{Binding IsManager}"
             Route="CarList" />
-     
-        
+
+
         <ShellContent
-      Title="ApproveRequest"
-      ContentTemplate="{DataTemplate views:ApproveRequestView}"
-      Icon="Aprove.jpg"
-      IsVisible="{Binding IsManager}"
-      Route="ApproveRequest" />
+            Title="ApproveRequest"
+            ContentTemplate="{DataTemplate views:ApproveRequestView}"
+            Icon="Aprove.jpg"
+            IsVisible="{Binding IsManager}"
+            Route="ApproveRequest" />
 
 
     </FlyoutItem>
     <MenuItem
         Command="{Binding AddCarCommand}"
         IconImageSource="addcar.png"
+        IsEnabled="{Binding IsManager}"
         Text="Add Car" />
-    <MenuItem Text="Logout" Command="{Binding LogoutCommand}" />
+    <MenuItem Command="{Binding LogoutCommand}" Text="Logout" />
 </Shell>

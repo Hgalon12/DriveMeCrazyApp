@@ -34,7 +34,7 @@ namespace DriveMeCrazyApp.Services
         private HttpClient client;
         private string baseUrl;
         public static string BaseAddress = "https://ls94pz8z-5243.euw.devtunnels.ms/api/";
-        public static string ImageBaseAddress = "https://ls94pz8z-5243.euw.devtunnels.ms/";
+        public static string ImageBaseAddress = "https://ls94pz8z-5243.euw.devtunnels.ms";
         #endregion
 
         public DriveMeCrazyWebAPIProxy()
