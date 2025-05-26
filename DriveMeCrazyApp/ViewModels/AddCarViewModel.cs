@@ -25,25 +25,7 @@ namespace DriveMeCrazyApp.ViewModels
             CarIdError = "CarId is required";
             NickNameError = "NickName is required";
         }
-        #region Car Type
-
-        private int carType;
-
-        public int CarType
-        {
-            get => carType;
-            set
-            {
-                carType = value;
-                OnPropertyChanged("CarType");
-            }
-        }
-
-
-
-
-        #endregion
-
+       
         #region CarId
         private bool showCarIdError;
 
@@ -93,53 +75,7 @@ namespace DriveMeCrazyApp.ViewModels
         #endregion
 
      
-        #region Num of places
-        private bool showNumOfPlacesError;
-
-        public bool ShowNumOfPlacesError
-        {
-            get => showNumOfPlacesError;
-            set
-            {
-                showNumOfPlacesError = value;
-                OnPropertyChanged("ShowNumOfPlacesError");
-            }
-        }
-
-        private int numOfPlaces;
-
-        public int NumOfPlaces
-        {
-            get => numOfPlaces;
-            set
-            {
-                numOfPlaces = value;
-                ValidateNumOfPlaces();
-                OnPropertyChanged("numOfPlaces");
-            }
-        }
-
-        private string numOfPlacesError;
-
-        public string NumOfPlacesError
-        {
-            get => numOfPlacesError;
-            set
-            {
-                numOfPlacesError = value;
-                OnPropertyChanged("numOfPlacesError");
-            }
-        }
-
-        private void ValidateNumOfPlaces()
-        {
-            if (numOfPlaces == null)
-            {
-                this.ShowNumOfPlacesError = true;
-            }
-
-        }
-        #endregion
+       
 
         #region NickName
         private bool showNickNameError;
