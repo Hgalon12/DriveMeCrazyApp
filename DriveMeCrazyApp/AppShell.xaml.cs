@@ -18,6 +18,7 @@ namespace DriveMeCrazyApp
             Routing.RegisterRoute("addDriver", typeof(DriverCarView));
             Routing.RegisterRoute("approveRequest", typeof(ApproveRequestView));
             Routing.RegisterRoute("requestCar", typeof(RequestCarView));
+            Routing.RegisterRoute("calender", typeof(CalenderView));
 
         }
         public event Action<Type> DataChanged;
