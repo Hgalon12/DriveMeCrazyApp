@@ -74,7 +74,7 @@ namespace DriveMeCrazyApp.ViewModels
                 List<CarUseChart> list;
                 if (u.CarOwnerId == null)
                 {
-                    list = await proxy.GetCarUsage(u.Id, 100);
+                    list = await proxy.GetCarUsage(u.Id, 7);
                 }
                 else
                 {
